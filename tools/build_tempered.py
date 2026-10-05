@@ -26,6 +26,7 @@ EPILOG_ROOT = "tempered:bonus/epilog/root"
 DATE = (2026, 1, 1, 0, 0, 0)
 FORMATS = {"26.2": [107, 1], "26.3": [121, 0], "1.21.1": [48, 0], "1.21.4": [61, 0]}
 LEGACY_MC = ("1.21.1", "1.21.4")
+RESOURCE_FORMAT = {"1.21.1": 34, "1.21.4": 46}  # TEMPERED is both a data pack (FORMATS) and a resource pack (lang files)
 
 
 def encode(value):
@@ -218,7 +219,10 @@ def build(mc, vanilla_jar=None):
     pack = json.loads(entries["pack.mcmeta"])
     major, minor = FORMATS[mc]
     if legacy:
-        pack["pack"] = {"description": pack["pack"]["description"], "pack_format": major}
+        # one pack.mcmeta serves both roles, and the two format numbers differ: accept the whole range between them
+        low = RESOURCE_FORMAT[mc]
+        pack["pack"] = {"description": pack["pack"]["description"], "pack_format": low,
+                        "supported_formats": {"min_inclusive": low, "max_inclusive": major}}
     else:
         pack["pack"].update(pack_format=major, min_format=[major, minor], max_format=[major, minor])
     entries["pack.mcmeta"] = encode(pack)

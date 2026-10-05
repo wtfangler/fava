@@ -39,7 +39,7 @@ def formats(metadata):
 
 
 def annotate(mc, caches, download=False):
-    path = ROOT / "tools" / ("lock.json" if mc == "26.2" else "lock-26.3.json")
+    path = ROOT / "tools" / ("lock.json" if mc == "26.2" else f"lock-{mc}.json")
     lock = json.loads(path.read_text(encoding="utf8"))
     count = 0
     with tempfile.TemporaryDirectory(prefix="fv-resource-metadata-") as temporary:
@@ -68,7 +68,7 @@ def annotate(mc, caches, download=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--mc", choices=("26.2", "26.3"), default="26.2")
+    parser.add_argument("--mc", choices=("26.2", "26.3", "1.21.1", "1.21.4"), default="26.2")
     parser.add_argument("--cache", action="append", default=[])
     parser.add_argument("--download", action="store_true")
     args = parser.parse_args()

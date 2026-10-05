@@ -26,7 +26,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "site"
 OUT = ROOT / "build" / "site"
 MODRINTH = "https://modrinth.com/modpack/fava"
-CURRENT = ("26.2", "26.3")
+CURRENT = ("26.2", "26.3", "1.21.4", "1.21.1")
+OLDER = {"1.21.4", "1.21.1"}  # no Fancy Journal / loader: that client mod targets the 26.x API
 # Fixed by the TEMPERED mod: quests needed to advance / quests in the age (see docs/modrinth_description.md)
 THRESHOLDS = [(6, 9), (9, 15), (8, 13), (8, 13), (9, 14), (8, 13), (8, 12)]
 
@@ -100,20 +101,33 @@ def journal_jars(cur):
 
 
 # ------------------------------------------------------------------ rendering
+def older_note(mc):
+    if mc not in OLDER:
+        return '<p class="fine note">' + bi("Zawiera Fancy Journal (klawisz J) i własny ekran ładowania gry.", "Includes Fancy Journal (J key) and the own game loading screen.") + "</p>"
+    creaking = " i Creaking" if mc == "1.21.1" else ""
+    creaking_en = " and the Creaking" if mc == "1.21.1" else ""
+    return ('<p class="fine note">' + bi(
+        f"Bez Fancy Journal i własnego loadera (te mody powstały pod Minecrafta 26.x); zadania widzisz w zwykłym ekranie osiągnięć, z zakładką na każdą erę. Pominięte: miedziany sprzęt, włócznie{creaking} (nie ma ich w tej wersji gry).",
+        f"No Fancy Journal or own loader (those mods are written for Minecraft 26.x); quests show in the normal advancements screen, one tab per age. Left out: copper gear, spears{creaking_en} (not in this game version).") + "</p>")
+
+
 def render_downloads(cur):
     tabs, panels = [], []
     for i, mc in enumerate(CURRENT):
         r = cur[mc]
         sel = "true" if i == 0 else "false"
-        tabs.append(f'<button type="button" role="tab" id="tab-{mc}" aria-controls="panel-{mc}" aria-selected="{sel}" tabindex="{0 if i == 0 else -1}">Minecraft {mc}</button>')
+        tabs.append(f'<button type="button" role="tab" id="tab-{mc}" aria-controls="panel-{mc}" aria-selected="{sel}" aria-label="Minecraft {mc}" tabindex="{0 if i == 0 else -1}">{mc}</button>')
         link = f"downloads/{mc}/{esc(r['file'])}"
+        java = '21' if mc in OLDER else '25'
         panels.append(f'''<div class="panel" role="tabpanel" id="panel-{mc}" aria-labelledby="tab-{mc}"{'' if i == 0 else ' hidden'}>
             <div class="ver">{esc(r['version'])}<small>{esc(r['channel'])}</small></div>
             <p class="meta">{bi('Minecraft ' + mc + ', Fabric ' + esc(r['loader']) + ', ' + human_size(r['size']), 'Minecraft ' + mc + ', Fabric ' + esc(r['loader']) + ', ' + human_size(r['size']))}</p>
+            {older_note(mc)}
             <div class="row">
               <a class="btn primary" href="{link}" download>{bi('Pobierz .mrpack', 'Download .mrpack')}</a>
               <a class="btn ghost" href="{esc(MODRINTH)}" rel="noopener">Modrinth</a>
             </div>
+            <p class="fine">{bi('Wymaga Java ' + java + ', Fabric Loader ' + esc(r['loader']) + ' i 4–6 GB RAM. Importuj plik w Modrinth App lub Prism Launcher.', 'Needs Java ' + java + ', Fabric Loader ' + esc(r['loader']) + ' and 4–6 GB RAM. Import the file in Modrinth App or Prism Launcher.')}</p>
             <div class="hash"><span>SHA-512</span><code title="{r['sha512']}">{r['sha512'][:16]}…</code><button type="button" data-copy="{r['sha512']}">{bi('Kopiuj', 'Copy')}</button></div>
           </div>''')
     return "\n            ".join(tabs), "\n          ".join(panels)
@@ -232,13 +246,13 @@ def make_images(out_img):
 
 # ------------------------------------------------------------------ build
 PAGES = {
-    "pl": {"title": "Fancy Vanilla: Minecraft 26.2 i 26.3, vanilla dopieszczona",
-           "description": "Modpack Fabric dla Minecrafta 26.2 i 26.3. Bez nowych bloków i mobów: szybsza gra, ładniejsza oprawa, siedem er progresji TEMPERED i własny Dziennik.",
-           "og_description": "Vanilla, tylko dopieszczona. Minecraft 26.2 i 26.3, Fabric.", "og_locale": "pl_PL",
+    "pl": {"title": "Fancy Vanilla: vanilla dopieszczona, Minecraft 26.x i 1.21.x",
+           "description": "Modpack Fabric dla Minecrafta 26.2, 26.3, 1.21.4 i 1.21.1. Bez nowych bloków i mobów: szybsza gra, ładniejsza oprawa, siedem er progresji TEMPERED i własny Dziennik.",
+           "og_description": "Vanilla, tylko dopieszczona. Minecraft 26.2, 26.3, 1.21.4 i 1.21.1, Fabric.", "og_locale": "pl_PL",
            "nav_label": "Główna nawigacja", "lightbox_label": "Podgląd zdjęcia", "close_label": "Zamknij"},
-    "en": {"title": "Fancy Vanilla: Minecraft 26.2 and 26.3, vanilla polished",
-           "description": "Fabric modpack for Minecraft 26.2 and 26.3. No new blocks or mobs: a faster game, nicer visuals, seven TEMPERED progression ages and its own Journal.",
-           "og_description": "Vanilla, just polished. Minecraft 26.2 and 26.3, Fabric.", "og_locale": "en_US",
+    "en": {"title": "Fancy Vanilla: vanilla polished, Minecraft 26.x and 1.21.x",
+           "description": "Fabric modpack for Minecraft 26.2, 26.3, 1.21.4 and 1.21.1. No new blocks or mobs: a faster game, nicer visuals, seven TEMPERED progression ages and its own Journal.",
+           "og_description": "Vanilla, just polished. Minecraft 26.2, 26.3, 1.21.4 and 1.21.1, Fabric.", "og_locale": "en_US",
            "nav_label": "Main navigation", "lightbox_label": "Image preview", "close_label": "Close"},
 }
 
@@ -350,6 +364,7 @@ def main():
     shutil.copy2(SITE / "assets" / "site.css", OUT / "assets" / "site.css")
     shutil.copy2(SITE / "assets" / "site.js", OUT / "assets" / "site.js")
     shutil.copytree(SITE / "assets" / "fonts", OUT / "assets" / "fonts")
+    shutil.copytree(SITE / "assets" / "vendor", OUT / "assets" / "vendor")
     make_images(OUT / "assets" / "img")
     jars = journal_jars(cur)
     for lang, page in pages.items():

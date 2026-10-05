@@ -368,6 +368,7 @@ Kontrola zależności jest domyślnie offline; `--download` jawnie pozwala pobra
 
 ## {version} alpha — Minecraft 26.2 / 26.3 — {DATE}
 
+- Nowe wydania dla Minecrafta **1.21.4** i **1.21.1** (na bazie Streamline Master 1.0.8 / 1.0.7): oprawa, rdzeń wydajności i TEMPERED w wersji dostosowanej do danych 1.21.x. Bez Fancy Journal i własnego loadera (te mody są pisane pod API 26.x); pominięto miedziany sprzęt i włócznie (nie istnieją w 1.21.x) oraz quest z Creakingiem w 1.21.1.
 - Własny loader Fancy Vanilla (Fancy Journal 1.1.0): ciemny ekran z logo i paskiem postępu zamiast logo Mojang przy starcie gry i przeładowaniu zasobów oraz przy komunikatach typu „Zapisywanie świata”. Vanilla nadal steruje ładowaniem i wygaszaniem; nakładka tylko rysuje na wierzchu.
 - Dwa języki (PL/EN): komunikaty komend administracyjnych (`help`, `diag`, `gate_on/off`, `set_age`, `reset`, status) korzystają teraz z kluczy tłumaczeń (TEMPERED 2.19.0), tak jak zadania i osiągnięcia. Wersja angielska działa po przełączeniu języka gry.
 - Zadania opcjonalne: 63 w erach (po 9) i 55 w Epilogu (po zabiciu smoka); progi przejścia er bez zmian. Wbudowany przycisk „Postępy” w menu pauzy zastąpiono jednym dziennikiem pod klawiszem J.

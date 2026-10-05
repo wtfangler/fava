@@ -3,7 +3,7 @@
 
 Use a NEW output directory when changing mods or Minecraft/Fabric versions.
 --no-download prepares configs and embedded mods; it is not a runnable server.
-Worlds are never changed by this tool. Java 25+ is required to run the server.
+Worlds are never changed by this tool. Java 21+ (26.x: Java 25+) is required to run the server.
 """
 import argparse
 import hashlib
@@ -300,7 +300,7 @@ def build(mrpack, out, ram="4G", no_download=False, cache_dir=None, offline=Fals
         if preserved:
             print(f"Preserved {len(preserved)} existing configs/settings/start scripts.")
         print("CONFIGS ONLY: downloaded mods/launcher skipped; this server is not yet runnable." if no_download
-              else "Build complete. Review eula.txt, then run start.bat or start.sh. Java 25+ required.")
+              else "Build complete. Review eula.txt, then run start.bat or start.sh. Java 21+ required (Java 25+ for 26.x).")
         return state
 
 
