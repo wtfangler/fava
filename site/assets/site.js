@@ -57,4 +57,18 @@
       navigator.clipboard.writeText(text).then(done, function () { /* clipboard blocked: leave the text visible */ });
     }
   });
+
+  // ---- image zoom (lightbox)
+  var box = document.getElementById("lightbox");
+  if (box && typeof box.showModal === "function") {
+    var big = box.querySelector("img");
+    document.querySelectorAll("img.zoomable").forEach(function (img) {
+      img.tabIndex = 0;
+      img.setAttribute("role", "button");
+      var open = function () { big.src = img.currentSrc || img.src; big.alt = img.alt; box.showModal(); };
+      img.addEventListener("click", open);
+      img.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+    });
+    box.addEventListener("click", function () { box.close(); });
+  }
 })();

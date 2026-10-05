@@ -9,6 +9,7 @@ Everything that can go stale is computed here, not typed into the HTML:
   * images are derived from brand/ (the author's artwork) and gallery/ (real in-game screenshots).
 """
 import hashlib
+import urllib.parse
 import html
 import importlib.util
 import io
@@ -81,6 +82,20 @@ def current_by_mc(releases):
             found[r["mc"]] = r
     if set(found) != set(CURRENT):
         raise SystemExit(f"No current release for: {sorted(set(CURRENT) - set(found))}")
+    return found
+
+
+GITHUB = "https://github.com/wtfangler/fancy-vanilla"
+
+
+def journal_jars(cur):
+    """Fancy Journal (which contains the loader) as bundled in each pack, for a standalone download."""
+    found = {}
+    for mc, r in cur.items():
+        with zipfile.ZipFile(r["path"]) as z:
+            for name in z.namelist():
+                if name.startswith("overrides/mods/fancy_journal-") and name.endswith(".jar"):
+                    found[mc] = (name.rsplit("/", 1)[-1], z.read(name))
     return found
 
 
@@ -195,9 +210,11 @@ def make_images(out_img):
     out_img.mkdir(parents=True, exist_ok=True)
     brand = ROOT / "brand"
     shutil.copy2(brand / "logo" / "wordmark-white.png", out_img / "wordmark.png")
-    icon = Image.open(brand / "icons" / "icon-release-512.jpg").convert("RGB")
-    icon.resize((64, 64), Image.LANCZOS).save(out_img / "favicon.png")
-    icon.resize((180, 180), Image.LANCZOS).save(out_img / "apple-touch-icon.png")
+    live = Image.open(brand / "icons" / "favicon-live-64.png").convert("RGBA")
+    live.save(out_img / "favicon.png")
+    touch = Image.new("RGBA", (180, 180), (14, 16, 19, 255))
+    touch.alpha_composite(live.resize((140, 140), Image.LANCZOS), (20, 20))
+    touch.convert("RGB").save(out_img / "apple-touch-icon.png")
     hero = Image.open(brand / "backgrounds" / "mountains-7680x4320.jpg").convert("RGB")
     hero.thumbnail((2400, 1350), Image.LANCZOS)
     hero.save(out_img / "hero.jpg", quality=80, optimize=True, progressive=True)
@@ -226,7 +243,10 @@ def main():
         "latest_channel_pl": esc(latest["channel"]), "latest_channel_en": esc(latest["channel"]),
         "dl_tabs": tabs, "dl_panels": panels, "stats_rows": render_stats(cur, base, epilog, era_opt),
         "groups": render_groups(), "era_rows": render_ages(era_opt, pl, en), "version_rows": render_versions(releases),
-        "epilog_count": str(epilog), "server_cmd_plain": cmd_plain, "server_cmd_html": cmd_html, "modrinth": esc(MODRINTH),
+        "epilog_count": str(epilog), "github": GITHUB,
+        "journal_downloads": "".join(
+            f'<a class="btn ghost" href="downloads/mods/{urllib.parse.quote(name)}" download>Fancy Journal {esc(name.split("-")[1].split("+")[0])} · Minecraft {mc}</a>'
+            for mc, (name, _) in journal_jars(cur).items()), "server_cmd_plain": cmd_plain, "server_cmd_html": cmd_html, "modrinth": esc(MODRINTH),
     }
     page = (SITE / "index.template.html").read_text(encoding="utf8")
     for key, value in values.items():
@@ -241,11 +261,16 @@ def main():
     shutil.copy2(SITE / "assets" / "site.css", OUT / "assets" / "site.css")
     shutil.copy2(SITE / "assets" / "site.js", OUT / "assets" / "site.js")
     make_images(OUT / "assets" / "img")
+    jars = journal_jars(cur)
     (OUT / "index.html").write_text(page, encoding="utf8", newline="\n")
     for r in releases:
         target = OUT / "downloads" / r["mc"]
         target.mkdir(parents=True, exist_ok=True)
         shutil.copy2(r["path"], target / r["file"])
+    mods_dir = OUT / "downloads" / "mods"
+    mods_dir.mkdir(parents=True, exist_ok=True)
+    for name, data in jars.values():
+        (mods_dir / name).write_bytes(data)
     server = OUT / "downloads" / "server"
     server.mkdir(parents=True)
     with zipfile.ZipFile(server / "fancy-vanilla-server-builder.zip", "w", zipfile.ZIP_DEFLATED) as z:

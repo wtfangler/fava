@@ -44,6 +44,13 @@ html[data-lang="pl"] [lang="en"], html[data-lang="en"] [lang="pl"] { display: no
 .lang button { background: none; border: 0; padding: 5px 11px; font: 500 .78rem var(--font-mono); letter-spacing: .04em; color: var(--muted); cursor: pointer; }
 .lang button[aria-pressed="true"] { background: var(--text); color: var(--bg); }
 
+.top-tools { display: flex; align-items: center; gap: 14px; }
+.ext { display: flex; align-items: center; gap: 4px; }
+.ext a { display: inline-flex; align-items: center; gap: 7px; padding: 6px 9px; border-radius: var(--radius); color: var(--muted); text-decoration: none; font-size: .86rem; }
+.ext a:hover { color: var(--text); background: var(--bg-2); }
+.ico { width: 18px; height: 18px; flex: none; }
+.ext-link { display: inline-flex; align-items: center; gap: 8px; }
+
 /* ---------- hero */
 .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
 .hero-art { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,16,19,.96) 0%, rgba(14,16,19,.62) 46%, rgba(14,16,19,.94) 100%), url("img/hero.jpg") center bottom / cover no-repeat; filter: saturate(.85); }
@@ -128,6 +135,13 @@ h2 { margin: 0 0 22px; font: 600 clamp(1.6rem, 3vw, 2.35rem)/1.12 var(--font-dis
 .code .c { color: #6b7686; }
 .download-row { margin: 18px 0 0; }
 
+.zoomable { cursor: zoom-in; }
+.lb { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 94vh; overflow: visible; }
+.lb::backdrop { background: rgba(6, 8, 10, .88); }
+.lb img { display: block; max-width: 96vw; max-height: 92vh; width: auto; height: auto; border: 1px solid var(--line-2); border-radius: 6px; cursor: zoom-out; margin: 0 auto; }
+.lb-x { position: fixed; top: 14px; right: 18px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-2); background: rgba(14, 16, 19, .9); color: var(--text); font-size: 24px; line-height: 1; cursor: pointer; }
+.lb-x:hover { border-color: var(--muted); }
+
 /* ---------- footer */
 .foot { padding: 48px 0 56px; }
 .foot-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) auto; gap: 32px 64px; align-items: start; }
@@ -144,6 +158,7 @@ h2 { margin: 0 0 22px; font: 600 clamp(1.6rem, 3vw, 2.35rem)/1.12 var(--font-dis
   .nav { display: none; }
   .top-inner { justify-content: space-between; }
 }
+@media (max-width: 720px) { .ext a span { display: none; } .ext a { padding: 6px; } }
 @media (max-width: 560px) {
   .wrap { width: calc(100% - 32px); }
   .dl { padding: 18px; }
