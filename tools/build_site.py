@@ -234,13 +234,13 @@ def make_images(out_img):
 
 # ------------------------------------------------------------------ build
 PAGES = {
-    "pl": {"title": "Fancy Vanilla: vanilla dopieszczona, Minecraft 26.x i 1.21.x",
-           "description": "Modpack Fabric dla Minecrafta 26.2, 26.3, 1.21.4 i 1.21.1. Bez nowych bloków i mobów: szybsza gra, ładniejsza oprawa, siedem er progresji TEMPERED i własny Dziennik.",
-           "og_description": "Vanilla, tylko dopieszczona. Minecraft 26.2, 26.3, 1.21.4 i 1.21.1, Fabric.", "og_locale": "pl_PL",
+    "pl": {"title": "Fancy Vanilla: vanilla dopieszczona, Minecraft 26.2 i 26.3",
+           "description": "Modpack Fabric dla Minecrafta 26.2 i 26.3. Bez nowych bloków i mobów: szybsza gra, ładniejsza oprawa, siedem er progresji TEMPERED i własny Dziennik.",
+           "og_description": "Vanilla, tylko dopieszczona. Minecraft 26.2 i 26.3, Fabric.", "og_locale": "pl_PL",
            "nav_label": "Główna nawigacja", "lightbox_label": "Podgląd zdjęcia", "close_label": "Zamknij"},
-    "en": {"title": "Fancy Vanilla: vanilla polished, Minecraft 26.x and 1.21.x",
-           "description": "Fabric modpack for Minecraft 26.2, 26.3, 1.21.4 and 1.21.1. No new blocks or mobs: a faster game, nicer visuals, seven TEMPERED progression ages and its own Journal.",
-           "og_description": "Vanilla, just polished. Minecraft 26.2, 26.3, 1.21.4 and 1.21.1, Fabric.", "og_locale": "en_US",
+    "en": {"title": "Fancy Vanilla: vanilla polished, Minecraft 26.2 and 26.3",
+           "description": "Fabric modpack for Minecraft 26.2 and 26.3. No new blocks or mobs: a faster game, nicer visuals, seven TEMPERED progression ages and its own Journal.",
+           "og_description": "Vanilla, just polished. Minecraft 26.2 and 26.3, Fabric.", "og_locale": "en_US",
            "nav_label": "Main navigation", "lightbox_label": "Image preview", "close_label": "Close"},
 }
 
@@ -320,9 +320,9 @@ ROOT_PAGE = """<!doctype html>
 </html>
 """
 
-REDIRECTS = """# Netlify: send visitors to their language, English by default
-/  /pl/  302  Language=pl
-/  /en/  302
+REDIRECTS = """# Netlify: send visitors to their language, English by default (forced: there is an index.html at /, which would win otherwise)
+/  /pl/  302!  Language=pl
+/  /en/  302!
 """
 
 

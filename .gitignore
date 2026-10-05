@@ -11,3 +11,4 @@ __pycache__/
 brand/source/
 # local tooling
 .claude/
+.netlify/
