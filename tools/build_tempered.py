@@ -17,6 +17,7 @@ from pathlib import Path, PurePosixPath
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import tempered_legacy  # noqa: E402
+import gen_quest_specs  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "src" / "tempered"
@@ -210,6 +211,11 @@ def build(mc, vanilla_jar=None):
     if legacy:
         entries = tempered_legacy.prune(entries, mc)
     count = validate(entries, vanilla_jar)
+    specs = gen_quest_specs.build_specs(entries)
+    base_quests = sum(1 for n in entries if n.startswith("data/tempered/advancement/quest/") and n.endswith(".json"))
+    if len(specs) != base_quests:
+        raise ValueError(f"Quest specs cover {len(specs)} of {base_quests} original quests")
+    entries["assets/tempered/quest_specs.json"] = gen_quest_specs.encode(specs)
     metadata = json.loads(entries["fabric.mod.json"])
     metadata["version"] = VERSION
     metadata["depends"]["minecraft"] = {"26.2": ">=26.2 <26.3", "26.3": ">=26.3 <26.4"}.get(mc, mc)

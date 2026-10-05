@@ -38,7 +38,7 @@ Upload in this order, set number 1 as featured. Files are copied to `brand/modri
 | 5 | `brand/modrinth-gallery/05-journal-fj_1_wide.png` | Fancy Journal: ages | Tabs per age with progress bars |
 | 6 | `brand/modrinth-gallery/06-journal-fj_5_pause_menu.png` | One progress screen | Pause menu with the single journal entry |
 | 7 | `brand/modrinth-gallery/07-track-fj_t1_pin.png` | Quest tracking | A pin on every quest; the tracked one gets a frame |
-| 8 | `brand/modrinth-gallery/08-track-fj_t2_hud.png` | Tracker panel | Tracked quest and its progress in a small corner panel |
+| 8 | `brand/modrinth-gallery/08-track-fj_t2_hud.png` | Tracker panel | What to do and how far you are: checklist with counters |
 
 Shots 2 to 8 come from the automated test on the real game, not staged screenshots. Add a few of your own from normal play (menu, a build with shaders) when you have them; they sell the pack better than test shots.
 
@@ -100,7 +100,7 @@ TEMPERED is my own mod. The world moves through seven ages, and each one unlocks
 One modern progress screen on **J** (rebindable) that replaces the two vanilla ones.
 - Tabs per age with progress bars, search, and filters: all, remaining, completed.
 - Optional quests are kept apart from the required count, and the Epilogue tab unlocks after the dragon.
-- **Quest tracking:** a pin on every quest tracks it. The quest name and its progress show in a small panel in the top-left corner of the screen, even with the journal closed; the panel disappears a few seconds after you finish the quest.
+- **Quest tracking:** a pin on every quest tracks it. A small panel in the bottom-right corner of the screen (movable in `config/fancy_journal.json`) shows the quest name, what to do, a checklist of the requirements with counters such as *Get: Any planks 20/32* (items are counted from your inventory, the rest from your statistics) and a progress bar, even with the journal closed. It disappears a few seconds after you finish the quest.
 - Hold Shift while opening it for the classic vanilla view. If the journal ever fails, the game falls back to the classic screen on its own.
 
 ### Own loading screen (26.2 and 26.3)

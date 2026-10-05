@@ -134,6 +134,17 @@ public final class Harness {
 
     private static String trackedId;
 
+    private static java.util.List<?> specLines(Minecraft mc, String id) throws Exception {
+        Class<?> spec = Class.forName("dev.fancyvanilla.journal.QuestSpec");
+        var of = spec.getDeclaredMethod("of", String.class);
+        of.setAccessible(true);
+        Object value = of.invoke(null, id);
+        check(value != null, "quest spec exists for " + id);
+        var lines = spec.getDeclaredMethod("lines", net.minecraft.advancements.AdvancementProgress.class, Minecraft.class);
+        lines.setAccessible(true);
+        return (java.util.List<?>) lines.invoke(value, null, mc);
+    }
+
     private static Object trackerCall(String method, Object... args) throws Exception {
         Class<?> type = Class.forName("dev.fancyvanilla.journal.Tracker");
         for (var m : type.getMethods()) {
@@ -178,6 +189,33 @@ public final class Harness {
                         check(trackerCall("tracked") == null, "second toggle stops tracking");
                         trackerCall("toggle", trackedId);
                         check(trackedId.equals(trackerCall("tracked")), "tracked again");
+                        trackerCall("toggle", "tempered:quest/1/1d");  // 32 planks, counted from the inventory
+                        mc.getSingleplayerServer().execute(() -> command(mc.getSingleplayerServer(), "give Dev minecraft:oak_planks 20"));
+                        next();
+                    }
+                }
+                case 6 -> {
+                    if (waited > 40) {
+                        var line = specLines(mc, "tempered:quest/1/1d").get(0);
+                        check((int) field(line, "have") == 20 && (int) field(line, "need") == 32, "planks quest counts 20/32 from the inventory: " + field(line, "have") + "/" + field(line, "need"));
+                        shot(mc, "fj_t3_hud_items");
+                        trackerCall("toggle", "tempered:quest/1/1h");  // survive falls totalling 30 blocks, a statistic in centimetres
+                        next();
+                    }
+                }
+                case 7 -> {
+                    if (waited > 90) {
+                        var line = specLines(mc, "tempered:quest/1/1h").get(0);
+                        check((int) field(line, "need") == 30 && (int) field(line, "have") < 30, "fall quest reads the fall statistic in blocks (need 30, have " + field(line, "have") + ")");
+                        shot(mc, "fj_t4_hud_stat");
+                        trackerCall("toggle", "tempered:bonus/1/first_shelter");  // bed + door + campfire
+                        next();
+                    }
+                }
+                case 8 -> {
+                    if (waited > 30) {
+                        check(specLines(mc, "tempered:bonus/1/first_shelter").size() == 3, "shelter quest lists three requirements");
+                        shot(mc, "fj_t5_hud_multi");
                         log("finished (track)");
                         mc.stop();
                         stage = 99;

@@ -368,7 +368,7 @@ Kontrola zależności jest domyślnie offline; `--download` jawnie pozwala pobra
 
 ## {version} alpha — Minecraft 26.2 / 26.3 / 1.21.4 / 1.21.1 — {DATE}
 
-- Śledzenie zadań (Fancy Journal 1.2.0): pinezka przy każdym zadaniu w dzienniku; śledzone zadanie i jego postęp pokazują się w małym panelu w lewym górnym rogu ekranu, a po ukończeniu panel znika sam. Wybór zapisuje się w `config/fancy_journal.json`. Tylko 26.2 i 26.3.
+- Śledzenie zadań (Fancy Journal 1.2.0): pinezka przy każdym zadaniu w dzienniku. Panel w prawym dolnym rogu ekranu pokazuje nazwę zadania, opis, listę wymagań z haczykami i liczniki (np. „Zdobądź: Dowolne deski 20/32”): przedmioty liczone są z ekwipunku, reszta ze statystyk gracza, a przy zadaniach wieloetapowych każdy krok ma osobny haczyk. Po ukończeniu panel znika sam. Wybór i róg panelu (`corner`) zapisują się w `config/fancy_journal.json`. Tylko 26.2 i 26.3. Uwaga: liczniki ze statystyk to statystyki całego życia gracza w świecie, więc w świecie założonym przed TEMPERED mogą wyprzedzać wewnętrzny licznik zadania; panel nie pokaże wtedy ukończenia przed serwerem.
 - Nowa ikona moda TEMPERED (TEMPERED 2.20.0).
 - Opisy modów w Mod Menu zależą od języka gry (po angielsku i po polsku), tak jak zadania, komendy i dziennik. Język wybiera się w grze: Opcje > Język; moda nie mają osobnego przełącznika.
 
