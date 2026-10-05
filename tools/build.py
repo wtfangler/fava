@@ -9,9 +9,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 STREAMLINE = ROOT / "inputs" / "Streamline Master 1.5.1.mrpack"
-# Older Minecraft versions: own bases, no Fancy Journal (client mod is written for the 26.x API)
-LEGACY = {"1.21.1": ("Streamline Master 1.0.7 for 1.21.1.mrpack", 34, (34, 0)), "1.21.4": ("Streamline Master 1.0.8 for 1.21.4.mrpack", 46, (46, 0))}
-MC_VERSIONS = ("26.2", "26.3", "1.21.1", "1.21.4")
+MC_VERSIONS = ("26.2", "26.3")
 VERSION = "2.4.0"
 NAME = "Fancy Vanilla"
 PACK = "FancyVanilla.zip"
@@ -99,7 +97,6 @@ def options(raw, new_packs):
 def build(MC="26.2"):
     if MC not in MC_VERSIONS:
         raise ValueError(f"Unsupported Minecraft version: {MC}")
-    legacy = MC in LEGACY
     lock = json.loads((ROOT / "tools" / ("lock.json" if MC == "26.2" else f"lock-{MC}.json")).read_text(encoding="utf8"))
     if lock.get("log"):
         raise ValueError(f"Unresolved lock: {lock['log']}")
@@ -116,7 +113,7 @@ def build(MC="26.2"):
     files.sort(key=lambda f: f["path"].lower())
 
     payload = {}
-    with zipfile.ZipFile(ROOT / "inputs" / LEGACY[MC][0] if legacy else STREAMLINE) as src:
+    with zipfile.ZipFile(STREAMLINE) as src:
         for name in src.namelist():
             if name.endswith("/") or not name.startswith("overrides/"):
                 continue
@@ -131,17 +128,11 @@ def build(MC="26.2"):
             payload["overrides/config/" + name] = data
     tempered_name = TEMPERED_JAR.replace("mc26.2", f"mc{MC}")
     payload["overrides/mods/" + tempered_name] = (ROOT / "build" / "mods" / tempered_name).read_bytes()
-    if not legacy:
-        journal = ROOT / "journal-mod" / "dist" / f"fancy_journal-{JOURNAL_VERSION}+mc{MC}.jar"
-        if not journal.exists():
-            raise ValueError(f"Build the journal mod first: python journal-mod/build.py {MC}")
-        payload["overrides/mods/" + journal.name] = journal.read_bytes()
-    own_pack = tree(ROOT / "src" / "resourcepack")
-    if legacy:  # the 26.x pack.mcmeta uses min/max_format, which 1.21.x does not know
-        meta = json.loads(own_pack["pack.mcmeta"])
-        meta["pack"] = {"description": meta["pack"]["description"], "pack_format": LEGACY[MC][1]}
-        own_pack["pack.mcmeta"] = encode(meta)
-    payload["overrides/resourcepacks/" + PACK] = archive(own_pack)
+    journal = ROOT / "journal-mod" / "dist" / f"fancy_journal-{JOURNAL_VERSION}+mc{MC}.jar"
+    if not journal.exists():
+        raise ValueError(f"Build the journal mod first: python journal-mod/build.py {MC}")
+    payload["overrides/mods/" + journal.name] = journal.read_bytes()
+    payload["overrides/resourcepacks/" + PACK] = archive(tree(ROOT / "src" / "resourcepack"))
 
     credits = "overrides/config/isxander-main-menu-credits.json"
     if credits in payload:
@@ -155,7 +146,7 @@ def build(MC="26.2"):
 
     new_packs = [("file/" + Path(f["path"]).name) for slug in lock["packs"] for f in lock["added"]
                  if f["slug"] == slug and f["path"].startswith("resourcepacks/")]
-    if MC == "26.2" or legacy:
+    if MC == "26.2":
         payload["overrides/options.txt"] = options(payload["overrides/options.txt"], new_packs)
     else:
         by_slug = {f["slug"]: Path(f["path"]).name for f in lock["added"] if f["path"].startswith("resourcepacks/")}
@@ -166,7 +157,7 @@ def build(MC="26.2"):
             payload.pop("overrides/config/" + name, None)
     # Compatibility is determined from the downloaded pack's metadata, not
     # from which Minecraft versions its Modrinth page happens to list.
-    expected_format = LEGACY[MC][2] if legacy else ((88, 0) if MC == "26.2" else (97, 1))
+    expected_format = (88, 0) if MC == "26.2" else (97, 1)
     incompatible = []
     for item in lock["base"] + lock["added"]:
         formats = item.get("resourcePackFormat")
@@ -177,7 +168,7 @@ def build(MC="26.2"):
     values["incompatibleResourcePacks"] = json.dumps([name for name in incompatible if name in selected], ensure_ascii=False, separators=(",", ":"))
     payload["overrides/options.txt"] = ("".join(f"{k}:{v}\n" for k, v in values.items())).encode("utf8")
     payload["modrinth.index.json"] = encode({
-        "formatVersion": 1, "game": "minecraft", "versionId": VERSION if MC == "26.2" else f"{VERSION}-{MC}", "name": NAME,
+        "formatVersion": 1, "game": "minecraft", "versionId": VERSION, "name": NAME,
         "summary": "Vanilla z oprawą: szybka, piękna, z progresją Tempered. Nic nowego w świecie, tylko lepiej.",
         "files": files, "dependencies": {"minecraft": MC, "fabric-loader": "0.19.5"}})
     out = ROOT / "releases" / MC / f"{NAME} {VERSION} for {MC}.mrpack"
@@ -186,8 +177,7 @@ def build(MC="26.2"):
     tmp.write_bytes(archive(payload))
     tmp.replace(out)
     out.with_suffix(".mrpack.sha512").write_text(hashlib.sha512(out.read_bytes()).hexdigest() + "  " + out.name + "\n", encoding="ascii")
-    bundled = "TEMPERED, resource pack" if legacy else "TEMPERED, Fancy Journal, resource pack"
-    print(f"Built {out.name}: {len(files)} downloaded files + {bundled}; {out.stat().st_size} bytes")
+    print(f"Built {out.name}: {len(files)} downloaded files + 3 bundled (TEMPERED, Fancy Journal, resource pack); {out.stat().st_size} bytes")
     return out
 
 

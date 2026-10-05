@@ -16,7 +16,6 @@ import zipfile
 from pathlib import Path, PurePosixPath
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import tempered_legacy  # noqa: E402
 import gen_quest_specs  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,9 +24,7 @@ VERSION="2.20.0"
 ERA_BONUSES = 9  # 3 by Codex + 6 more per era (tools/gen_more_quests.py)
 EPILOG_ROOT = "tempered:bonus/epilog/root"
 DATE = (2026, 1, 1, 0, 0, 0)
-FORMATS = {"26.2": [107, 1], "26.3": [121, 0], "1.21.1": [48, 0], "1.21.4": [61, 0]}
-LEGACY_MC = ("1.21.1", "1.21.4")
-RESOURCE_FORMAT = {"1.21.1": 34, "1.21.4": 46}  # TEMPERED is both a data pack (FORMATS) and a resource pack (lang files)
+FORMATS = {"26.2": [107, 1], "26.3": [121, 0]}
 
 
 def encode(value):
@@ -207,9 +204,6 @@ def validate(entries, vanilla_jar=None):
 
 def build(mc, vanilla_jar=None):
     entries = source_entries()
-    legacy = mc in LEGACY_MC
-    if legacy:
-        entries = tempered_legacy.prune(entries, mc)
     count = validate(entries, vanilla_jar)
     specs = gen_quest_specs.build_specs(entries)
     base_quests = sum(1 for n in entries if n.startswith("data/tempered/advancement/quest/") and n.endswith(".json"))
@@ -218,25 +212,15 @@ def build(mc, vanilla_jar=None):
     entries["assets/tempered/quest_specs.json"] = gen_quest_specs.encode(specs)
     metadata = json.loads(entries["fabric.mod.json"])
     metadata["version"] = VERSION
-    metadata["depends"]["minecraft"] = {"26.2": ">=26.2 <26.3", "26.3": ">=26.3 <26.4"}.get(mc, mc)
-    if legacy:
-        metadata["depends"]["fabricloader"] = ">=0.15.0"
+    metadata["depends"]["minecraft"] = ">=26.2 <26.3" if mc == "26.2" else ">=26.3 <26.4"
     entries["fabric.mod.json"] = encode(metadata)
     pack = json.loads(entries["pack.mcmeta"])
     major, minor = FORMATS[mc]
-    if legacy:
-        # one pack.mcmeta serves both roles, and the two format numbers differ: accept the whole range between them
-        low = RESOURCE_FORMAT[mc]
-        pack["pack"] = {"description": pack["pack"]["description"], "pack_format": low,
-                        "supported_formats": {"min_inclusive": low, "max_inclusive": major}}
-    else:
-        pack["pack"].update(pack_format=major, min_format=[major, minor], max_format=[major, minor])
+    pack["pack"].update(pack_format=major, min_format=[major, minor], max_format=[major, minor])
     entries["pack.mcmeta"] = encode(pack)
     for name, content in list(entries.items()):
-        if name.startswith("data/tempered/advancement/bonus/") and name.endswith(".json") and not legacy:
+        if name.startswith("data/tempered/advancement/bonus/") and name.endswith(".json"):
             entries[name] = encode(bonus_for_mc(json.loads(content), mc))
-    if legacy:
-        entries = tempered_legacy.convert(entries, mc)
 
     output = ROOT / "build" / "mods" / f"TEMPERED{VERSION}mc{mc}.jar"
     output.parent.mkdir(parents=True, exist_ok=True)

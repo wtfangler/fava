@@ -1,0 +1,161 @@
+{
+ "26.2": {
+  "other_game_version": [
+   {
+    "name": "Chat Heads",
+    "built_for": "26.1"
+   },
+   {
+    "name": "Falling Leaves",
+    "built_for": "26.1"
+   },
+   {
+    "name": "Fast IP Ping",
+    "built_for": "26.1.2"
+   },
+   {
+    "name": "Visuality",
+    "built_for": "26.3"
+   }
+  ],
+  "prerelease": [
+   {
+    "name": "Concurrent Chunk Management Engine (Fabric)",
+    "channel": "beta",
+    "version": "0.4.1-beta.1.0+26.2"
+   },
+   {
+    "name": "EclipseUI",
+    "channel": "beta",
+    "version": "1.0.5+mc26.2-rc-2"
+   },
+   {
+    "name": "OptiGUI",
+    "channel": "beta",
+    "version": "2.3.0-beta.10+26.2"
+   },
+   {
+    "name": "Particle Rain",
+    "channel": "beta",
+    "version": "v4-beta.11+26.2-fabric"
+   },
+   {
+    "name": "Smooth Swapping",
+    "channel": "beta",
+    "version": "0.9.10-26.2"
+   },
+   {
+    "name": "Sound Physics Remastered",
+    "channel": "beta",
+    "version": "fabric-1.5.1+26.2"
+   },
+   {
+    "name": "Sounds",
+    "channel": "beta",
+    "version": "2.5.1+edge+26.2-fabric"
+   },
+   {
+    "name": "Very Many Players (Fabric)",
+    "channel": "alpha",
+    "version": "0.2.0+beta.7.236+26.2"
+   },
+   {
+    "name": "Visuality",
+    "channel": "beta",
+    "version": "0.7.15+26.3"
+   },
+   {
+    "name": "Wakes",
+    "channel": "beta",
+    "version": "0.7.1+26.2"
+   }
+  ],
+  "mod_files": 99
+ },
+ "26.3": {
+  "other_game_version": [
+   {
+    "name": "Almanac",
+    "built_for": "26.2"
+   },
+   {
+    "name": "Explosive Enhancement",
+    "built_for": "26.2"
+   },
+   {
+    "name": "FastQuit",
+    "built_for": "26.2"
+   },
+   {
+    "name": "Glowing Torchflower",
+    "built_for": "26.2"
+   },
+   {
+    "name": "Main Menu Credits",
+    "built_for": "26.2"
+   },
+   {
+    "name": "Make Bubbles Pop",
+    "built_for": "26.2"
+   }
+  ],
+  "prerelease": [
+   {
+    "name": "Better Clouds",
+    "channel": "beta",
+    "version": "1.15.0-beta.4"
+   },
+   {
+    "name": "Better Statistics Screen",
+    "channel": "beta",
+    "version": "5.6.0-beta.2+fn-26.3"
+   },
+   {
+    "name": "Concurrent Chunk Management Engine (Fabric)",
+    "channel": "alpha",
+    "version": "0.4.2-alpha.0.89+26.3"
+   },
+   {
+    "name": "EclipseUI",
+    "channel": "beta",
+    "version": "1.0.5+mc26.3-fabric"
+   },
+   {
+    "name": "OptiGUI",
+    "channel": "beta",
+    "version": "2.3.0-beta.10+26.3"
+   },
+   {
+    "name": "ScalableLux",
+    "channel": "alpha",
+    "version": "0.3.0-alpha.0.6+26.3"
+   },
+   {
+    "name": "Smooth Swapping",
+    "channel": "beta",
+    "version": "0.9.11-26.3"
+   },
+   {
+    "name": "Sound Physics Remastered",
+    "channel": "beta",
+    "version": "fabric-1.5.1+26.3"
+   },
+   {
+    "name": "TCDCommons API",
+    "channel": "beta",
+    "version": "5.6.0-beta.2+fn-26.3"
+   },
+   {
+    "name": "Very Many Players (Fabric)",
+    "channel": "alpha",
+    "version": "0.2.0+beta.7.238+26.3"
+   },
+   {
+    "name": "Visuality",
+    "channel": "beta",
+    "version": "0.7.15+26.3"
+   }
+  ],
+  "mod_files": 94
+ }
+}

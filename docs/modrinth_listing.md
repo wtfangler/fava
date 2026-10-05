@@ -2,32 +2,36 @@
 
 Everything to paste into the project settings. Nothing here has been sent anywhere.
 
-## Summary (General → Summary, 230/256)
+## Summary (General → Summary, 227/256)
 
 ```
-Vanilla Minecraft, polished: full visual and sound overhaul, a performance core, a 7-age progression with 200+ quests (TEMPERED), a modern journal on J and its own loader. No new blocks or mobs. Fabric: 26.2, 26.3, 1.21.4, 1.21.1.
+Vanilla Minecraft, polished: full visual and sound overhaul, a performance core, a 7-age progression with 200+ quests (TEMPERED), a modern journal on J and its own loader. No new blocks or mobs. Fabric, Minecraft 26.2 and 26.3.
 ```
+
+## Environment (when uploading a version)
+
+**Client and server → Required on both.** Players need the pack on the client (journal, loader, translations) and the server needs TEMPERED (ages, recipes, locks).
 
 ## License (License)
 
-- Select **All Rights Reserved/No License** and **leave the License URL empty**. The Wikipedia link is what Modrinth flags: it must point at the licence text itself, and "All rights reserved" has no text to link to. Empty URL is accepted.
+- Select **All Rights Reserved/No License** and **leave the License URL empty**. A link to Wikipedia is what Modrinth flags: the URL must point at the licence text itself, and "All rights reserved" has no text to link to.
 - The licence covers your own content in the pack (Fancy Vanilla resource pack, artwork, configuration). TEMPERED stays MIT in its own repo/jar; the downloaded mods keep their authors' licences.
 - If you make the GitHub repo public with code under MIT, you may instead pick **MIT** for the pack and put the link to the repo's `LICENSE` file as URL. Artwork can stay all-rights-reserved in `brand/`.
 
 ## Links (Links)
 
-- **Source code:** now https://fava.netlify.app/ (that is your website, not source). Put the GitHub repo here once it exists, otherwise clear the field.
-- **Wiki page:** https://fava.netlify.app/ fits better.
-- Issue tracker: GitHub issues URL once you have the repo.
+- **Source code:** https://github.com/wtfangler/fancy-vanilla once the repository is public (it is private now); until then clear the field. Your website is not source code.
+- **Wiki page:** your website (https://fava.netlify.app/).
+- Issue tracker: https://github.com/wtfangler/fancy-vanilla/issues once the repository is public.
 
 ## Disclosures (Disclosures)
 
-- **Contains AI-generated content:** enable it. The mod code (TEMPERED, Fancy Journal, loader), quest texts and tooling were written with Claude Code, and Modrinth requires this to be declared when AI wrote a substantial part of the code. Answer in the same way if moderators ask.
+- **Contains AI-generated content:** enable it and tick **Code** and **Text**. The mod code (TEMPERED, Fancy Journal, loader), quest texts and tooling were written with Claude Code, and Modrinth requires this to be declared when AI wrote a substantial part of the code. Artwork is yours (leave Assets unticked).
 - Generative AI functionality, advertisements, paid features, telemetry: leave off (none of them applies).
 
 ## Gallery (Gallery)
 
-Upload in this order, set number 1 as featured. Files are copied to `brand/modrinth-gallery/`.
+Upload in this order, set number 1 as featured. Files are in `brand/modrinth-gallery/`.
 
 | # | File | Title | Description |
 |---|------|-------|-------------|
@@ -38,22 +42,20 @@ Upload in this order, set number 1 as featured. Files are copied to `brand/modri
 | 5 | `brand/modrinth-gallery/05-journal-fj_1_wide.png` | Fancy Journal: ages | Tabs per age with progress bars |
 | 6 | `brand/modrinth-gallery/06-journal-fj_5_pause_menu.png` | One progress screen | Pause menu with the single journal entry |
 | 7 | `brand/modrinth-gallery/07-track-fj_t1_pin.png` | Quest tracking | A pin on every quest; the tracked one gets a frame |
-| 8 | `brand/modrinth-gallery/08-track-fj_t2_hud.png` | Tracker panel | What to do and how far you are: checklist with counters |
+| 8 | `brand/modrinth-gallery/08-track-fj_t5_hud_multi.png` | Tracker panel | What to do and how far you are: checklist with counters |
 
 Shots 2 to 8 come from the automated test on the real game, not staged screenshots. Add a few of your own from normal play (menu, a build with shaders) when you have them; they sell the pack better than test shots.
 
 ## Description (Description)
 
-Paste everything between the lines. Replace `BANNER_URL` with the address of the banner after you upload it to the gallery (Modrinth shows the image URL there), or delete that line.
+Paste everything between the lines. The banner at the top is your existing image on cdn.modrinth.com.
 
 ---
 ![Fancy Vanilla Banner](https://cdn.modrinth.com/data/cached_images/50ed80c237c4a70634c52b59643f9cb7e70da268.jpeg)
 
 **Fancy Vanilla** keeps Minecraft vanilla and makes it look, sound and run better. There are no new blocks, mobs or biomes: you get the game you know, carefully polished, plus a progression system and a reason to keep playing after the Ender Dragon.
 
-Available for **Minecraft 26.2**, **26.3**, **1.21.4** and **1.21.1** on **Fabric**. Built for singleplayer first, with a server-compatible setup for small groups of friends.
-
-> **Which version has what?** All four get the visuals, the performance core and TEMPERED. **Fancy Journal and the own loading screen are on 26.2 and 26.3 only** (they are written for that game API); on 1.21.4 and 1.21.1 your quests show in the normal advancements screen, one tab per age. Copper tools/armour and spears do not exist in 1.21.x, so they are left out there (and the Creaking quest on 1.21.1).
+Available for **Minecraft 26.2** and **26.3** on **Fabric**. Built for singleplayer first, with a server-compatible setup for small groups of friends.
 
 ## What is inside
 
@@ -96,30 +98,32 @@ TEMPERED is my own mod. The world moves through seven ages, and each one unlocks
 - Admins (`/function tempered:admin/...`): `help`, `diag`, `skip` (next age), `set_age {n:3}`, `reset`, `gate_off` and `gate_on` to disable or enable all locks and debuffs.
 - Commands and messages are translated into English and Polish.
 
-### Fancy Journal (26.2 and 26.3)
+### Fancy Journal
 One modern progress screen on **J** (rebindable) that replaces the two vanilla ones.
 - Tabs per age with progress bars, search, and filters: all, remaining, completed.
 - Optional quests are kept apart from the required count, and the Epilogue tab unlocks after the dragon.
 - **Quest tracking:** a pin on every quest tracks it. A small panel in the bottom-right corner of the screen (movable in `config/fancy_journal.json`) shows the quest name, what to do, a checklist of the requirements with counters such as *Get: Any planks 20/32* (items are counted from your inventory, the rest from your statistics) and a progress bar, even with the journal closed. It disappears a few seconds after you finish the quest.
 - Hold Shift while opening it for the classic vanilla view. If the journal ever fails, the game falls back to the classic screen on its own.
 
-### Own loading screen (26.2 and 26.3)
+### Own loading screen
 A dark screen with the Fancy Vanilla wordmark and a thin progress line replaces the Mojang logo at game start and resource reload, and is also shown while the world is saving on exit. The game still runs and fades loading as usual; the overlay only draws on top, and if it cannot load you simply get the vanilla screen.
 
 ### Languages
 Quests, achievements, the journal, admin commands and the mod descriptions in Mod Menu come in **English** and **Polish**. There is no separate switch: they follow the game language (Options > Language).
 
 ## Installation
-1. Install **Modrinth App** (or Prism Launcher). Java 25 is needed for 26.x, Java 21 for 1.21.x (the launcher can download it).
+1. Install **Modrinth App** (or Prism Launcher) and use **Java 25** (the launcher can download it).
 2. Search for Fancy Vanilla and install the version that matches your Minecraft version, or import the `.mrpack` file.
-3. Launch the profile. Fabric, all mods and all settings are applied automatically.
+3. Give the client **6 GB of RAM** (the pack has over 100 mods) and launch the profile. Fabric, all mods and all settings are applied automatically.
 
 ## Servers
-The pack is server-compatible. Startup, `/reload` and restart were tested on dedicated servers for 26.2, 26.3, 1.21.4 and 1.21.1 with no data-pack errors; I have not load-tested it with many players. Players need the pack installed on the client so that quests, the journal and the translations show up correctly.
+The pack is server-compatible. Startup, `/reload` and restart were tested on dedicated servers for 26.2 and 26.3 with no data-pack errors; I have not load-tested it with many players. Players need the pack installed on the client so that quests, the journal and the translations show up correctly.
 
 ## Good to know
-- Only a few files are bundled in the pack and they are all my own: TEMPERED, the Fancy Vanilla resource pack and (26.x) Fancy Journal. Everything else is downloaded from Modrinth when you install.
+- Only three files are bundled in the pack and they are all my own: TEMPERED, Fancy Journal and the Fancy Vanilla resource pack. Everything else is downloaded from Modrinth when you install.
 - This is an **alpha** release. Quests were validated against the game registries and only a handful were completed in-game so far; long play sessions are still to be tested. Please report problems.
+- **Mods built for another game version** (their authors tag them as compatible): 26.2: Chat Heads (26.1), Falling Leaves (26.1), Fast IP Ping (26.1.2), Visuality (26.3); 26.3: Almanac (26.2), Explosive Enhancement (26.2), FastQuit (26.2), Glowing Torchflower (26.2), Main Menu Credits (26.2), Make Bubbles Pop (26.2).
+- **Beta and alpha mods:** 26.2: Concurrent Chunk Management Engine (Fabric) (beta), EclipseUI (beta), OptiGUI (beta), Particle Rain (beta), Smooth Swapping (beta), Sound Physics Remastered (beta), Sounds (beta), Very Many Players (Fabric) (alpha), Visuality (beta), Wakes (beta); 26.3: Better Clouds (beta), Better Statistics Screen (beta), Concurrent Chunk Management Engine (Fabric) (alpha), EclipseUI (beta), OptiGUI (beta), ScalableLux (alpha), Smooth Swapping (beta), Sound Physics Remastered (beta), TCDCommons API (beta), Very Many Players (Fabric) (alpha), Visuality (beta). Before long server sessions, check FastBack and world re-creation.
 
 ## Perfect for
 - Players who want vanilla survival with better visuals, sound and performance
@@ -127,9 +131,8 @@ The pack is server-compatible. Startup, `/reload` and restart were tested on ded
 - Players who finished the game and want goals for the long run
 
 ## Changelog highlights (2.4.0)
-- Quest tracking with a pin and a small HUD panel (26.2 and 26.3).
+- Quest tracking with a pin and a small HUD panel that shows what to do and how far you are.
 - New TEMPERED icon; mod descriptions in Mod Menu follow the game language.
-- Releases for 1.21.4 and 1.21.1.
 - Own loading screen (start, reload, saving).
 - Commands and messages available in English and Polish.
 - More optional quests, including 55 in the Epilogue.
@@ -140,7 +143,7 @@ The pack is server-compatible. Startup, `/reload` and restart were tested on ded
 
 All of this is downloaded from Modrinth when you install the pack. Thank you to every author.
 
-**Mods (100)**
+**Mods (99)**
 
 - [AmbientEnvironment-fabric-26.2-26.2.1](https://modrinth.com/project/DyTvM1dv)
 - [AmbientSounds_FABRIC_v6.3.6_mc26.2](https://modrinth.com/project/fM515JnW)
@@ -221,7 +224,6 @@ All of this is downloaded from Modrinth when you install the pack. Thank you to 
 - [particular-26.2-Fabric-1.5.7](https://modrinth.com/project/pYFUU6cq)
 - [puzzle-fabric-2.3.1+26.2](https://modrinth.com/project/3IuO68q1)
 - [reeses-sodium-options-fabric-2.2.3+mc26.2](https://modrinth.com/project/Bh37bMuy)
-- [rrls-5.2.8+mc.26.2](https://modrinth.com/project/ZP7xHXtw)
 - [skinlayers3d-fabric-1.11.3-mc26.2](https://modrinth.com/project/zV5r3pPn)
 - [smoothgui-fabric-2.0.5+mc26.2](https://modrinth.com/project/j6yrZogB)
 - [smoothscroll-2.9.2](https://modrinth.com/project/CllP7wW0)
@@ -282,7 +284,7 @@ All of this is downloaded from Modrinth when you install the pack. Thank you to 
 <details>
 <summary>Included content and credits (Minecraft 26.3)</summary>
 
-**Mods (95)**
+**Mods (94)**
 
 - [AmbientEnvironment-fabric-26.3-26.3.2](https://modrinth.com/project/DyTvM1dv)
 - [AmbientSounds_FABRIC_v6.3.6_mc26.3](https://modrinth.com/project/fM515JnW)
@@ -359,7 +361,6 @@ All of this is downloaded from Modrinth when you install the pack. Thank you to 
 - [placeholder-api-3.2.0+26.3](https://modrinth.com/project/eXts2L7r)
 - [puzzle-fabric-2.3.1+26.3](https://modrinth.com/project/3IuO68q1)
 - [reeses-sodium-options-fabric-2.2.5+mc26.3](https://modrinth.com/project/Bh37bMuy)
-- [rrls-5.2.8+mc.26.3](https://modrinth.com/project/ZP7xHXtw)
 - [skinlayers3d-fabric-1.11.3-mc26.3](https://modrinth.com/project/zV5r3pPn)
 - [smoothgui-fabric-2.0.6+mc26.3](https://modrinth.com/project/j6yrZogB)
 - [smoothscroll-3.0.0](https://modrinth.com/project/CllP7wW0)
@@ -416,241 +417,10 @@ All of this is downloaded from Modrinth when you install the pack. Thank you to 
 
 </details>
 
-<details>
-<summary>Included content and credits (Minecraft 1.21.4)</summary>
-
-**Mods (80)**
-
-- [AmbientEnvironment-fabric-1.21.4-21.0.0.3](https://modrinth.com/project/DyTvM1dv)
-- [AmbientSounds_FABRIC_v6.1.3_mc1.21.4](https://modrinth.com/project/fM515JnW)
-- [BadOptimizations-2.4.1-1.21.2-21.5](https://modrinth.com/project/g96Z4WVZ)
-- [BetterF3-13.0.0-Fabric-1.21.4](https://modrinth.com/project/8shC1gFX)
-- [BetterGrassify-1.7.0+fabric.1.21.4](https://modrinth.com/project/m5T5xmUy)
-- [Chunky-Fabric-1.4.27](https://modrinth.com/project/fALzjamp)
-- [Clumps-fabric-1.21.4-22.0.0.1](https://modrinth.com/project/Wnxd13zP)
-- [Controlling-fabric-1.21.4-22.0.5](https://modrinth.com/project/xv94TkTM)
-- [CreativeCore_FABRIC_v2.12.35_mc1.21.4](https://modrinth.com/project/OsZiaDHq)
-- [DetailArmorBarReconstructed-5.0.0+1.21.2_4-fabric](https://modrinth.com/project/Si9Uim4y)
-- [ForgeConfigAPIPort-v21.4.3-1.21.4-Fabric](https://modrinth.com/project/ohNO6lps)
-- [ImmediatelyFast-Fabric-1.8.7+1.21.4](https://modrinth.com/project/5ZwdcRci)
-- [Jade-1.21.4-Fabric-17.2.2](https://modrinth.com/project/nvQzSEkH)
-- [MouseTweaks-fabric-mc1.21.3-2.27](https://modrinth.com/project/aC3cM3Vq)
-- [NoChatReports-FABRIC-1.21.4-v2.11.0](https://modrinth.com/project/qQyHxfxd)
-- [ParticleEffects-1.4.0+1.21.4+fabric](https://modrinth.com/project/PLAGcSFJ)
-- [ScalableLux-0.1.2+fabric.87468e8-all](https://modrinth.com/project/Ps1zyz6x)
-- [Searchables-fabric-1.21.4-1.0.5](https://modrinth.com/project/fuuu3xnx)
-- [ShoulderSurfing-Fabric-1.21.4-4.12.0](https://modrinth.com/project/kepjj2sy)
-- [SubtleEffects-fabric-1.21.4-1.9.4-hotfix.1](https://modrinth.com/project/4q8UOK1d)
-- [appleskin-fabric-mc1.21.3-3.0.6](https://modrinth.com/project/EsAfCjCV)
-- [better-clouds-1.8.17+1.21.4-fabric](https://modrinth.com/project/5srFLIaK)
-- [bettermounthud-1.2.5](https://modrinth.com/project/kqJFAPU9)
-- [betterstats-3.13.9+fabric-1.21.4](https://modrinth.com/project/n6PXGAoM)
-- [capes-1.5.5+1.21.4-fabric](https://modrinth.com/project/89Wsn8GD)
-- [chat_heads-0.15.6-fabric-1.21.4](https://modrinth.com/project/Wb5oqrBJ)
-- [cherishedworlds-fabric-11.0.0+1.21.4](https://modrinth.com/project/3azQ6p0W)
-- [cloth-config-17.0.144-fabric](https://modrinth.com/project/9s6osm5g)
-- [controlify-3.0.1+lts+1.21.4-fabric](https://modrinth.com/project/DOUdJVEm)
-- [durabilitytooltip-1.2.0-fabric-mc1.21](https://modrinth.com/project/smUP7V3r)
-- [dynamic-fps-3.11.8+minecraft-1.21.2-fabric](https://modrinth.com/project/LQ3K71Q1)
-- [dynamiccrosshair-9.11+1.21.3-fabric](https://modrinth.com/project/ZcR9weSm)
-- [entity_model_features-3.3.11-1.21.4-fabric](https://modrinth.com/project/4I1XuqiY)
-- [entity_sound_features-0.8.2-1.21.4-fabric](https://modrinth.com/project/IMuO8COj)
-- [entity_texture_features-7.2.5-1.21.4-fabric](https://modrinth.com/project/BVzZfTc1)
-- [entityculling-fabric-1.11.2-mc1.21.4](https://modrinth.com/project/NNAgCjsB)
-- [explosive-enhancement-1.3.0-1.21.4](https://modrinth.com/project/OSQ8mw2r)
-- [fabric-api-0.119.4+1.21.4](https://modrinth.com/project/P7dR8mSH)
-- [fabric-language-kotlin-1.14.1+kotlin.2.4.20](https://modrinth.com/project/Ha28R6CL)
-- [fallingleaves-1.17.0+1.21.4](https://modrinth.com/project/WhbRG4iK)
-- [fastback-0.23.0+1.21.4-fabric](https://modrinth.com/project/ZHKrK8Rp)
-- [ferritecore-7.1.3-fabric](https://modrinth.com/project/uXXizFIs)
-- [fzzy_config-0.7.7+1.21.3](https://modrinth.com/project/hYykXjDp)
-- [glowing-torchflower-fabric-mc1.21.2-1.4.1](https://modrinth.com/project/1S4LxcvL)
-- [inventorysorter-fabric-2.1.4+mc1.21.4](https://modrinth.com/project/5ibSyLAz)
-- [iris-fabric-1.8.8+mc1.21.4](https://modrinth.com/project/YL57xq9U)
-- [lambdynamiclights-4.1.3+1.21.4](https://modrinth.com/project/yBW8D80W)
-- [lithium-fabric-0.15.3+mc1.21.4](https://modrinth.com/project/gvQqBUqZ)
-- [make_bubbles_pop-0.3.1-fabric-mc1.21.2-1.21.4](https://modrinth.com/project/gPCdW0Wr)
-- [midnightlib-fabric-1.9.3+1.21.5](https://modrinth.com/project/codAaoxh)
-- [modernfix-fabric-5.20.3+mc1.21.4](https://modrinth.com/project/nmDcB62a)
-- [modmenu-13.0.4](https://modrinth.com/project/mOgUt4GM)
-- [morechathistory-1.3.1](https://modrinth.com/project/8qkXwOnk)
-- [moreculling-fabric-1.21.4-1.2.10](https://modrinth.com/project/51shyZVL)
-- [mru-1.0.17+1.21.5+fabric](https://modrinth.com/project/SNVQ2c0g)
-- [noisium-fabric-2.5.0+mc1.21.4](https://modrinth.com/project/KuNKN7d2)
-- [notenoughanimations-fabric-1.12.5-mc1.21.4](https://modrinth.com/project/MPCX6s5C)
-- [now-playing-fabric-1.5.16+1.21.4](https://modrinth.com/project/eNF4Bfla)
-- [optigui-2.3.0-beta.9+1.21.2](https://modrinth.com/project/JuksLGBQ)
-- [particle-rain-3.3.3](https://modrinth.com/project/nrikgvxm)
-- [placeholder-api-2.5.2+1.21.3](https://modrinth.com/project/eXts2L7r)
-- [puzzle-fabric-2.3.0+1.21.4](https://modrinth.com/project/3IuO68q1)
-- [reeses-sodium-options-fabric-1.8.3+mc1.21.4](https://modrinth.com/project/Bh37bMuy)
-- [skinlayers3d-fabric-1.11.3-mc1.21.4](https://modrinth.com/project/zV5r3pPn)
-- [sodium-fabric-0.6.13+mc1.21.4](https://modrinth.com/project/AANobbMI)
-- [sound-physics-remastered-fabric-1.21.4-1.4.10](https://modrinth.com/project/qyVF9oeo)
-- [sounds-2.4.12+1.21.4+fabric](https://modrinth.com/project/ZouiUX7t)
-- [spark-1.10.121-fabric](https://modrinth.com/project/l6YH9Als)
-- [status-effect-bars-1.0.7](https://modrinth.com/project/x02cBj9Y)
-- [supermartijn642configlib-1.1.8-fabric-mc1.21](https://modrinth.com/project/LN9BxssP)
-- [tcdcommons-3.12.7+fabric-1.21.4](https://modrinth.com/project/Eldc1g37)
-- [threadtweak-fabric-0.1.7+mc1.21.5](https://modrinth.com/project/vSEH1ERy)
-- [variants-cit-5.7.0+1.21.4](https://modrinth.com/project/jURjbCaq)
-- [visuality-0.7.9+1.21.4](https://modrinth.com/project/rI0hvYcd)
-- [vmp-fabric-mc1.21.4-0.2.0+beta.7.192-all](https://modrinth.com/project/wnEe9KBa)
-- [wakes-0.4.2+1.21.4](https://modrinth.com/project/dlNu0RQY)
-- [xaerominimap-fabric-1.21.4-26.5.0](https://modrinth.com/project/1bokaNcj)
-- [xaeroworldmap-fabric-1.21.4-1.46.0](https://modrinth.com/project/NcUtCpym)
-- [yet_another_config_lib_v3-3.8.2+1.21.4-fabric](https://modrinth.com/project/1eAoo2KR)
-- [zoomify-2.15.2+1.21.5](https://modrinth.com/project/w7ThoJFB)
-
-**Resource packs (19)**
-
-- [AL's Creepers Revamped 1.5](https://modrinth.com/project/d2srP5t3)
-- [AL's Enderman Revamped+FA 1.3](https://modrinth.com/project/ERTkxp3u)
-- [Better Lanterns v1.2 - 1.21.4](https://modrinth.com/project/PGGrfcvL)
-- [Better-Leaves-9.6](https://modrinth.com/project/uvpymuxq)
-- [Clearer Slot Highlight](https://modrinth.com/project/NITh4Uod)
-- [EvenBetterEnchants_v2_r1](https://modrinth.com/project/6udpuGCH)
-- [Fancy Crops v1.3](https://modrinth.com/project/UGEVQ6t9)
-- [Fast Better Grass](https://modrinth.com/project/dspVZXKP)
-- [FreshAnimations_v1.10.4](https://modrinth.com/project/50dA9Sha)
-- [LowOnFire v26.2§8](https://modrinth.com/project/RRxvWKNC)
-- [Os' Colorful Grasses (Tall)](https://modrinth.com/project/O2zhH8n8)
-- [PDB3D's Blocky Armor Stands AV](https://modrinth.com/project/v7QpjqDY)
-- [RAYs_3D_Ladders_v2.4](https://modrinth.com/project/Uupo7yGf)
-- [RAYs_3D_Rails_v3.6](https://modrinth.com/project/jKa9Ievs)
-- [Re-covered](https://modrinth.com/project/6gN7YVi7)
-- [Simple Grass Flowers v2.0.0](https://modrinth.com/project/ti9KkMHm)
-- [Theone's Eating Animation Pack v1.0](https://modrinth.com/project/OhzX8kDf)
-- [better_flame_particles-v2.2-mc1.14x-1.21x-resourcepack](https://modrinth.com/project/ivUZsvzp)
-- [§3Fresh §bFlower Pots](https://modrinth.com/project/CmEN0T1m)
-
-**Shader packs (2)**
-
-- [ComplementaryReimagined_r5.9.3](https://modrinth.com/project/HVnmMxH1)
-- [miniature-shader-2.19](https://modrinth.com/project/UaS8ROxa)
-
-</details>
-
-<details>
-<summary>Included content and credits (Minecraft 1.21.1)</summary>
-
-**Mods (82)**
-
-- [AmbientEnvironment-fabric-1.21.1-18.0.0.2](https://modrinth.com/project/DyTvM1dv)
-- [AmbientSounds_FABRIC_v6.3.9_mc1.21.1](https://modrinth.com/project/fM515JnW)
-- [BadOptimizations-2.4.1-1.21.1](https://modrinth.com/project/g96Z4WVZ)
-- [BetterF3-11.0.3-Fabric-1.21.1](https://modrinth.com/project/8shC1gFX)
-- [BetterGrassify-1.8.7+fabric.1.21.1](https://modrinth.com/project/m5T5xmUy)
-- [Chunky-Fabric-1.4.23](https://modrinth.com/project/fALzjamp)
-- [Clumps-fabric-1.21.1-19.0.0.1](https://modrinth.com/project/Wnxd13zP)
-- [Controlling-fabric-1.21.1-19.0.5](https://modrinth.com/project/xv94TkTM)
-- [CreativeCore_FABRIC_v2.13.48_mc1.21.1](https://modrinth.com/project/OsZiaDHq)
-- [DetailArmorBarReconstructed-5.0.2+1.21.1-fabric](https://modrinth.com/project/Si9Uim4y)
-- [ForgeConfigAPIPort-v21.1.6-1.21.1-Fabric](https://modrinth.com/project/ohNO6lps)
-- [ImmediatelyFast-Fabric-1.6.14+1.21.1](https://modrinth.com/project/5ZwdcRci)
-- [InventorySorter-1.9.0-1.21](https://modrinth.com/project/5ibSyLAz)
-- [Jade-1.21.1-Fabric-15.10.6](https://modrinth.com/project/nvQzSEkH)
-- [MouseTweaks-fabric-mc1.21-2.26](https://modrinth.com/project/aC3cM3Vq)
-- [NoChatReports-FABRIC-1.21.1-v2.9.1](https://modrinth.com/project/qQyHxfxd)
-- [ParticleEffects-1.6.0+1.21.1+fabric](https://modrinth.com/project/PLAGcSFJ)
-- [ScalableLux-0.1.0.1+fabric.d0d58ab-all](https://modrinth.com/project/Ps1zyz6x)
-- [Searchables-fabric-1.21.1-1.0.2](https://modrinth.com/project/fuuu3xnx)
-- [ShoulderSurfing-Fabric-1.21.1-5.2.0](https://modrinth.com/project/kepjj2sy)
-- [SubtleEffects-fabric-1.21.1-1.14.3](https://modrinth.com/project/4q8UOK1d)
-- [appleskin-fabric-mc1.21-3.0.6](https://modrinth.com/project/EsAfCjCV)
-- [better-clouds-1.13.11+1.21.1-fabric](https://modrinth.com/project/5srFLIaK)
-- [bettermounthud-1.2.4](https://modrinth.com/project/kqJFAPU9)
-- [betterstats-3.13.9+fabric-1.21](https://modrinth.com/project/n6PXGAoM)
-- [c2me-fabric-mc1.21.1-0.3.0+alpha.0.153](https://modrinth.com/project/VSNURh3q)
-- [capes-1.5.4+1.21-fabric](https://modrinth.com/project/89Wsn8GD)
-- [chat_heads-0.15.7-fabric-1.21](https://modrinth.com/project/Wb5oqrBJ)
-- [cherishedworlds-fabric-10.1.1+1.21.1](https://modrinth.com/project/3azQ6p0W)
-- [citresewn-1.2.2+1.21](https://modrinth.com/project/otVJckYQ)
-- [cloth-config-15.0.140-fabric](https://modrinth.com/project/9s6osm5g)
-- [controlify-3.0.1+lts+1.21.1-fabric](https://modrinth.com/project/DOUdJVEm)
-- [durabilitytooltip-1.2.0-fabric-mc1.21](https://modrinth.com/project/smUP7V3r)
-- [dynamic-fps-3.11.4+minecraft-1.21.0-fabric](https://modrinth.com/project/LQ3K71Q1)
-- [dynamiccrosshair-9.11+1.21.1-fabric](https://modrinth.com/project/ZcR9weSm)
-- [enhancedblockentities-0.10.2+1.21](https://modrinth.com/project/OVuFYfre)
-- [entity_model_features-3.3.11-1.21-fabric](https://modrinth.com/project/4I1XuqiY)
-- [entity_texture_features-7.2.5-1.21-fabric](https://modrinth.com/project/BVzZfTc1)
-- [entityculling-fabric-1.11.2-mc1.21.1](https://modrinth.com/project/NNAgCjsB)
-- [explosive-enhancement-1.3.2-1.21-1.21.1](https://modrinth.com/project/OSQ8mw2r)
-- [fabric-api-0.116.17+1.21.1](https://modrinth.com/project/P7dR8mSH)
-- [fabric-language-kotlin-1.14.1+kotlin.2.4.20](https://modrinth.com/project/Ha28R6CL)
-- [fallingleaves-1.17.1+1.21.1](https://modrinth.com/project/WhbRG4iK)
-- [fastback-0.20.0+1.21.1-fabric](https://modrinth.com/project/ZHKrK8Rp)
-- [ferritecore-7.0.3-fabric](https://modrinth.com/project/uXXizFIs)
-- [fzzy_config-0.7.7+1.21](https://modrinth.com/project/hYykXjDp)
-- [glowing-torchflower-fabric-mc1.20-1.4.1](https://modrinth.com/project/1S4LxcvL)
-- [iris-fabric-1.8.14-beta.1+mc1.21.1](https://modrinth.com/project/YL57xq9U)
-- [lambdynamiclights-4.8.11+1.21.1](https://modrinth.com/project/yBW8D80W)
-- [lithium-fabric-0.15.4+mc1.21.1](https://modrinth.com/project/gvQqBUqZ)
-- [make_bubbles_pop-0.3.0-fabric-mc1.19.4-1.21](https://modrinth.com/project/gPCdW0Wr)
-- [midnightlib-fabric-1.9.3+1.21.1](https://modrinth.com/project/codAaoxh)
-- [modernfix-fabric-5.25.1+mc1.21.1](https://modrinth.com/project/nmDcB62a)
-- [modmenu-11.0.5](https://modrinth.com/project/mOgUt4GM)
-- [morechathistory-1.3.1](https://modrinth.com/project/8qkXwOnk)
-- [moreculling-fabric-1.21.1-1.0.10](https://modrinth.com/project/51shyZVL)
-- [mru-1.0.41+1.21.1-fabric](https://modrinth.com/project/SNVQ2c0g)
-- [noisium-fabric-2.3.0+mc1.21-1.21.1](https://modrinth.com/project/KuNKN7d2)
-- [notenoughanimations-fabric-1.12.6-mc1.21.1](https://modrinth.com/project/MPCX6s5C)
-- [now-playing-fabric-1.5.16+1.21](https://modrinth.com/project/eNF4Bfla)
-- [optigui-2.3.0-beta.9+1.21](https://modrinth.com/project/JuksLGBQ)
-- [particle-rain-3.0.5](https://modrinth.com/project/nrikgvxm)
-- [particular-1.21.1-Fabric-1.5.7](https://modrinth.com/project/pYFUU6cq)
-- [placeholder-api-2.4.2+1.21](https://modrinth.com/project/eXts2L7r)
-- [puzzle-fabric-2.3.0+1.21.1](https://modrinth.com/project/3IuO68q1)
-- [reeses-sodium-options-fabric-2.2.4+mc1.21.1](https://modrinth.com/project/Bh37bMuy)
-- [skinlayers3d-fabric-1.11.3-mc1.21.1](https://modrinth.com/project/zV5r3pPn)
-- [sodium-fabric-0.8.13+mc1.21.1](https://modrinth.com/project/AANobbMI)
-- [sound-physics-remastered-fabric-1.21.1-1.4.10](https://modrinth.com/project/qyVF9oeo)
-- [sounds-2.4.22+lts+1.21.1-fabric](https://modrinth.com/project/ZouiUX7t)
-- [spark-1.10.109-fabric](https://modrinth.com/project/l6YH9Als)
-- [status-effect-bars-1.0.6](https://modrinth.com/project/x02cBj9Y)
-- [supermartijn642configlib-1.1.8-fabric-mc1.21](https://modrinth.com/project/LN9BxssP)
-- [tcdcommons-3.12.7+fabric-1.21](https://modrinth.com/project/Eldc1g37)
-- [threadtweak-fabric-0.1.5+mc1.21.1](https://modrinth.com/project/vSEH1ERy)
-- [visuality-0.7.7+1.21](https://modrinth.com/project/rI0hvYcd)
-- [vmp-fabric-mc1.21.1-0.2.0+beta.7.172-all](https://modrinth.com/project/wnEe9KBa)
-- [wakes-0.4.1+1.21.1](https://modrinth.com/project/dlNu0RQY)
-- [xaerominimap-fabric-1.21.1-26.6.0](https://modrinth.com/project/1bokaNcj)
-- [xaeroworldmap-fabric-1.21.1-1.47.0](https://modrinth.com/project/NcUtCpym)
-- [yet_another_config_lib_v3-3.8.2+1.21.1-fabric](https://modrinth.com/project/1eAoo2KR)
-- [zoomify-2.15.2+1.21.1](https://modrinth.com/project/w7ThoJFB)
-
-**Resource packs (18)**
-
-- [AL's Scorpions & Crabs+FA](https://modrinth.com/project/6vTt8GmW)
-- [AL's Skeletons Revamped+FA 1.4](https://modrinth.com/project/Q1DELmr6)
-- [Better+Lanterns+v1.2(mc-1.21)](https://modrinth.com/project/PGGrfcvL)
-- [Better-Leaves-9.6](https://modrinth.com/project/uvpymuxq)
-- [EvenBetterEnchants_v2_r1](https://modrinth.com/project/6udpuGCH)
-- [Fancy Crops v1.3](https://modrinth.com/project/UGEVQ6t9)
-- [Fast Better Grass](https://modrinth.com/project/dspVZXKP)
-- [FreshAnimations_v1.10.4](https://modrinth.com/project/50dA9Sha)
-- [LowOnFire v26.2§8](https://modrinth.com/project/RRxvWKNC)
-- [Os' Colorful Grasses (Tall)](https://modrinth.com/project/O2zhH8n8)
-- [PDB3D's Blocky Armor Stands AV](https://modrinth.com/project/v7QpjqDY)
-- [RAYs_3D_Ladders_v2.4](https://modrinth.com/project/Uupo7yGf)
-- [RAYs_3D_Rails_v3.6](https://modrinth.com/project/jKa9Ievs)
-- [Re-covered](https://modrinth.com/project/6gN7YVi7)
-- [Simple Grass Flowers v2.0.0](https://modrinth.com/project/ti9KkMHm)
-- [better_flame_particles-v2.2-mc1.14x-1.21x-resourcepack](https://modrinth.com/project/ivUZsvzp)
-- [visual_armor_trims_v2.1_1.21.X](https://modrinth.com/project/tPtjib62)
-- [§3Fresh §bFlower Pots](https://modrinth.com/project/CmEN0T1m)
-
-**Shader packs (2)**
-
-- [ComplementaryReimagined_r5.9.3](https://modrinth.com/project/HVnmMxH1)
-- [miniature-shader-2.19](https://modrinth.com/project/UaS8ROxa)
-
-</details>
-
 ---
 
 ## Before you click "Resubmit"
 
-1. Versions: upload one `.mrpack` per game version from `releases/<version>/` (26.2, 26.3, 1.21.4, 1.21.1), loader Fabric, channel alpha, environment Client and server, Required on both.
-2. In the moderation thread write that the pack has no third-party files in overrides and all other files come from cdn.modrinth.com, and that the description lists every included project with a link.
-3. Leave the version changelog = `docs/CHANGELOG.md`, first section.
+1. Versions: upload `releases/26.2/Fancy Vanilla 2.4.0 for 26.2.mrpack` and `releases/26.3/Fancy Vanilla 2.4.0 for 26.3.mrpack`, loader Fabric, channel alpha.
+2. In the moderation thread write that the pack has no third-party files in overrides, that every other file comes from cdn.modrinth.com, and that the description lists every included project with a link.
+3. Use the first section of `docs/CHANGELOG.md` as the version changelog.

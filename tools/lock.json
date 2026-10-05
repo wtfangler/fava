@@ -351,21 +351,6 @@
    "fileSize": 482602
   },
   {
-   "path": "mods/rrls-5.2.8+mc.26.2.jar",
-   "hashes": {
-    "sha512": "19e5e346de40f92a8e821bdaa1ddefd342b4f6b56e0bf526a24a08f8bdb8ef88cab1f6ddc893b092bdad196f24a31d1df0d006808a2d69689774cd2e8a503b58",
-    "sha1": "b74544c874a3b679acad16a31e34bb23443a5357"
-   },
-   "env": {
-    "client": "required",
-    "server": "unsupported"
-   },
-   "downloads": [
-    "https://cdn.modrinth.com/data/ZP7xHXtw/versions/DVwuMj1w/rrls-5.2.8%2Bmc.26.2.jar"
-   ],
-   "fileSize": 119145
-  },
-  {
    "path": "mods/cloth-config-26.2.155.jar",
    "hashes": {
     "sha512": "37b1e402f0df5a383656e21a38ee18cdd15cb4ba3fb62fbeba82ef4b959a4479fc32718ac0d9d154a7d9104c5f7315bfa67dbeced0b8ff240b8039d4848d5df1",

@@ -9,10 +9,6 @@ UA = {"User-Agent": "FancyVanilla-Dev/2.0 (github.com/wtfangler/fancy-vanilla)"}
 ROOT = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.abspath(os.path.join(ROOT, ".."))  # project root (ROOT here is tools/)
 GV = sys.argv[sys.argv.index("--mc") + 1] if "--mc" in sys.argv else "26.2"
-# Older Minecraft versions start from the matching Streamline Master release (its files already target that version)
-# mods whose data or client code breaks on these versions (seen in real server/client runs)
-SKIP = {"1.21.1": {"bookshelf-inspector"}, "1.21.4": {"bookshelf-inspector"}}
-LEGACY = {"1.21.1": "Streamline Master 1.0.7 for 1.21.1.mrpack", "1.21.4": "Streamline Master 1.0.8 for 1.21.4.mrpack"}
 
 # ---------------------------------------------------------------- what goes in (slug -> (client, server) override)
 MODS = {
@@ -64,42 +60,15 @@ def api(path, data=None, **p):
             time.sleep(5 * (attempt + 1))
 
 
-# Older games run on Java 21 (what the launcher provides), so a mod build that needs a newer Java is useless there.
-JAVA_MAX = 21
-JAVA_LIMITED = {"1.21.1": {"c2me-fabric"}, "1.21.4": {"c2me-fabric"}}
-# Newest build of any channel: the newest release of Iris for 1.21.1 predates Sodium 0.8, which breaks it.
-PREFER_NEWEST = {"1.21.1": {"iris"}}
 
 
-def java_min(version):
-    """Highest `depends.java` minimum found in the version's jar (nested jars included)."""
-    import io, re
-    f = next((x for x in version["files"] if x["primary"]), version["files"][0])
-    data = urllib.request.urlopen(urllib.request.Request(f["url"], headers=UA), timeout=180).read()
-    best = 0
 
-    def scan(blob):
-        nonlocal best
-        z = zipfile.ZipFile(io.BytesIO(blob))
-        for name in z.namelist():
-            if name == "fabric.mod.json":
-                depends = json.loads(z.read(name), strict=False).get("depends", {})
-                java = depends.get("java")
-                for term in ([java] if isinstance(java, str) else java or []):
-                    m = re.search(r">=\s*(\d+)", term)
-                    if m:
-                        best = max(best, int(m.group(1)))
-            elif name.startswith("META-INF/jars/") and name.endswith(".jar"):
-                scan(z.read(name))
-
-    scan(data)
-    return best
-
-
+# mods dropped on purpose: Controlify prevents "Remove Reloading Screen" from working in every client log
+DROP_SLUGS = {"rrls"}
 PINNED = {}
 
 
-def pick(pid, loader=True, slug=None):
+def pick(pid, loader=True):
     old = PINNED.get(pid)
     if old:
         # A transient API failure must not silently upgrade a pinned dependency.
@@ -108,13 +77,6 @@ def pick(pid, loader=True, slug=None):
     if loader:
         kw["loaders"] = json.dumps(["fabric"])
     vs = api(f"/project/{pid}/version", **kw)
-    if slug in PREFER_NEWEST.get(GV, ()) and vs:
-        return sorted(vs, key=lambda v: v["date_published"])[-1]
-    if slug in JAVA_LIMITED.get(GV, ()):
-        for v in sorted(vs, key=lambda v: v["date_published"], reverse=True):
-            if java_min(v) <= JAVA_MAX:
-                return v
-        return None
     for t in ("release", "beta", "alpha"):
         c = [v for v in vs if v["version_type"] == t]
         if c:
@@ -145,10 +107,9 @@ def main():
     lock_file = os.path.join(ROOT, "lock.json" if GV == "26.2" else f"lock-{GV}.json")
     if "--update" not in sys.argv and os.path.exists(lock_file):
         PINNED = {a["slug"]: a for a in json.load(open(lock_file, encoding="utf8"))["added"]}
-    base_name = LEGACY.get(GV, "Streamline Master 1.5.1.mrpack")
-    base = json.loads(zipfile.ZipFile(os.path.join(ROOT_DIR, "inputs", base_name)).read("modrinth.index.json"))
+    base = json.loads(zipfile.ZipFile(os.path.join(ROOT_DIR, "inputs", "Streamline Master 1.5.1.mrpack")).read("modrinth.index.json"))
     byhash = api("/version_files", {"hashes": [f["hashes"]["sha1"] for f in base["files"]], "algorithm": "sha1"})
-    have, base_files, base_items = {}, list(base["files"]), []
+    have, base_files, base_items = {}, [f for f in base["files"] if "rrls-" not in f["path"].lower()], []
     for f in base["files"]:
         v = byhash.get(f["hashes"]["sha1"])
         if v:
@@ -176,8 +137,8 @@ def main():
         if proj["slug"] in all_pins:
             pins[proj["id"]] = all_pins[proj["slug"]]
         PINNED.clear(); PINNED.update(pins)
-        v = pick(proj["id"], loader, proj["slug"])
-        if not v and GV != "26.2" and GV not in LEGACY and folder != "mods":
+        v = pick(proj["id"], loader)
+        if not v and GV != "26.2" and folder != "mods":
             # resource packs/shaders rarely break: fall back to the newest build tagged for 26.2
             v = pick_fallback(proj["id"])
             if v:
@@ -204,13 +165,15 @@ def main():
         base_packs = []
         for pid, f in base_items:
             slug = api(f"/project/{pid}")["slug"]
+            if slug in DROP_SLUGS:
+                continue
             if f["path"].startswith("mods/"):
                 run(slug, (f["env"]["client"], f["env"]["server"]), "mods", True)
             elif f["path"].startswith("resourcepacks/"):
                 base_packs.append(slug)
                 run(slug, (f["env"]["client"], f["env"]["server"]), "resourcepacks", False)
     for slug, env in MODS.items():
-        if slug in SKIP.get(GV, ()):
+        if slug in DROP_SLUGS:
             continue
         run(slug, env, "mods", True)
     for slug in PACKS:
@@ -227,6 +190,6 @@ def main():
 
 
 if __name__ == "__main__":
-    if GV not in ("26.2", "26.3") + tuple(LEGACY):
+    if GV not in ("26.2", "26.3"):
         raise ValueError(f"Unsupported Minecraft version: {GV}")
     main()

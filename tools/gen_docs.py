@@ -91,8 +91,7 @@ def pack_info(mc, version):
         index = json.loads(archive.read("modrinth.index.json"))
         if index["dependencies"]["minecraft"] != mc:
             raise ValueError(f"Wrong Minecraft version in {filename}")
-        expected_version = version if mc == "26.2" else version + "-26.3"
-        if index["versionId"] != expected_version:
+        if index["versionId"] != version:
             raise ValueError(f"Stale release file {filename}")
         bundled_mods = [n for n in archive.namelist() if n.startswith("overrides/mods/") and n.endswith(".jar")]
         bundled_packs = [n for n in archive.namelist() if n.startswith("overrides/resourcepacks/") and n.endswith(".zip")]
@@ -208,6 +207,26 @@ Reset administratora czyści postęp także w Epilogu.
 {epilog_rows}"""
 
 
+def pack_notes():
+    path = ROOT / "tools" / "data" / "pack_notes.json"
+    return json.loads(path.read_text(encoding="utf8")) if path.exists() else {}
+
+
+def compromises(language=0):
+    """Mods built for another game version and alpha/beta mods, from tools/data/pack_notes.json (tools/pack_notes.py)."""
+    notes = pack_notes()
+    if not notes:
+        return ""
+    none = "brak" if language == 0 else "none"
+    other = "; ".join(f"{mc}: " + (", ".join(f"{e['name']} ({e['built_for']})" for e in n["other_game_version"]) or none) for mc, n in notes.items())
+    pre = "; ".join(f"{mc}: " + (", ".join(f"{e['name']} ({e['channel']})" for e in n["prerelease"]) or none) for mc, n in notes.items())
+    if language == 0:
+        return (f"**Mody zbudowane pod inną wersję gry** (autorzy oznaczają je jako zgodne): {other}.\n\n"
+                f"**Mody w wersjach beta i alpha:** {pre}. Przed dłuższą grą na serwerze sprawdź FastBack i odtworzenie świata.")
+    return (f"**Mods built for another game version** (their authors tag them as compatible): {other}.\n\n"
+            f"**Beta and alpha mods:** {pre}. Before long server sessions, check FastBack and world re-creation.")
+
+
 def render_docs(constants, info, checks):
     if not COMMANDS:
         raise ValueError("TEMPERED public commands need verification before generating docs")
@@ -249,7 +268,7 @@ Każda era ma {n_era // 7} dodatkowych celów dla własnej bazy i wypraw. Po pok
 ### Instalacja
 
 1. Zaimportuj `.mrpack` do Modrinth App lub Prism Launcher i wybierz wariant zgodny z wersją Minecrafta.
-2. Użyj **Java 25**. Zacznij od 4–6 GB RAM dla klienta, dobierając ustawienia do swojego komputera.
+2. Użyj **Java 25**. Zacznij od 6 GB RAM dla klienta (paczka ma ponad 100 modów), dobierając ustawienia do swojego komputera.
 3. W nowym świecie progresja zaczyna się od drewna. Przed dodaniem paczki do istniejącego świata zrób kopię; obecny ekwipunek może przekraczać początkową erę.
 
 Paczka nadaje się do singleplayer i małego serwera znajomych. Instrukcja budowy serwera, jego ustawienia startowe oraz funkcje administracyjne są w README. Shadery i wysokość renderowania zwiększają obciążenie; nie podajemy gwarancji FPS ani liczby graczy.
@@ -263,6 +282,8 @@ Paczka nadaje się do singleplayer i małego serwera znajomych. Instrukcja budow
 Liczby dotyczą plików w paczce. Fabric może raportować więcej modułów, ponieważ biblioteki zawierają zagnieżdżone jary.
 
 **26.3:** wariant nie zawiera: {dropped}. Następujące paczki zasobów korzystają z wydań oznaczonych dla 26.2: {fallback}. Ich zgodność deklarowana przez autorów jest węższa, dlatego wygląd wymaga sprawdzenia w grze.
+
+{compromises(0)}
 
 **Weryfikacja:** {validation(checks, 0, version)} Testy uruchomienia nie zastępują dłuższej gry ze znajomymi ani porównania wydajności. Dobór shaderów i efekty nakładających się tekstur wymagają oceny na docelowym sprzęcie.
 
@@ -280,11 +301,13 @@ Higher-age recipes can be locked. Higher-age equipment is restricted through eff
 
 **Fancy Journal {journal}** opens with configurable **J**, the **Journal** button in the pause menu, or **L**, providing a responsive layout, scrolling tabs/tasks, search, filters and progress. Hidden unfinished tasks remain hidden; selected tabs stay stable and the list refreshes when progress changes. It pauses an ordinary singleplayer game like the vanilla advancement screen, while multiplayer keeps running. Hold **Shift** when opening or use *Classic view* for the vanilla screen. **Ctrl+PageUp/PageDown** switches tabs and **PageUp/PageDown/Home/End** scrolls tasks. Each age has {n_era // 7} extra optional goals for exploration and building, and a hidden **Epilogue** tab unlocks after the Ender Dragon with {n_epilog} more; their personal progress and XP rewards do not change the shared age thresholds.
 
-Import the matching `.mrpack` in Modrinth App or Prism Launcher, use **Java 25**, and start with 4–6 GB client RAM. Back up existing worlds before installing: existing equipment may exceed the initial age. Shaders are off by default; rendering settings should be chosen for your hardware.
+Import the matching `.mrpack` in Modrinth App or Prism Launcher, use **Java 25**, and start with 6 GB client RAM (the pack has over 100 mods). Back up existing worlds before installing: existing equipment may exceed the initial age. Shaders are off by default; rendering settings should be chosen for your hardware.
 
 The 26.2 variant contains **{a['total_mods']} top-level mod files**, **{a['total_packs']} resource packs** and **{a['counts']['shaderpacks']} shader packs**; 26.3 contains **{b['total_mods']}**, **{b['total_packs']}** and **{b['counts']['shaderpacks']}** respectively. Each includes two custom mods, TEMPERED and Fancy Journal. Nested libraries increase the number reported by Fabric.
 
 The 26.3 variant omits: {dropped}. Resource packs using 26.2-labelled releases: {fallback}; inspect their appearance in game.
+
+{compromises(1)}
 
 **Validation:** {validation(checks, 1, version)} Launch checks do not establish a performance benchmark or multiplayer capacity. Visual combinations and shaders need testing on your hardware.
 
@@ -315,7 +338,7 @@ Dwa własne mody to TEMPERED {tempered} i Fancy Journal {journal}. Paczka FancyV
 
 ## Instalacja i progresja
 
-Zaimportuj wariant `.mrpack` zgodny z wersją gry. Klient: Java 25, początkowo 4–6 GB RAM; shadery są wyłączone. Zrób kopię istniejącego świata przed dodaniem progresji.
+Zaimportuj wariant `.mrpack` zgodny z wersją gry. Klient: Java 25, początkowo 6 GB RAM; shadery są wyłączone. Zrób kopię istniejącego świata przed dodaniem progresji.
 
 TEMPERED ma 7 er, 89 oryginalnych zadań, {n_era} nowych opcjonalnych celów w erach i {n_epilog} w gałęzi Epilog (po zabiciu smoka). Blokadę przepisów oraz osłabienia zbyt zaawansowanego sprzętu można włączyć lub wyłączyć. Pancerz i elytra nie są fizycznie zablokowane przed założeniem. TEMPERED jest datapackiem w formie moda. Usunięcie `{constants['TEMPERED_JAR']}` usuwa funkcje po ponownym wczytaniu świata, ale pozostawia zapisaną regułę ograniczonego craftingu i odblokowane przepisy. **Przed usunięciem wywołaj gate_off.** Jeżeli plik już usunięto, administrator może użyć `/gamerule minecraft:limited_crafting false` oraz `/recipe give @a *` dla obecnych graczy (powtórz odblokowanie po dołączeniu nieobecnych).
 
@@ -362,19 +385,21 @@ Kontrola zależności jest domyślnie offline; `--download` jawnie pozwala pobra
 
 26.3 nie zawiera: {dropped}. Wydania zasobów użyte jako fallback z 26.2: {fallback}.
 
+{compromises(0)}
+
 {validation(checks, 0, version)} Nie podajemy wyniku FPS z pięciu próbek jako benchmarku. Do dalszych testów należą dłuższa gra, istniejący świat, shader i obciążenie małego serwera. [Projekt Modrinth]({PROJECT}).
 """
     changelog = f"""# Changelog
 
-## {version} alpha — Minecraft 26.2 / 26.3 / 1.21.4 / 1.21.1 — {DATE}
+## {version} alpha — Minecraft 26.2 / 26.3 — {DATE}
 
 - Śledzenie zadań (Fancy Journal 1.2.0): pinezka przy każdym zadaniu w dzienniku. Panel w prawym dolnym rogu ekranu pokazuje nazwę zadania, opis, listę wymagań z haczykami i liczniki (np. „Zdobądź: Dowolne deski 20/32”): przedmioty liczone są z ekwipunku, reszta ze statystyk gracza, a przy zadaniach wieloetapowych każdy krok ma osobny haczyk. Po ukończeniu panel znika sam. Wybór i róg panelu (`corner`) zapisują się w `config/fancy_journal.json`. Tylko 26.2 i 26.3. Uwaga: liczniki ze statystyk to statystyki całego życia gracza w świecie, więc w świecie założonym przed TEMPERED mogą wyprzedzać wewnętrzny licznik zadania; panel nie pokaże wtedy ukończenia przed serwerem.
 - Nowa ikona moda TEMPERED (TEMPERED 2.20.0).
+- Usunięto mod Remove Reloading Screen (RRLS): Controlify blokuje go przy każdym uruchomieniu, a własny loader rysuje się niezależnie od niego. Zalecana pamięć klienta to teraz 6 GB (paczka ma ponad 100 modów). Oba warianty mają to samo oznaczenie wersji `2.4.0`.
 - Opisy modów w Mod Menu zależą od języka gry (po angielsku i po polsku), tak jak zadania, komendy i dziennik. Język wybiera się w grze: Opcje > Język; moda nie mają osobnego przełącznika.
 
 ## 2.3.0 alpha
 
-- Nowe wydania dla Minecrafta **1.21.4** i **1.21.1** (na bazie Streamline Master 1.0.8 / 1.0.7): oprawa, rdzeń wydajności i TEMPERED w wersji dostosowanej do danych 1.21.x. Bez Fancy Journal i własnego loadera (te mody są pisane pod API 26.x); pominięto miedziany sprzęt i włócznie (nie istnieją w 1.21.x) oraz quest z Creakingiem w 1.21.1.
 - Własny loader Fancy Vanilla (Fancy Journal 1.1.0): ciemny ekran z logo i paskiem postępu zamiast logo Mojang przy starcie gry i przeładowaniu zasobów oraz przy komunikatach typu „Zapisywanie świata”. Vanilla nadal steruje ładowaniem i wygaszaniem; nakładka tylko rysuje na wierzchu.
 - Dwa języki (PL/EN): komunikaty komend administracyjnych (`help`, `diag`, `gate_on/off`, `set_age`, `reset`, status) korzystają teraz z kluczy tłumaczeń (TEMPERED 2.19.0), tak jak zadania i osiągnięcia. Wersja angielska działa po przełączeniu języka gry.
 - Zadania opcjonalne: 63 w erach (po 9) i 55 w Epilogu (po zabiciu smoka); progi przejścia er bez zmian. Wbudowany przycisk „Postępy” w menu pauzy zastąpiono jednym dziennikiem pod klawiszem J.
@@ -399,6 +424,8 @@ Kontrola zależności jest domyślnie offline; `--download` jawnie pozwala pobra
 ### Różnice wariantu 26.3
 
 Brak w tym locku: {dropped}. Paczki zasobów wykorzystujące wydania 26.2: {fallback}. Zgodność wyglądu wymaga sprawdzenia w grze.
+
+{compromises(0)}
 
 ## 2.0.3 alpha
 

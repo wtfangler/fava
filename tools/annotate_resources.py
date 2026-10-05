@@ -68,7 +68,7 @@ def annotate(mc, caches, download=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--mc", choices=("26.2", "26.3", "1.21.1", "1.21.4"), default="26.2")
+    parser.add_argument("--mc", choices=("26.2", "26.3"), default="26.2")
     parser.add_argument("--cache", action="append", default=[])
     parser.add_argument("--download", action="store_true")
     args = parser.parse_args()

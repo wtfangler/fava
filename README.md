@@ -17,14 +17,14 @@ Minecraft 26.2 / 26.3, Fabric, Java 25. Oprawa Fancy Vanilla, optymalizacja Stre
 
 | Minecraft | Pliki modów | Paczki zasobów | Shadery |
 |---|---:|---:|---:|
-| 26.2 | 102 (100 + 2 własne) | 27 (26 + 1 własna) | 2 |
-| 26.3 | 97 (95 + 2 własne) | 27 (26 + 1 własna) | 2 |
+| 26.2 | 101 (99 + 2 własne) | 27 (26 + 1 własna) | 2 |
+| 26.3 | 96 (94 + 2 własne) | 27 (26 + 1 własna) | 2 |
 
 Dwa własne mody to TEMPERED 2.20.0 i Fancy Journal 1.2.0. Paczka FancyVanilla.zip jest własnym zasobem. Liczymy wszystkie wpisy obu locków oraz te pliki dołączone w overrides; nie tylko nowo dodane dodatki. Zagnieżdżone biblioteki nie są osobnymi plikami w tym zestawieniu.
 
 ## Instalacja i progresja
 
-Zaimportuj wariant `.mrpack` zgodny z wersją gry. Klient: Java 25, początkowo 4–6 GB RAM; shadery są wyłączone. Zrób kopię istniejącego świata przed dodaniem progresji.
+Zaimportuj wariant `.mrpack` zgodny z wersją gry. Klient: Java 25, początkowo 6 GB RAM; shadery są wyłączone. Zrób kopię istniejącego świata przed dodaniem progresji.
 
 TEMPERED ma 7 er, 89 oryginalnych zadań, 63 nowych opcjonalnych celów w erach i 55 w gałęzi Epilog (po zabiciu smoka). Blokadę przepisów oraz osłabienia zbyt zaawansowanego sprzętu można włączyć lub wyłączyć. Pancerz i elytra nie są fizycznie zablokowane przed założeniem. TEMPERED jest datapackiem w formie moda. Usunięcie `TEMPERED2.20.0mc26.2.jar` usuwa funkcje po ponownym wczytaniu świata, ale pozostawia zapisaną regułę ograniczonego craftingu i odblokowane przepisy. **Przed usunięciem wywołaj gate_off.** Jeżeli plik już usunięto, administrator może użyć `/gamerule minecraft:limited_crafting false` oraz `/recipe give @a *` dla obecnych graczy (powtórz odblokowanie po dołączeniu nieobecnych).
 
@@ -73,5 +73,9 @@ Kontrola zależności jest domyślnie offline; `--download` jawnie pozwala pobra
 ## Różnice i status testów
 
 26.3 nie zawiera: chloride, particle-core, wakes, particle-rain, betterf3, better-mount-hud. Wydania zasobów użyte jako fallback z 26.2: simple-grass-flowers, better-leaves, fancy-crops, blocky-armor-stands, even-better-enchants, als-creepers-revamped, als-enderman-revamped-x-fresh-animations, als-scorpions-crabs-x-fresh-animations, als-skeletons-revamped-x-fresh-animations, qraftys-capitalized-font.
+
+**Mody zbudowane pod inną wersję gry** (autorzy oznaczają je jako zgodne): 26.2: Chat Heads (26.1), Falling Leaves (26.1), Fast IP Ping (26.1.2), Visuality (26.3); 26.3: Almanac (26.2), Explosive Enhancement (26.2), FastQuit (26.2), Glowing Torchflower (26.2), Main Menu Credits (26.2), Make Bubbles Pop (26.2).
+
+**Mody w wersjach beta i alpha:** 26.2: Concurrent Chunk Management Engine (Fabric) (beta), EclipseUI (beta), OptiGUI (beta), Particle Rain (beta), Smooth Swapping (beta), Sound Physics Remastered (beta), Sounds (beta), Very Many Players (Fabric) (alpha), Visuality (beta), Wakes (beta); 26.3: Better Clouds (beta), Better Statistics Screen (beta), Concurrent Chunk Management Engine (Fabric) (alpha), EclipseUI (beta), OptiGUI (beta), ScalableLux (alpha), Smooth Swapping (beta), Sound Physics Remastered (beta), TCDCommons API (beta), Very Many Players (Fabric) (alpha), Visuality (beta). Przed dłuższą grą na serwerze sprawdź FastBack i odtworzenie świata.
 
 Potwierdzone testy uruchomieniowe 2.4.0: klient 26.2, klient 26.3, serwer 26.2, serwer 26.3. Zakres i logi: docs/CLAUDE_REVIEW_2.1.0.md oraz docs/CODEX_REVIEW.md. Nie podajemy wyniku FPS z pięciu próbek jako benchmarku. Do dalszych testów należą dłuższa gra, istniejący świat, shader i obciążenie małego serwera. [Projekt Modrinth](https://modrinth.com/modpack/fava).
