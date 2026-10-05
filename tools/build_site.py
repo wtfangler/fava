@@ -231,6 +231,99 @@ def make_images(out_img):
 
 
 # ------------------------------------------------------------------ build
+PAGES = {
+    "pl": {"title": "Fancy Vanilla: Minecraft 26.2 i 26.3, vanilla dopieszczona",
+           "description": "Modpack Fabric dla Minecrafta 26.2 i 26.3. Bez nowych bloków i mobów: szybsza gra, ładniejsza oprawa, siedem er progresji TEMPERED i własny Dziennik.",
+           "og_description": "Vanilla, tylko dopieszczona. Minecraft 26.2 i 26.3, Fabric.", "og_locale": "pl_PL",
+           "nav_label": "Główna nawigacja", "lightbox_label": "Podgląd zdjęcia", "close_label": "Zamknij"},
+    "en": {"title": "Fancy Vanilla: Minecraft 26.2 and 26.3, vanilla polished",
+           "description": "Fabric modpack for Minecraft 26.2 and 26.3. No new blocks or mobs: a faster game, nicer visuals, seven TEMPERED progression ages and its own Journal.",
+           "og_description": "Vanilla, just polished. Minecraft 26.2 and 26.3, Fabric.", "og_locale": "en_US",
+           "nav_label": "Main navigation", "lightbox_label": "Image preview", "close_label": "Close"},
+}
+
+
+def keep_language(text, lang):
+    """The template holds both languages as <span lang="pl|en">. Keep one (unwrapped) and drop the other."""
+    out, i = [], 0
+    opener = re.compile(r'<span lang="(pl|en)">')
+    while True:
+        m = opener.search(text, i)
+        if not m:
+            out.append(text[i:])
+            break
+        out.append(text[i:m.start()])
+        depth, end, close = 1, None, None
+        for t in re.finditer(r"<span|</span>", text[m.end():]):
+            depth += -1 if t.group() == "</span>" else 1
+            if depth == 0:
+                end, close = m.end() + t.start(), m.end() + t.end()
+                break
+        if end is None:
+            raise SystemExit("Unbalanced <span lang> in the template")
+        if m.group(1) == lang:
+            out.append(text[m.end():end])
+        i = close
+    return "".join(out)
+
+
+def render_page(template, values, lang):
+    page = template
+    other = "en" if lang == "pl" else "pl"
+    switch = (f'<a href="{"./" if lang == "pl" else "../pl/"}" hreflang="pl" lang="pl"{" aria-current=" + chr(34) + "page" + chr(34) if lang == "pl" else ""}>PL</a>'
+              f'<a href="{"./" if lang == "en" else "../en/"}" hreflang="en" lang="en"{" aria-current=" + chr(34) + "page" + chr(34) if lang == "en" else ""}>EN</a>')
+    merged = dict(values, lang=lang, lang_switch=switch, **PAGES[lang])
+    for key, value in merged.items():
+        page = page.replace("{{" + key + "}}", value)
+    page = keep_language(page, lang)
+    page = re.sub(r'alt="([^"]*)" data-alt-en="([^"]*)"', lambda m: f'alt="{m.group(2 if lang == "en" else 1)}"', page)
+    for prefix in ("assets/", "downloads/"):  # pages live one level down: /pl/, /en/
+        page = page.replace(f'href="{prefix}', f'href="../{prefix}').replace(f'src="{prefix}', f'src="../{prefix}')
+    left = sorted(set(re.findall(r"\{\{(\w+)\}\}", page)))
+    if left:
+        raise SystemExit(f"Unfilled placeholders: {left}")
+    return page
+
+
+ROOT_PAGE = """<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fancy Vanilla</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0e1013">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="alternate" hreflang="pl" href="https://fava.netlify.app/pl/">
+  <link rel="alternate" hreflang="en" href="https://fava.netlify.app/en/">
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #0e1013; color: #e9edf2; font: 16px/1.6 system-ui, sans-serif; text-align: center; }
+    img { max-width: min(420px, 80vw); height: auto; }
+    a { color: #8fb4e8; display: inline-block; margin: 8px 14px; padding: 10px 6px; font-size: 1.1rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <img src="assets/img/wordmark.png" alt="Fancy Vanilla" width="420" height="58">
+    <p><a href="pl/" hreflang="pl" lang="pl">Polski</a> <a href="en/" hreflang="en" lang="en">English</a></p>
+  </main>
+  <script>
+    (function () {
+      var langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"];
+      var pl = String(langs[0]).toLowerCase().indexOf("pl") === 0;
+      location.replace((pl ? "pl" : "en") + "/");
+    })();
+  </script>
+</body>
+</html>
+"""
+
+REDIRECTS = """# Netlify: send visitors to their language, English by default
+/  /pl/  302  Language=pl
+/  /en/  302
+"""
+
+
 def main():
     releases = load_releases()
     cur = current_by_mc(releases)
@@ -248,21 +341,22 @@ def main():
             f'<a class="btn ghost" href="downloads/mods/{urllib.parse.quote(name)}" download>Fancy Journal {esc(name.split("-")[1].split("+")[0])} · Minecraft {mc}</a>'
             for mc, (name, _) in journal_jars(cur).items()), "server_cmd_plain": cmd_plain, "server_cmd_html": cmd_html, "modrinth": esc(MODRINTH),
     }
-    page = (SITE / "index.template.html").read_text(encoding="utf8")
-    for key, value in values.items():
-        page = page.replace("{{" + key + "}}", value)
-    left = sorted(set(re.findall(r"\{\{(\w+)\}\}", page)))
-    if left:
-        raise SystemExit(f"Unfilled placeholders: {left}")
+    template = (SITE / "index.template.html").read_text(encoding="utf8")
+    pages = {lang: render_page(template, values, lang) for lang in PAGES}
 
     if OUT.exists():
         shutil.rmtree(OUT)
     (OUT / "assets").mkdir(parents=True)
     shutil.copy2(SITE / "assets" / "site.css", OUT / "assets" / "site.css")
     shutil.copy2(SITE / "assets" / "site.js", OUT / "assets" / "site.js")
+    shutil.copytree(SITE / "assets" / "fonts", OUT / "assets" / "fonts")
     make_images(OUT / "assets" / "img")
     jars = journal_jars(cur)
-    (OUT / "index.html").write_text(page, encoding="utf8", newline="\n")
+    for lang, page in pages.items():
+        (OUT / lang).mkdir()
+        (OUT / lang / "index.html").write_text(page, encoding="utf8", newline="\n")
+    (OUT / "index.html").write_text(ROOT_PAGE, encoding="utf8", newline="\n")
+    (OUT / "_redirects").write_text(REDIRECTS, encoding="utf8", newline="\n")
     for r in releases:
         target = OUT / "downloads" / r["mc"]
         target.mkdir(parents=True, exist_ok=True)

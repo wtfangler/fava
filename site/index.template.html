@@ -1,19 +1,24 @@
 <!doctype html>
-<html lang="pl" data-lang="pl">
+<html lang="{{lang}}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fancy Vanilla: Minecraft 26.2 i 26.3, vanilla dopieszczona</title>
-  <meta name="description" content="Modpack Fabric dla Minecrafta 26.2 i 26.3. Bez nowych bloków i mobów: szybsza gra, ładniejsza oprawa, siedem er progresji TEMPERED i własny Dziennik.">
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}">
   <meta property="og:title" content="Fancy Vanilla">
-  <meta property="og:description" content="Vanilla, tylko dopieszczona. Minecraft 26.2 i 26.3, Fabric.">
-  <meta property="og:image" content="assets/img/og.jpg">
+  <meta property="og:locale" content="{{og_locale}}">
+  <meta property="og:description" content="{{og_description}}">
+  <meta property="og:image" content="https://fava.netlify.app/assets/img/og.jpg">
+  <link rel="canonical" href="https://fava.netlify.app/{{lang}}/">
+  <link rel="alternate" hreflang="pl" href="https://fava.netlify.app/pl/">
+  <link rel="alternate" hreflang="en" href="https://fava.netlify.app/en/">
+  <link rel="alternate" hreflang="x-default" href="https://fava.netlify.app/en/">
   <meta name="theme-color" content="#0e1013">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
@@ -23,7 +28,7 @@
   <header class="top">
     <div class="wrap top-inner">
       <a class="brand" href="#top" aria-label="Fancy Vanilla"><img src="assets/img/wordmark.png" alt="Fancy Vanilla" width="210" height="29"></a>
-      <nav aria-label="Główna nawigacja" class="nav">
+      <nav aria-label="{{nav_label}}" class="nav">
         <a href="#download"><span lang="pl">Pobierz</span><span lang="en">Download</span></a>
         <a href="#about"><span lang="pl">Zawartość</span><span lang="en">Contents</span></a>
         <a href="#journal"><span lang="pl">Dziennik</span><span lang="en">Journal</span></a>
@@ -37,10 +42,7 @@
           <a href="{{modrinth}}" rel="noopener" aria-label="Modrinth" title="Modrinth"><svg class="ico" aria-hidden="true"><use href="#i-mr"/></svg><span>Modrinth</span></a>
           <a href="{{github}}" rel="noopener" aria-label="GitHub" title="GitHub"><svg class="ico" aria-hidden="true"><use href="#i-gh"/></svg><span>GitHub</span></a>
         </div>
-        <div class="lang" role="group" aria-label="Język / Language">
-          <button type="button" data-set-lang="pl" aria-pressed="true">PL</button>
-          <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
-        </div>
+        <nav class="lang" aria-label="Język / Language">{{lang_switch}}</nav>
       </div>
     </div>
   </header>
@@ -94,7 +96,7 @@
           </ul>
         </div>
         <figure class="shot split-b">
-          <img class="zoomable" src="assets/img/journal-epilog.webp" alt="Dziennik Fancy Vanilla z zakładką Epilog, filtrami i kartami zadań" width="1600" height="900" loading="lazy">
+          <img class="zoomable" src="assets/img/journal-epilog.webp" alt="Dziennik Fancy Vanilla z zakładką Epilog, filtrami i kartami zadań" data-alt-en="Fancy Vanilla journal with the Epilogue tab, filters and quest cards" width="1600" height="900" loading="lazy">
           <figcaption><span lang="pl">Zakładka Epilog w prawdziwej grze (26.2). Zrzut z testu automatycznego.</span><span lang="en">The Epilogue tab in the real game (26.2). A screenshot from the automated test.</span></figcaption>
         </figure>
       </div>
@@ -107,11 +109,11 @@
         <p class="body"><span lang="pl">Przy starcie gry, przeładowaniu zasobów i zapisywaniu świata widzisz ciemny ekran z logo Fancy Vanilla i cienkim paskiem postępu. Loader jest częścią Fancy Journal, więc nie wymaga osobnego moda. Ładowaniem i wygaszaniem nadal steruje gra, nakładka tylko rysuje na wierzchu; gdyby się nie wczytała, zostaje zwykły ekran vanilli.</span><span lang="en">While the game starts, reloads resources, or saves a world you see a dark screen with the Fancy Vanilla wordmark and a thin progress line. The loader ships inside Fancy Journal, so it is not a separate mod. The game still runs loading and fading; the overlay only draws on top, and if it fails to load you simply get the vanilla screen.</span></p>
         <div class="pair">
           <figure class="shot">
-            <img class="zoomable" src="assets/img/loader-start.webp" alt="Ekran startu gry z logo Fancy Vanilla i paskiem postępu" width="800" height="450" loading="lazy">
+            <img class="zoomable" src="assets/img/loader-start.webp" alt="Ekran startu gry z logo Fancy Vanilla i paskiem postępu" data-alt-en="Game start screen with the Fancy Vanilla wordmark and a progress bar" width="800" height="450" loading="lazy">
             <figcaption><span lang="pl">Start gry, pasek pokazuje postęp ładowania.</span><span lang="en">Game start, the bar shows loading progress.</span></figcaption>
           </figure>
           <figure class="shot">
-            <img class="zoomable" src="assets/img/loader-saving.webp" alt="Ekran zapisywania świata z logo Fancy Vanilla" width="800" height="450" loading="lazy">
+            <img class="zoomable" src="assets/img/loader-saving.webp" alt="Ekran zapisywania świata z logo Fancy Vanilla" data-alt-en="World saving screen with the Fancy Vanilla wordmark" width="800" height="450" loading="lazy">
             <figcaption><span lang="pl">Zapisywanie świata przy wyjściu.</span><span lang="en">Saving the world on exit.</span></figcaption>
           </figure>
         </div>
@@ -195,11 +197,11 @@
         <a class="ext-link" href="{{github}}" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-gh"/></svg>GitHub</a>
         <a href="#download"><span lang="pl">Do góry</span><span lang="en">Back to top</span></a>
       </div>
-      <p class="fine legal"><span lang="pl">Projekt nie jest oficjalnym produktem Mojang Studios ani Microsoft. Minecraft jest znakiem towarowym Mojang Studios. To wydanie ma status alpha: sprawdzone na serwerze i kliencie, bez długiej gry i testów z wieloma graczami.</span><span lang="en">Not an official Mojang Studios or Microsoft product. Minecraft is a trademark of Mojang Studios. This release is alpha: verified on server and client, without long play sessions or multi-player tests.</span></p>
+      <p class="fine legal"><span lang="pl">Czcionka nagłówków: Monocraft (SIL Open Font License).</span><span lang="en">Heading font: Monocraft (SIL Open Font License).</span> <span lang="pl">Projekt nie jest oficjalnym produktem Mojang Studios ani Microsoft. Minecraft jest znakiem towarowym Mojang Studios. To wydanie ma status alpha: sprawdzone na serwerze i kliencie, bez długiej gry i testów z wieloma graczami.</span><span lang="en">Not an official Mojang Studios or Microsoft product. Minecraft is a trademark of Mojang Studios. This release is alpha: verified on server and client, without long play sessions or multi-player tests.</span></p>
     </div>
   </footer>
 
-  <dialog id="lightbox" class="lb" aria-label="Podgląd zdjęcia / Image preview"><button type="button" class="lb-x" aria-label="Zamknij / Close">×</button><img alt=""></dialog>
+  <dialog id="lightbox" class="lb" aria-label="{{lightbox_label}}"><button type="button" class="lb-x" aria-label="{{close_label}}">×</button><img alt=""></dialog>
 
   <script src="assets/site.js" defer></script>
 </body>

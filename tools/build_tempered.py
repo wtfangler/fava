@@ -11,8 +11,12 @@ import hashlib
 import io
 import json
 import re
+import sys
 import zipfile
 from pathlib import Path, PurePosixPath
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import tempered_legacy  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "src" / "tempered"
@@ -20,7 +24,8 @@ VERSION="2.19.0"
 ERA_BONUSES = 9  # 3 by Codex + 6 more per era (tools/gen_more_quests.py)
 EPILOG_ROOT = "tempered:bonus/epilog/root"
 DATE = (2026, 1, 1, 0, 0, 0)
-FORMATS = {"26.2": [107, 1], "26.3": [121, 0]}
+FORMATS = {"26.2": [107, 1], "26.3": [121, 0], "1.21.1": [48, 0], "1.21.4": [61, 0]}
+LEGACY_MC = ("1.21.1", "1.21.4")
 
 
 def encode(value):
@@ -200,18 +205,28 @@ def validate(entries, vanilla_jar=None):
 
 def build(mc, vanilla_jar=None):
     entries = source_entries()
+    legacy = mc in LEGACY_MC
+    if legacy:
+        entries = tempered_legacy.prune(entries, mc)
     count = validate(entries, vanilla_jar)
     metadata = json.loads(entries["fabric.mod.json"])
     metadata["version"] = VERSION
-    metadata["depends"]["minecraft"] = ">=26.2 <26.3" if mc == "26.2" else ">=26.3 <26.4"
+    metadata["depends"]["minecraft"] = {"26.2": ">=26.2 <26.3", "26.3": ">=26.3 <26.4"}.get(mc, mc)
+    if legacy:
+        metadata["depends"]["fabricloader"] = ">=0.15.0"
     entries["fabric.mod.json"] = encode(metadata)
     pack = json.loads(entries["pack.mcmeta"])
     major, minor = FORMATS[mc]
-    pack["pack"].update(pack_format=major, min_format=[major, minor], max_format=[major, minor])
+    if legacy:
+        pack["pack"] = {"description": pack["pack"]["description"], "pack_format": major}
+    else:
+        pack["pack"].update(pack_format=major, min_format=[major, minor], max_format=[major, minor])
     entries["pack.mcmeta"] = encode(pack)
     for name, content in list(entries.items()):
-        if name.startswith("data/tempered/advancement/bonus/") and name.endswith(".json"):
+        if name.startswith("data/tempered/advancement/bonus/") and name.endswith(".json") and not legacy:
             entries[name] = encode(bonus_for_mc(json.loads(content), mc))
+    if legacy:
+        entries = tempered_legacy.convert(entries, mc)
 
     output = ROOT / "build" / "mods" / f"TEMPERED{VERSION}mc{mc}.jar"
     output.parent.mkdir(parents=True, exist_ok=True)

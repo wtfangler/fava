@@ -1,24 +1,7 @@
-// Fancy Vanilla site: language switch, Minecraft-version tabs, copy buttons. Everything else is static HTML.
+// Fancy Vanilla site: Minecraft-version tabs, copy buttons, image zoom. Language is chosen by the URL (/pl/, /en/). Everything else is static HTML.
 (function () {
   "use strict";
   var root = document.documentElement;
-
-  // ---- language (PL default; remembered; follows the browser on first visit)
-  function setLang(lang) {
-    root.setAttribute("data-lang", lang);
-    root.lang = lang;
-    document.querySelectorAll("[data-set-lang]").forEach(function (b) {
-      b.setAttribute("aria-pressed", b.getAttribute("data-set-lang") === lang ? "true" : "false");
-    });
-    try { localStorage.setItem("fv-lang", lang); } catch (e) { /* private mode */ }
-  }
-  var saved = null;
-  try { saved = localStorage.getItem("fv-lang"); } catch (e) { /* ignore */ }
-  var guess = (navigator.language || "pl").toLowerCase().indexOf("pl") === 0 ? "pl" : "en";
-  setLang(saved || guess);
-  document.querySelectorAll("[data-set-lang]").forEach(function (b) {
-    b.addEventListener("click", function () { setLang(b.getAttribute("data-set-lang")); });
-  });
 
   // ---- Minecraft version tabs in the download box
   var tabs = Array.prototype.slice.call(document.querySelectorAll(".seg [role=tab]"));
