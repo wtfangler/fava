@@ -1,0 +1,118 @@
+{
+  "parent": "tempered:bonus/epilog/root",
+  "display": {
+    "icon": {
+      "id": "minecraft:amethyst_block"
+    },
+    "title": {
+      "translate": "tempered.bonus.epilog.crystal_lab.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.epilog.crystal_lab.desc",
+      "color": "gray"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "placed_amethyst_block": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "minecraft:amethyst_block"
+              }
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:bonus/epilog/root": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "placed_tinted_glass": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "minecraft:tinted_glass"
+              }
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:bonus/epilog/root": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "placed_calibrated_sculk_sensor": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "minecraft:calibrated_sculk_sensor"
+              }
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:bonus/epilog/root": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "placed_amethyst_block"
+    ],
+    [
+      "placed_tinted_glass"
+    ],
+    [
+      "placed_calibrated_sculk_sensor"
+    ]
+  ],
+  "rewards": {
+    "experience": 40
+  }
+}

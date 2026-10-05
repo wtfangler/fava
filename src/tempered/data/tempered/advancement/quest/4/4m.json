@@ -1,0 +1,29 @@
+{
+  "parent": "tempered:age/4",
+  "display": {
+    "icon": {
+      "id": "minecraft:anvil"
+    },
+    "title": [
+      "",
+      {
+        "translate": "tempered.quest.4m.title"
+      }
+    ],
+    "description": [
+      "",
+      {
+        "color": "gray",
+        "translate": "tempered.quest.4m.desc"
+      }
+    ],
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

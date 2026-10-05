@@ -1,0 +1,54 @@
+{
+  "parent": "tempered:bonus/epilog/root",
+  "display": {
+    "icon": {
+      "id": "minecraft:diamond"
+    },
+    "title": {
+      "translate": "tempered.bonus.epilog.diamond_hoard.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.epilog.diamond_hoard.desc",
+      "color": "gray"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "has_diamond": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:diamond",
+            "count": {
+              "min": 64
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:bonus/epilog/root": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_diamond"
+    ]
+  ],
+  "rewards": {
+    "experience": 60
+  }
+}

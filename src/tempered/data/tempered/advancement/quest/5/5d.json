@@ -1,0 +1,29 @@
+{
+  "parent": "tempered:age/5",
+  "display": {
+    "icon": {
+      "id": "minecraft:brewing_stand"
+    },
+    "title": [
+      "",
+      {
+        "translate": "tempered.quest.5d.title"
+      }
+    ],
+    "description": [
+      "",
+      {
+        "color": "gray",
+        "translate": "tempered.quest.5d.desc"
+      }
+    ],
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

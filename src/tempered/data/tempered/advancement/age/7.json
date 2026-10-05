@@ -1,0 +1,41 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:nether_star"
+    },
+    "title": [
+      "",
+      {
+        "color": "gold",
+        "bold": true,
+        "translate": "tempered.ui.menu_era",
+        "with": [
+          "7",
+          {
+            "translate": "tempered.era.7"
+          }
+        ]
+      }
+    ],
+    "description": [
+      "",
+      {
+        "color": "gray",
+        "translate": "tempered.ui.menu_progress",
+        "with": [
+          "8",
+          "12"
+        ]
+      }
+    ],
+    "background": "minecraft:gui/advancements/backgrounds/end",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

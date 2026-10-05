@@ -1,0 +1,13 @@
+# generated
+build/
+releases/
+test-logs/
+journal-mod/dist/
+journal-mod/build/
+journal-mod/.dev/
+__pycache__/
+*.pyc
+# author's original artwork archive (kept locally)
+brand/source/
+# local tooling
+.claude/

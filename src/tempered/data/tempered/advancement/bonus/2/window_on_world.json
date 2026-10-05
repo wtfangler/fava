@@ -1,0 +1,87 @@
+{
+  "parent": "tempered:age/2",
+  "display": {
+    "icon": {
+      "id": "minecraft:glass_pane"
+    },
+    "title": {
+      "translate": "tempered.bonus.2.window_on_world.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.2.window_on_world.desc",
+      "color": "gray"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "placed_glass": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "minecraft:glass"
+              }
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/2": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "placed_glass_pane": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "minecraft:glass_pane"
+              }
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/2": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "placed_glass"
+    ],
+    [
+      "placed_glass_pane"
+    ]
+  ],
+  "rewards": {
+    "experience": 15
+  }
+}

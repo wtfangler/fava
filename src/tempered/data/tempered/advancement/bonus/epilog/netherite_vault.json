@@ -1,0 +1,54 @@
+{
+  "parent": "tempered:bonus/epilog/root",
+  "display": {
+    "icon": {
+      "id": "minecraft:netherite_ingot"
+    },
+    "title": {
+      "translate": "tempered.bonus.epilog.netherite_vault.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.epilog.netherite_vault.desc",
+      "color": "gray"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "has_netherite_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:netherite_ingot",
+            "count": {
+              "min": 9
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:bonus/epilog/root": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_netherite_ingot"
+    ]
+  ],
+  "rewards": {
+    "experience": 80
+  }
+}

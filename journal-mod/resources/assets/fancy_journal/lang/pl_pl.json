@@ -1,0 +1,19 @@
+{
+  "fancy_journal.title": "Dziennik",
+  "key.fancy_journal.open": "Otwórz dziennik Fancy Vanilla",
+  "fancy_journal.open_button": "Dziennik (%s)",
+  "fancy_journal.open_tooltip": "Przygody i postęp. Skrót: %s",
+  "fancy_journal.optional": "Opcjonalne",
+  "fancy_journal.optional_hint": "Osobiste wyzwanie — nie jest wymagane do przejścia epoki.",
+  "fancy_journal.optional_summary": "Opcjonalne: %s z %s. Nie wpływają na próg epoki.",
+  "fancy_journal.summary": "Ukończono %s z %s",
+  "fancy_journal.search": "Szukaj...",
+  "fancy_journal.filter.all": "Wszystkie",
+  "fancy_journal.filter.active": "Pozostałe",
+  "fancy_journal.filter.done": "Ukończone",
+  "fancy_journal.classic": "Klasyczny widok",
+  "fancy_journal.empty": "Brak osiągnięć do wyświetlenia",
+  "fancy_journal.none": "Nic tu nie pasuje do filtra",
+  "fancy_journal.tooltip.done": "Ukończone",
+  "fancy_journal.tooltip.progress": "Postęp: %s"
+}

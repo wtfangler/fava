@@ -1,0 +1,129 @@
+{
+  "parent": "tempered:bonus/epilog/root",
+  "display": {
+    "icon": {
+      "id": "minecraft:jukebox"
+    },
+    "title": {
+      "translate": "tempered.bonus.epilog.jukebox_collector.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.epilog.jukebox_collector.desc",
+      "color": "gray"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "has_music_disc_13": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:music_disc_13"
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:bonus/epilog/root": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "has_music_disc_cat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:music_disc_cat"
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:bonus/epilog/root": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "has_music_disc_blocks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:music_disc_blocks"
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:bonus/epilog/root": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "has_music_disc_chirp": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:music_disc_chirp"
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:bonus/epilog/root": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_music_disc_13"
+    ],
+    [
+      "has_music_disc_cat"
+    ],
+    [
+      "has_music_disc_blocks"
+    ],
+    [
+      "has_music_disc_chirp"
+    ]
+  ],
+  "rewards": {
+    "experience": 40
+  }
+}

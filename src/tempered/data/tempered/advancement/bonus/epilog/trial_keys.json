@@ -1,0 +1,77 @@
+{
+  "parent": "tempered:bonus/epilog/root",
+  "display": {
+    "icon": {
+      "id": "minecraft:trial_key"
+    },
+    "title": {
+      "translate": "tempered.bonus.epilog.trial_keys.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.epilog.trial_keys.desc",
+      "color": "gray"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "has_trial_key": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:trial_key"
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:bonus/epilog/root": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "has_ominous_trial_key": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:ominous_trial_key"
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:bonus/epilog/root": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_trial_key"
+    ],
+    [
+      "has_ominous_trial_key"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  }
+}

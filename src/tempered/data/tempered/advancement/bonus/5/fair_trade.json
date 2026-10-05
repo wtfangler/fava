@@ -1,0 +1,95 @@
+{
+  "parent": "tempered:age/5",
+  "display": {
+    "icon": {
+      "id": "minecraft:gold_ingot"
+    },
+    "title": {
+      "translate": "tempered.bonus.5.fair_trade.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.5.fair_trade.desc",
+      "color": "gray"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "distract_piglin": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:entity_type": "minecraft:piglin",
+              "minecraft:flags": {
+                "is_baby": false
+              }
+            }
+          }
+        ],
+        "item": {
+          "items": "minecraft:gold_ingot"
+        },
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/5": true
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:thrown_item_picked_up_by_entity"
+    },
+    "distract_piglin_directly": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:entity_type": "minecraft:piglin",
+              "minecraft:flags": {
+                "is_baby": false
+              }
+            }
+          }
+        ],
+        "item": {
+          "items": "minecraft:gold_ingot"
+        },
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/5": true
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_interacted_with_entity"
+    }
+  },
+  "requirements": [
+    [
+      "distract_piglin",
+      "distract_piglin_directly"
+    ]
+  ],
+  "rewards": {
+    "experience": 20
+  }
+}

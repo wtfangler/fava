@@ -1,0 +1,54 @@
+{
+  "parent": "tempered:age/6",
+  "display": {
+    "icon": {
+      "id": "minecraft:ender_pearl"
+    },
+    "title": {
+      "translate": "tempered.bonus.6.pearl_stock.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.6.pearl_stock.desc",
+      "color": "gray"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "has_ender_pearl": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:ender_pearl",
+            "count": {
+              "min": 16
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/6": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ender_pearl"
+    ]
+  ],
+  "rewards": {
+    "experience": 20
+  }
+}

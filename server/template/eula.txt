@@ -1,0 +1,2 @@
+# Przeczytaj https://aka.ms/MinecraftEULA i zmien na true, jesli sie zgadzasz.
+eula=false

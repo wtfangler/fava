@@ -1,0 +1,118 @@
+{
+  "parent": "tempered:age/5",
+  "display": {
+    "icon": {
+      "id": "minecraft:nether_bricks"
+    },
+    "title": {
+      "translate": "tempered.bonus.5.nether_bricks.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.5.nether_bricks.desc",
+      "color": "gray"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "placed_nether_bricks": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "minecraft:nether_bricks"
+              }
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/5": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "placed_nether_brick_fence": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "minecraft:nether_brick_fence"
+              }
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/5": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "placed_red_nether_bricks": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "minecraft:red_nether_bricks"
+              }
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/5": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "placed_nether_bricks"
+    ],
+    [
+      "placed_nether_brick_fence"
+    ],
+    [
+      "placed_red_nether_bricks"
+    ]
+  ],
+  "rewards": {
+    "experience": 25
+  }
+}

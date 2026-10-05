@@ -1,0 +1,29 @@
+{
+  "parent": "tempered:age/5",
+  "display": {
+    "icon": {
+      "id": "minecraft:obsidian"
+    },
+    "title": [
+      "",
+      {
+        "translate": "tempered.quest.5b.title"
+      }
+    ],
+    "description": [
+      "",
+      {
+        "color": "gray",
+        "translate": "tempered.quest.5b.desc"
+      }
+    ],
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

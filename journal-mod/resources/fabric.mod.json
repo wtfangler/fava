@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "fancy_journal",
+  "version": "${version}",
+  "name": "Fancy Journal",
+  "description": "Nowoczesny, stonowany dziennik w miejsce wbudowanego ekranu osiągnięć. Część Fancy Vanilla. Przytrzymaj Shift przy otwieraniu, aby zobaczyć klasyczny widok.",
+  "authors": ["Oliwier Koda"],
+  "license": "MIT",
+  "icon": "assets/fancy_journal/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["dev.fancyvanilla.journal.FancyJournalClient"]
+  },
+  "mixins": [
+    { "config": "fancy_journal.mixins.json", "environment": "client" }
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "fabric-api": "*",
+    "minecraft": "${minecraft}"
+  }
+}

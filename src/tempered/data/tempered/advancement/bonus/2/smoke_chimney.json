@@ -1,0 +1,87 @@
+{
+  "parent": "tempered:age/2",
+  "display": {
+    "icon": {
+      "id": "minecraft:smoker"
+    },
+    "title": {
+      "translate": "tempered.bonus.2.smoke_chimney.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.2.smoke_chimney.desc",
+      "color": "gray"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "placed_furnace": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "minecraft:furnace"
+              }
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/2": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "placed_smoker": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "minecraft:smoker"
+              }
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/2": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "placed_furnace"
+    ],
+    [
+      "placed_smoker"
+    ]
+  ],
+  "rewards": {
+    "experience": 15
+  }
+}

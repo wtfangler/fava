@@ -1,0 +1,29 @@
+{
+  "parent": "tempered:age/4",
+  "display": {
+    "icon": {
+      "id": "minecraft:enchanted_book"
+    },
+    "title": [
+      "",
+      {
+        "translate": "tempered.quest.4j.title"
+      }
+    ],
+    "description": [
+      "",
+      {
+        "color": "gray",
+        "translate": "tempered.quest.4j.desc"
+      }
+    ],
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

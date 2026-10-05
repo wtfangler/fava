@@ -1,0 +1,7 @@
+tellraw @s ["",{"text":"\n  TEMPERED // ADMIN","color":"gold","bold":true}]
+tellraw @s ["",{"text":"  /function tempered:admin/set_age {n:3}","color":"white","bold":false},{"translate":"tempered.msg.help.set_age","color":"dark_gray","bold":false}]
+tellraw @s ["",{"text":"  /function tempered:admin/skip","color":"white","bold":false},{"translate":"tempered.msg.help.skip","color":"dark_gray","bold":false}]
+tellraw @s ["",{"text":"  /function tempered:admin/reset","color":"white","bold":false},{"translate":"tempered.msg.help.reset","color":"dark_gray","bold":false}]
+tellraw @s ["",{"text":"  /function tempered:admin/gate_off","color":"white","bold":false},{"translate":"tempered.msg.help.gate_off","color":"dark_gray","bold":false}]
+tellraw @s ["",{"text":"  /function tempered:admin/gate_on","color":"white","bold":false},{"translate":"tempered.msg.help.gate_on","color":"dark_gray","bold":false}]
+tellraw @s ["",{"text":"  /function tempered:admin/diag","color":"white","bold":false},{"translate":"tempered.msg.help.diag","color":"dark_gray","bold":false}]

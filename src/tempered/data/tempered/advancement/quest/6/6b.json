@@ -1,0 +1,29 @@
+{
+  "parent": "tempered:age/6",
+  "display": {
+    "icon": {
+      "id": "minecraft:ender_eye"
+    },
+    "title": [
+      "",
+      {
+        "translate": "tempered.quest.6b.title"
+      }
+    ],
+    "description": [
+      "",
+      {
+        "color": "gray",
+        "translate": "tempered.quest.6b.desc"
+      }
+    ],
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

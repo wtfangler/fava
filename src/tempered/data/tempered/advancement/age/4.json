@@ -1,0 +1,41 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:diamond"
+    },
+    "title": [
+      "",
+      {
+        "color": "gold",
+        "bold": true,
+        "translate": "tempered.ui.menu_era",
+        "with": [
+          "4",
+          {
+            "translate": "tempered.era.4"
+          }
+        ]
+      }
+    ],
+    "description": [
+      "",
+      {
+        "color": "gray",
+        "translate": "tempered.ui.menu_progress",
+        "with": [
+          "8",
+          "13"
+        ]
+      }
+    ],
+    "background": "minecraft:gui/advancements/backgrounds/adventure",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

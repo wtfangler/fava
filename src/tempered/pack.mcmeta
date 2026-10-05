@@ -1,0 +1,26 @@
+{
+  "pack": {
+    "description": [
+      "",
+      {
+        "text": "TEMPERED",
+        "color": "gold",
+        "bold": true
+      },
+      {
+        "text": "  //  7 er progresji",
+        "color": "gray",
+        "bold": false
+      }
+    ],
+    "pack_format": 107,
+    "min_format": [
+      107,
+      1
+    ],
+    "max_format": [
+      107,
+      99
+    ]
+  }
+}

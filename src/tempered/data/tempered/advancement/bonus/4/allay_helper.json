@@ -1,0 +1,55 @@
+{
+  "parent": "tempered:age/4",
+  "display": {
+    "icon": {
+      "id": "minecraft:cookie"
+    },
+    "title": {
+      "translate": "tempered.bonus.4.allay_helper.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.4.allay_helper.desc",
+      "color": "gray"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "allay_deliver_item_to_player": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:entity_type": "minecraft:allay"
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/4": true
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:thrown_item_picked_up_by_player"
+    }
+  },
+  "requirements": [
+    [
+      "allay_deliver_item_to_player"
+    ]
+  ],
+  "rewards": {
+    "experience": 20
+  }
+}

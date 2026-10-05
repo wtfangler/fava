@@ -1,0 +1,118 @@
+{
+  "parent": "tempered:age/2",
+  "display": {
+    "icon": {
+      "id": "minecraft:cobblestone_wall"
+    },
+    "title": {
+      "translate": "tempered.bonus.2.stone_wall.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.2.stone_wall.desc",
+      "color": "gray"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "placed_cobblestone_wall": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "minecraft:cobblestone_wall"
+              }
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/2": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "placed_stone_brick_stairs": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "minecraft:stone_brick_stairs"
+              }
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/2": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "placed_stone_slab": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "minecraft:stone_slab"
+              }
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/2": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "placed_cobblestone_wall"
+    ],
+    [
+      "placed_stone_brick_stairs"
+    ],
+    [
+      "placed_stone_slab"
+    ]
+  ],
+  "rewards": {
+    "experience": 15
+  }
+}

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="pl" data-lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fancy Vanilla: Minecraft 26.2 i 26.3, vanilla dopieszczona</title>
+  <meta name="description" content="Modpack Fabric dla Minecrafta 26.2 i 26.3. Bez nowych bloków i mobów: szybsza gra, ładniejsza oprawa, siedem er progresji TEMPERED i własny Dziennik.">
+  <meta property="og:title" content="Fancy Vanilla">
+  <meta property="og:description" content="Vanilla, tylko dopieszczona. Minecraft 26.2 i 26.3, Fabric.">
+  <meta property="og:image" content="assets/img/og.jpg">
+  <meta name="theme-color" content="#0e1013">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#download"><span lang="pl">Przejdź do pobierania</span><span lang="en">Skip to download</span></a>
+
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="#top" aria-label="Fancy Vanilla"><img src="assets/img/wordmark.png" alt="Fancy Vanilla" width="210" height="29"></a>
+      <nav aria-label="Główna nawigacja" class="nav">
+        <a href="#download"><span lang="pl">Pobierz</span><span lang="en">Download</span></a>
+        <a href="#about"><span lang="pl">Zawartość</span><span lang="en">Contents</span></a>
+        <a href="#journal"><span lang="pl">Dziennik</span><span lang="en">Journal</span></a>
+        <a href="#loader"><span lang="pl">Loader</span><span lang="en">Loader</span></a>
+        <a href="#ages"><span lang="pl">Progresja</span><span lang="en">Progression</span></a>
+        <a href="#versions"><span lang="pl">Wersje</span><span lang="en">Versions</span></a>
+        <a href="#server"><span lang="pl">Serwer</span><span lang="en">Server</span></a>
+      </nav>
+      <div class="top-tools">
+        <div class="lang" role="group" aria-label="Język / Language">
+          <button type="button" data-set-lang="pl" aria-pressed="true">PL</button>
+          <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-art" aria-hidden="true"></div>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span lang="pl">Minecraft {{mc_range}} · Fabric · wydanie {{latest_version}} {{latest_channel_pl}}</span><span lang="en">Minecraft {{mc_range}} · Fabric · release {{latest_version}} {{latest_channel_en}}</span></p>
+          <h1><span lang="pl">Vanilla, tylko dopieszczona.</span><span lang="en">Vanilla, only polished.</span></h1>
+          <p class="lead"><span lang="pl">Żadnych nowych bloków ani mobów. Szybsza gra, ładniejsza oprawa, siedem er progresji i Dziennik, w którym widać, co robić dalej.</span><span lang="en">No new blocks or mobs. A faster game, nicer looks, seven ages of progression and a journal that shows what to do next.</span></p>
+        </div>
+
+        <aside class="dl" id="download" aria-labelledby="dl-title">
+          <h2 id="dl-title" class="label"><span lang="pl">Pobierz</span><span lang="en">Download</span></h2>
+          <div class="seg" role="tablist" aria-label="Wersja Minecrafta / Minecraft version">
+            {{dl_tabs}}
+          </div>
+          {{dl_panels}}
+          <p class="fine"><span lang="pl">Wymaga Java 25, Fabric Loader {{loader}} i 4–6 GB RAM. Importuj plik w Modrinth App lub Prism Launcher.</span><span lang="en">Needs Java 25, Fabric Loader {{loader}} and 4–6 GB RAM. Import the file in Modrinth App or Prism Launcher.</span></p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="band" id="about">
+      <div class="wrap split">
+        <div class="split-a">
+          <p class="label">01 / <span lang="pl">Zawartość</span><span lang="en">Contents</span></p>
+          <p class="statement"><span lang="pl">Gra zostaje taka, jaką znasz: te same bloki, moby i biomy. Zmienia się to, jak działa i jak wygląda, i pojawia się struktura: siedem er od drewna po post-end, osobne cele na własną bazę i Epilog na czas po zabiciu smoka.</span><span lang="en">The game stays as you know it: the same blocks, mobs and biomes. What changes is how it runs and looks, plus some structure: seven ages from wood to post-End, personal goals for your base, and an Epilogue for after the dragon.</span></p>
+        </div>
+        <dl class="facts split-b">
+          {{stats_rows}}
+        </dl>
+      </div>
+      <div class="wrap lists">
+        {{groups}}
+      </div>
+    </section>
+
+    <section class="band alt" id="journal">
+      <div class="wrap split">
+        <div class="split-a">
+          <p class="label">02 / <span lang="pl">Dziennik</span><span lang="en">Journal</span></p>
+          <h2><span lang="pl">Jeden ekran postępu, pod klawiszem J.</span><span lang="en">One progress screen, on the J key.</span></h2>
+          <ul class="plain">
+            <li><span lang="pl">Zakładki z erami i paskami postępu, wyszukiwarka oraz filtry: wszystkie, pozostałe, ukończone.</span><span lang="en">Tabs per age with progress bars, search, and filters: all, remaining, completed.</span></li>
+            <li><span lang="pl">Zastępuje wbudowany ekran osiągnięć i jego przycisk w menu pauzy. Shift przy otwieraniu daje klasyczny widok.</span><span lang="en">Replaces the built-in advancements screen and its pause-menu button. Hold Shift while opening for the classic view.</span></li>
+            <li><span lang="pl">Po zabiciu Smoka Endu odblokowuje się zakładka Epilog z {{epilog_count}} celami na dalszą grę.</span><span lang="en">After the Ender Dragon, an Epilogue tab unlocks with {{epilog_count}} goals for the long game.</span></li>
+            <li><span lang="pl">Gdyby ekran napotkał błąd, gra sama wraca do klasycznego widoku.</span><span lang="en">If the screen ever fails, the game falls back to the classic view.</span></li>
+          </ul>
+        </div>
+        <figure class="shot split-b">
+          <img src="assets/img/journal-epilog.webp" alt="Dziennik Fancy Vanilla z zakładką Epilog, filtrami i kartami zadań" width="1600" height="900" loading="lazy">
+          <figcaption><span lang="pl">Zakładka Epilog w prawdziwej grze (26.2). Zrzut z testu automatycznego.</span><span lang="en">The Epilogue tab in the real game (26.2). A screenshot from the automated test.</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="band" id="loader">
+      <div class="wrap">
+        <p class="label">03 / <span lang="pl">Loader</span><span lang="en">Loader</span></p>
+        <h2><span lang="pl">Własny ekran ładowania zamiast logo Mojang.</span><span lang="en">Its own loading screen instead of the Mojang logo.</span></h2>
+        <p class="body"><span lang="pl">Przy starcie gry, przeładowaniu zasobów i zapisywaniu świata widzisz ciemny ekran z logo Fancy Vanilla i cienkim paskiem postępu. Loader jest częścią Fancy Journal, więc nie wymaga osobnego moda. Ładowaniem i wygaszaniem nadal steruje gra, nakładka tylko rysuje na wierzchu; gdyby się nie wczytała, zostaje zwykły ekran vanilli.</span><span lang="en">While the game starts, reloads resources, or saves a world you see a dark screen with the Fancy Vanilla wordmark and a thin progress line. The loader ships inside Fancy Journal, so it is not a separate mod. The game still runs loading and fading; the overlay only draws on top, and if it fails to load you simply get the vanilla screen.</span></p>
+        <div class="pair">
+          <figure class="shot">
+            <img src="assets/img/loader-start.webp" alt="Ekran startu gry z logo Fancy Vanilla i paskiem postępu" width="800" height="450" loading="lazy">
+            <figcaption><span lang="pl">Start gry, pasek pokazuje postęp ładowania.</span><span lang="en">Game start, the bar shows loading progress.</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="assets/img/loader-saving.webp" alt="Ekran zapisywania świata z logo Fancy Vanilla" width="800" height="450" loading="lazy">
+            <figcaption><span lang="pl">Zapisywanie świata przy wyjściu.</span><span lang="en">Saving the world on exit.</span></figcaption>
+          </figure>
+        </div>
+        <p class="fine"><span lang="pl">Zrzuty z prawdziwego klienta 26.2 podczas testu automatycznego.</span><span lang="en">Screenshots from the real 26.2 client during the automated test.</span></p>
+      </div>
+    </section>
+
+    <section class="band" id="ages">
+      <div class="wrap">
+        <p class="label">04 / <span lang="pl">Progresja TEMPERED</span><span lang="en">TEMPERED progression</span></p>
+        <div class="split ages-split">
+          <div class="split-a">
+            <h2><span lang="pl">Siedem er, nie trzeba zaliczać wszystkiego.</span><span lang="en">Seven ages, you do not need to finish everything.</span></h2>
+            <p class="body"><span lang="pl">Era odblokowuje przepisy i sprzęt. Postęp jest wspólny dla świata, także na serwerze. Do następnej ery wystarczy część zadań z obecnej (kolumna „Próg”). Dodatkowe cele są opcjonalne, mają osobny postęp i dają XP, ale nie liczą się do progu.</span><span lang="en">An age unlocks recipes and gear. Progress is shared by the world, also on a server. A part of the current age's quests is enough to advance (the “Threshold” column). Extra goals are optional, personal, give XP, and do not count towards the threshold.</span></p>
+            <p class="body"><span lang="pl">Blokadę przepisów i osłabienia sprzętu wyłącza administrator komendą <code>/function tempered:admin/gate_off</code>. TEMPERED to autorski mod, który zajmuje jeden plik w paczce.</span><span lang="en">An administrator disables the recipe lock and gear penalties with <code>/function tempered:admin/gate_off</code>. TEMPERED is the author's own mod and takes a single file in the pack.</span></p>
+          </div>
+          <div class="split-b">
+            <table class="tbl">
+              <thead><tr><th><span lang="pl">Era</span><span lang="en">Age</span></th><th><span lang="pl">Nazwa</span><span lang="en">Name</span></th><th class="num"><span lang="pl">Próg</span><span lang="en">Threshold</span></th><th class="num"><span lang="pl">Opcjonalne</span><span lang="en">Optional</span></th></tr></thead>
+              <tbody>
+                {{era_rows}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band alt" id="versions">
+      <div class="wrap">
+        <p class="label">05 / <span lang="pl">Wersje</span><span lang="en">Versions</span></p>
+        <h2><span lang="pl">Wszystkie wydania.</span><span lang="en">Every release.</span></h2>
+        <div class="tbl-scroll">
+          <table class="tbl versions">
+            <thead><tr><th><span lang="pl">Wydanie</span><span lang="en">Release</span></th><th><span lang="pl">Gra</span><span lang="en">Game</span></th><th><span lang="pl">Kanał</span><span lang="en">Channel</span></th><th><span lang="pl">Data</span><span lang="en">Date</span></th><th class="num"><span lang="pl">Rozmiar</span><span lang="en">Size</span></th><th>SHA-512</th><th></th></tr></thead>
+            <tbody>
+              {{version_rows}}
+            </tbody>
+          </table>
+        </div>
+        <p class="fine"><span lang="pl">Sumy SHA-512 pozwalają sprawdzić, że pobrany plik jest taki, jak opublikowany.</span><span lang="en">SHA-512 sums let you verify the downloaded file matches the published one.</span></p>
+      </div>
+    </section>
+
+    <section class="band" id="server">
+      <div class="wrap split">
+        <div class="split-a">
+          <p class="label">06 / <span lang="pl">Serwer</span><span lang="en">Server</span></p>
+          <h2><span lang="pl">Ta sama paczka, mały serwer ze znajomymi.</span><span lang="en">The same pack, a small server for friends.</span></h2>
+          <ol class="steps">
+            <li><span lang="pl">Gracze importują ten sam plik <code>.mrpack</code> co Ty.</span><span lang="en">Players import the same <code>.mrpack</code> you do.</span></li>
+            <li><span lang="pl">Pobierz skrypt budowy serwera i uruchom go na pliku paczki (Python, Java 25). Skrypt pobiera tylko mody serwerowe i sprawdza ich sumy.</span><span lang="en">Download the server builder and run it on the pack file (Python, Java 25). It downloads only server-side mods and verifies their hashes.</span></li>
+            <li><span lang="pl">Przeczytaj i zaakceptuj EULA Minecrafta w <code>eula.txt</code>, potem uruchom <code>start.bat</code> lub <code>start.sh</code>.</span><span lang="en">Read and accept the Minecraft EULA in <code>eula.txt</code>, then run <code>start.bat</code> or <code>start.sh</code>.</span></li>
+          </ol>
+          <p class="fine"><span lang="pl">Ustawienia startowe (15 graczy, zasięg 8, symulacja 6) to wartości początkowe, nie zmierzona pojemność. Zacznij od kilku osób i sprawdź czasy ticków sparkiem.</span><span lang="en">The starting settings (15 players, view distance 8, simulation 6) are defaults, not measured capacity. Start with a few people and check tick times with spark.</span></p>
+        </div>
+        <div class="split-b">
+          <div class="code">
+            <div class="code-bar"><span>PowerShell / bash</span><button type="button" data-copy="{{server_cmd_plain}}"><span lang="pl">Kopiuj</span><span lang="en">Copy</span></button></div>
+            <pre><code>{{server_cmd_html}}</code></pre>
+          </div>
+          <p class="download-row"><a class="btn ghost" href="downloads/server/fancy-vanilla-server-builder.zip"><span lang="pl">Skrypt budowy serwera (ZIP)</span><span lang="en">Server builder (ZIP)</span></a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-grid">
+      <div>
+        <img src="assets/img/wordmark.png" alt="Fancy Vanilla" width="150" height="21">
+        <p class="fine"><span lang="pl">Autor: Oliwier Koda. TEMPERED i Fancy Journal są autorskie (licencja MIT). Rdzeń wydajności pochodzi z paczki Streamline Master. Mody i paczki zasobów należą do swoich autorów i są pobierane z Modrinth.</span><span lang="en">Author: Oliwier Koda. TEMPERED and Fancy Journal are original works (MIT licence). The performance core comes from the Streamline Master pack. Mods and resource packs belong to their authors and are downloaded from Modrinth.</span></p>
+      </div>
+      <div class="foot-links">
+        <a href="{{modrinth}}" rel="noopener">Modrinth</a>
+        <a href="#download"><span lang="pl">Do góry</span><span lang="en">Back to top</span></a>
+      </div>
+      <p class="fine legal"><span lang="pl">Projekt nie jest oficjalnym produktem Mojang Studios ani Microsoft. Minecraft jest znakiem towarowym Mojang Studios. To wydanie ma status alpha: sprawdzone na serwerze i kliencie, bez długiej gry i testów z wieloma graczami.</span><span lang="en">Not an official Mojang Studios or Microsoft product. Minecraft is a trademark of Mojang Studios. This release is alpha: verified on server and client, without long play sessions or multi-player tests.</span></p>
+    </div>
+  </footer>
+
+  <script src="assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+{
+  "parent": "tempered:age/2",
+  "display": {
+    "icon": {
+      "id": "minecraft:raw_copper"
+    },
+    "title": {
+      "translate": "tempered.bonus.2.first_ores.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.2.first_ores.desc",
+      "color": "gray"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "has_coal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:coal"
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/2": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "has_raw_copper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:raw_copper"
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/2": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_coal"
+    ],
+    [
+      "has_raw_copper"
+    ]
+  ],
+  "rewards": {
+    "experience": 15
+  }
+}

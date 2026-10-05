@@ -1,0 +1,46 @@
+{
+  "parent": "tempered:bonus/epilog/root",
+  "display": {
+    "icon": {
+      "id": "minecraft:white_banner"
+    },
+    "title": {
+      "translate": "tempered.bonus.epilog.village_hero.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.epilog.village_hero.desc",
+      "color": "gray"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "hero": {
+      "trigger": "minecraft:hero_of_the_village",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:bonus/epilog/root": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "hero"
+    ]
+  ],
+  "rewards": {
+    "experience": 80
+  }
+}

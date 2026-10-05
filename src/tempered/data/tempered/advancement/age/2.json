@@ -1,0 +1,41 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:cobblestone"
+    },
+    "title": [
+      "",
+      {
+        "color": "gold",
+        "bold": true,
+        "translate": "tempered.ui.menu_era",
+        "with": [
+          "2",
+          {
+            "translate": "tempered.era.2"
+          }
+        ]
+      }
+    ],
+    "description": [
+      "",
+      {
+        "color": "gray",
+        "translate": "tempered.ui.menu_progress",
+        "with": [
+          "9",
+          "15"
+        ]
+      }
+    ],
+    "background": "minecraft:gui/advancements/backgrounds/stone",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

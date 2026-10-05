@@ -1,0 +1,118 @@
+{
+  "parent": "tempered:age/7",
+  "display": {
+    "icon": {
+      "id": "minecraft:pitcher_plant"
+    },
+    "title": {
+      "translate": "tempered.bonus.7.rare_garden.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.7.rare_garden.desc",
+      "color": "gray"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "placed_torchflower": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "minecraft:torchflower"
+              }
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/7": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "placed_pitcher_plant": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "minecraft:pitcher_plant"
+              }
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/7": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "placed_wither_rose": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "minecraft:wither_rose"
+              }
+            }
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/7": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "placed_torchflower"
+    ],
+    [
+      "placed_pitcher_plant"
+    ],
+    [
+      "placed_wither_rose"
+    ]
+  ],
+  "rewards": {
+    "experience": 25
+  }
+}

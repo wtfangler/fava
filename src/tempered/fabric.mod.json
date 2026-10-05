@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "tempered",
+  "version": "2.16.2",
+  "name": "TEMPERED",
+  "description": "Autorska progresja: 7 wspolnych er, 89 zadan glownych i 21 osobistych zadan opcjonalnych. Blokady receptur i debuffy sprzetu z przyszlych er. Datapack w formie moda; automatycznie dziala w kazdym swiecie.",
+  "authors": [
+    "Oliwier Koda"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "environment": "*",
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": ">=26.2 <26.3"
+  },
+  "icon": "assets/tempered/icon.png"
+}

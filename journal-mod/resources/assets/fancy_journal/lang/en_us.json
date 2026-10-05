@@ -1,0 +1,19 @@
+{
+  "fancy_journal.title": "Journal",
+  "key.fancy_journal.open": "Open Fancy Vanilla Journal",
+  "fancy_journal.open_button": "Journal (%s)",
+  "fancy_journal.open_tooltip": "Adventures and progress. Shortcut: %s",
+  "fancy_journal.optional": "Optional",
+  "fancy_journal.optional_hint": "Personal challenge — not required to advance to the next era.",
+  "fancy_journal.optional_summary": "Optional: %s of %s. These do not affect the era threshold.",
+  "fancy_journal.summary": "%s of %s completed",
+  "fancy_journal.search": "Search...",
+  "fancy_journal.filter.all": "All",
+  "fancy_journal.filter.active": "Unfinished",
+  "fancy_journal.filter.done": "Completed",
+  "fancy_journal.classic": "Classic view",
+  "fancy_journal.empty": "No advancements to show",
+  "fancy_journal.none": "Nothing matches this filter",
+  "fancy_journal.tooltip.done": "Completed",
+  "fancy_journal.tooltip.progress": "Progress: %s"
+}

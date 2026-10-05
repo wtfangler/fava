@@ -1,0 +1,29 @@
+{
+  "parent": "tempered:age/1",
+  "display": {
+    "icon": {
+      "id": "minecraft:crafting_table"
+    },
+    "title": [
+      "",
+      {
+        "translate": "tempered.quest.1b.title"
+      }
+    ],
+    "description": [
+      "",
+      {
+        "color": "gray",
+        "translate": "tempered.quest.1b.desc"
+      }
+    ],
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "parent": "tempered:age/2",
+  "display": {
+    "icon": {
+      "id": "minecraft:fishing_rod"
+    },
+    "title": {
+      "translate": "tempered.bonus.2.river_catch.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.2.river_catch.desc",
+      "color": "gray"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "cod": {
+      "conditions": {
+        "item": {
+          "items": "minecraft:cod"
+        },
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/2": true
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:fishing_rod_hooked"
+    },
+    "salmon": {
+      "conditions": {
+        "item": {
+          "items": "minecraft:salmon"
+        },
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/2": true
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:fishing_rod_hooked"
+    }
+  },
+  "requirements": [
+    [
+      "cod"
+    ],
+    [
+      "salmon"
+    ]
+  ],
+  "rewards": {
+    "experience": 15
+  }
+}

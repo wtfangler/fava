@@ -1,0 +1,141 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "minecraft:iron_sword",
+      "required": false
+    },
+    {
+      "id": "minecraft:iron_pickaxe",
+      "required": false
+    },
+    {
+      "id": "minecraft:iron_axe",
+      "required": false
+    },
+    {
+      "id": "minecraft:iron_shovel",
+      "required": false
+    },
+    {
+      "id": "minecraft:iron_hoe",
+      "required": false
+    },
+    {
+      "id": "minecraft:iron_helmet",
+      "required": false
+    },
+    {
+      "id": "minecraft:iron_chestplate",
+      "required": false
+    },
+    {
+      "id": "minecraft:iron_leggings",
+      "required": false
+    },
+    {
+      "id": "minecraft:iron_boots",
+      "required": false
+    },
+    {
+      "id": "minecraft:golden_sword",
+      "required": false
+    },
+    {
+      "id": "minecraft:golden_pickaxe",
+      "required": false
+    },
+    {
+      "id": "minecraft:golden_axe",
+      "required": false
+    },
+    {
+      "id": "minecraft:golden_shovel",
+      "required": false
+    },
+    {
+      "id": "minecraft:golden_hoe",
+      "required": false
+    },
+    {
+      "id": "minecraft:golden_helmet",
+      "required": false
+    },
+    {
+      "id": "minecraft:golden_chestplate",
+      "required": false
+    },
+    {
+      "id": "minecraft:golden_leggings",
+      "required": false
+    },
+    {
+      "id": "minecraft:golden_boots",
+      "required": false
+    },
+    {
+      "id": "minecraft:chainmail_helmet",
+      "required": false
+    },
+    {
+      "id": "minecraft:chainmail_chestplate",
+      "required": false
+    },
+    {
+      "id": "minecraft:chainmail_leggings",
+      "required": false
+    },
+    {
+      "id": "minecraft:chainmail_boots",
+      "required": false
+    },
+    {
+      "id": "minecraft:shield",
+      "required": false
+    },
+    {
+      "id": "minecraft:crossbow",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:iron_knife",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:golden_knife",
+      "required": false
+    },
+    {
+      "id": "exlinecopperequipment:copper_bucket",
+      "required": false
+    },
+    {
+      "id": "exlines_copper_equipment:copper_bucket",
+      "required": false
+    },
+    {
+      "id": "exlinecopperequipment:copper_shears",
+      "required": false
+    },
+    {
+      "id": "exlines_copper_equipment:copper_shears",
+      "required": false
+    },
+    {
+      "id": "exlinecopperequipment:copper_bow",
+      "required": false
+    },
+    {
+      "id": "exlines_copper_equipment:copper_bow",
+      "required": false
+    },
+    {
+      "id": "minecraft:iron_spear",
+      "required": false
+    },
+    {
+      "id": "minecraft:golden_spear",
+      "required": false
+    }
+  ]
+}

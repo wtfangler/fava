@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "id": "fj_harness",
+  "version": "0.0.1",
+  "name": "FJ Test Harness",
+  "environment": "client",
+  "mixins": [ { "config": "fj_harness.mixins.json", "environment": "client" } ]
+}

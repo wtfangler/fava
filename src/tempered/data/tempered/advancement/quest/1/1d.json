@@ -1,0 +1,29 @@
+{
+  "parent": "tempered:age/1",
+  "display": {
+    "icon": {
+      "id": "minecraft:oak_planks"
+    },
+    "title": [
+      "",
+      {
+        "translate": "tempered.quest.1d.title"
+      }
+    ],
+    "description": [
+      "",
+      {
+        "color": "gray",
+        "translate": "tempered.quest.1d.desc"
+      }
+    ],
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

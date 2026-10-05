@@ -1,0 +1,105 @@
+# Rebuild only the original era/quest UI; personal bonus progress survives set_age.
+advancement revoke @s only tempered:age/1
+advancement revoke @s only tempered:age/2
+advancement revoke @s only tempered:age/3
+advancement revoke @s only tempered:age/4
+advancement revoke @s only tempered:age/5
+advancement revoke @s only tempered:age/6
+advancement revoke @s only tempered:age/7
+advancement revoke @s only tempered:quest/1/1a
+advancement revoke @s only tempered:quest/1/1b
+advancement revoke @s only tempered:quest/1/1c
+advancement revoke @s only tempered:quest/1/1d
+advancement revoke @s only tempered:quest/1/1e
+advancement revoke @s only tempered:quest/1/1f
+advancement revoke @s only tempered:quest/1/1g
+advancement revoke @s only tempered:quest/1/1h
+advancement revoke @s only tempered:quest/1/1i
+advancement revoke @s only tempered:quest/2/2a
+advancement revoke @s only tempered:quest/2/2b
+advancement revoke @s only tempered:quest/2/2c
+advancement revoke @s only tempered:quest/2/2d
+advancement revoke @s only tempered:quest/2/2e
+advancement revoke @s only tempered:quest/2/2f
+advancement revoke @s only tempered:quest/2/2g
+advancement revoke @s only tempered:quest/2/2h
+advancement revoke @s only tempered:quest/2/2i
+advancement revoke @s only tempered:quest/2/2j
+advancement revoke @s only tempered:quest/2/2k
+advancement revoke @s only tempered:quest/2/2l
+advancement revoke @s only tempered:quest/2/2m
+advancement revoke @s only tempered:quest/2/2n
+advancement revoke @s only tempered:quest/2/2o
+advancement revoke @s only tempered:quest/3/3a
+advancement revoke @s only tempered:quest/3/3b
+advancement revoke @s only tempered:quest/3/3c
+advancement revoke @s only tempered:quest/3/3d
+advancement revoke @s only tempered:quest/3/3e
+advancement revoke @s only tempered:quest/3/3f
+advancement revoke @s only tempered:quest/3/3g
+advancement revoke @s only tempered:quest/3/3h
+advancement revoke @s only tempered:quest/3/3i
+advancement revoke @s only tempered:quest/3/3j
+advancement revoke @s only tempered:quest/3/3k
+advancement revoke @s only tempered:quest/3/3l
+advancement revoke @s only tempered:quest/3/3m
+advancement revoke @s only tempered:quest/4/4a
+advancement revoke @s only tempered:quest/4/4b
+advancement revoke @s only tempered:quest/4/4c
+advancement revoke @s only tempered:quest/4/4d
+advancement revoke @s only tempered:quest/4/4e
+advancement revoke @s only tempered:quest/4/4f
+advancement revoke @s only tempered:quest/4/4g
+advancement revoke @s only tempered:quest/4/4h
+advancement revoke @s only tempered:quest/4/4i
+advancement revoke @s only tempered:quest/4/4j
+advancement revoke @s only tempered:quest/4/4k
+advancement revoke @s only tempered:quest/4/4l
+advancement revoke @s only tempered:quest/4/4m
+advancement revoke @s only tempered:quest/5/5a
+advancement revoke @s only tempered:quest/5/5b
+advancement revoke @s only tempered:quest/5/5c
+advancement revoke @s only tempered:quest/5/5d
+advancement revoke @s only tempered:quest/5/5e
+advancement revoke @s only tempered:quest/5/5f
+advancement revoke @s only tempered:quest/5/5g
+advancement revoke @s only tempered:quest/5/5h
+advancement revoke @s only tempered:quest/5/5i
+advancement revoke @s only tempered:quest/5/5j
+advancement revoke @s only tempered:quest/5/5k
+advancement revoke @s only tempered:quest/5/5l
+advancement revoke @s only tempered:quest/5/5m
+advancement revoke @s only tempered:quest/5/5n
+advancement revoke @s only tempered:quest/6/6a
+advancement revoke @s only tempered:quest/6/6b
+advancement revoke @s only tempered:quest/6/6c
+advancement revoke @s only tempered:quest/6/6d
+advancement revoke @s only tempered:quest/6/6e
+advancement revoke @s only tempered:quest/6/6f
+advancement revoke @s only tempered:quest/6/6g
+advancement revoke @s only tempered:quest/6/6h
+advancement revoke @s only tempered:quest/6/6i
+advancement revoke @s only tempered:quest/6/6j
+advancement revoke @s only tempered:quest/6/6k
+advancement revoke @s only tempered:quest/6/6l
+advancement revoke @s only tempered:quest/6/6m
+advancement revoke @s only tempered:quest/7/7a
+advancement revoke @s only tempered:quest/7/7b
+advancement revoke @s only tempered:quest/7/7c
+advancement revoke @s only tempered:quest/7/7d
+advancement revoke @s only tempered:quest/7/7e
+advancement revoke @s only tempered:quest/7/7f
+advancement revoke @s only tempered:quest/7/7g
+advancement revoke @s only tempered:quest/7/7h
+advancement revoke @s only tempered:quest/7/7i
+advancement revoke @s only tempered:quest/7/7j
+advancement revoke @s only tempered:quest/7/7k
+advancement revoke @s only tempered:quest/7/7l
+execute unless score @s tempered.bonusgen matches 0.. run scoreboard players set @s tempered.bonusgen 0
+execute unless score @s tempered.bonusgen = #bonus_generation tempered.data run function tempered:core/reset_bonus
+scoreboard players operation @s tempered.gen = #generation tempered.data
+execute if score @s tempered.lock matches 1.. run function tempered:core/release_now
+scoreboard players set @s tempered.lock 0
+scoreboard players set @s tempered.lockn 0
+function tempered:recipe/resync
+function tempered:core/sync_ui

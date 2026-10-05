@@ -1,0 +1,51 @@
+{
+  "parent": "tempered:bonus/epilog/root",
+  "display": {
+    "icon": {
+      "id": "minecraft:heavy_core"
+    },
+    "title": {
+      "translate": "tempered.bonus.epilog.heavy_core.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.epilog.heavy_core.desc",
+      "color": "gray"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "has_heavy_core": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:heavy_core"
+          }
+        ],
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:bonus/epilog/root": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_heavy_core"
+    ]
+  ],
+  "rewards": {
+    "experience": 80
+  }
+}

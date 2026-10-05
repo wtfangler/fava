@@ -1,0 +1,73 @@
+{
+  "parent": "tempered:age/1",
+  "display": {
+    "icon": {
+      "id": "minecraft:sweet_berries"
+    },
+    "title": {
+      "translate": "tempered.bonus.1.forest_dessert.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.1.forest_dessert.desc",
+      "color": "gray"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "ate_apple": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": "minecraft:apple"
+        },
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/1": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "ate_sweet_berries": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": "minecraft:sweet_berries"
+        },
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/1": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "ate_apple"
+    ],
+    [
+      "ate_sweet_berries"
+    ]
+  ],
+  "rewards": {
+    "experience": 10
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "parent": "tempered:age/7",
+  "display": {
+    "icon": {
+      "id": "minecraft:beacon"
+    },
+    "title": {
+      "translate": "tempered.bonus.7.full_beacon.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.7.full_beacon.desc",
+      "color": "gray"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "full_beacon": {
+      "trigger": "minecraft:construct_beacon",
+      "conditions": {
+        "level": 4,
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/7": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "full_beacon"
+    ]
+  ],
+  "rewards": {
+    "experience": 30
+  }
+}

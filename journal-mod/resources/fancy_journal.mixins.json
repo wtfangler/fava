@@ -1,0 +1,16 @@
+{
+  "required": false,
+  "package": "dev.fancyvanilla.journal.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "MinecraftMixin",
+    "LoadingOverlayMixin",
+    "GenericMessageScreenMixin",
+    "AdvancementsScreenAccessor",
+    "ClientAdvancementsAccessor",
+    "ClientAdvancementsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

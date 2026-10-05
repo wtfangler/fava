@@ -1,0 +1,41 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:oak_log"
+    },
+    "title": [
+      "",
+      {
+        "color": "gold",
+        "bold": true,
+        "translate": "tempered.ui.menu_era",
+        "with": [
+          "1",
+          {
+            "translate": "tempered.era.1"
+          }
+        ]
+      }
+    ],
+    "description": [
+      "",
+      {
+        "color": "gray",
+        "translate": "tempered.ui.menu_progress",
+        "with": [
+          "6",
+          "9"
+        ]
+      }
+    ],
+    "background": "minecraft:gui/advancements/backgrounds/husbandry",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

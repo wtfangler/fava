@@ -1,0 +1,13 @@
+{
+  "pack": {
+    "description": "Fancy Vanilla: logo, menu i napisy",
+    "min_format": [
+      88,
+      0
+    ],
+    "max_format": [
+      97,
+      1
+    ]
+  }
+}

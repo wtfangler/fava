@@ -1,0 +1,46 @@
+{
+  "parent": "tempered:age/7",
+  "display": {
+    "icon": {
+      "id": "minecraft:trident"
+    },
+    "title": {
+      "translate": "tempered.bonus.7.storm_caller.title"
+    },
+    "description": {
+      "translate": "tempered.bonus.7.storm_caller.desc",
+      "color": "gray"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "channeled": {
+      "trigger": "minecraft:channeled_lightning",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/player": {
+                "advancements": {
+                  "tempered:age/7": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "channeled"
+    ]
+  ],
+  "rewards": {
+    "experience": 30
+  }
+}
