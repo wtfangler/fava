@@ -1,6 +1,12 @@
 # Changelog
 
-## 2.3.0 alpha — Minecraft 26.2 / 26.3 — 05.10.2026
+## 2.4.0 alpha — Minecraft 26.2 / 26.3 / 1.21.4 / 1.21.1 — 05.10.2026
+
+- Śledzenie zadań (Fancy Journal 1.2.0): pinezka przy każdym zadaniu w dzienniku; śledzone zadanie i jego postęp pokazują się w małym panelu w lewym górnym rogu ekranu, a po ukończeniu panel znika sam. Wybór zapisuje się w `config/fancy_journal.json`. Tylko 26.2 i 26.3.
+- Nowa ikona moda TEMPERED (TEMPERED 2.20.0).
+- Opisy modów w Mod Menu zależą od języka gry (po angielsku i po polsku), tak jak zadania, komendy i dziennik. Język wybiera się w grze: Opcje > Język; moda nie mają osobnego przełącznika.
+
+## 2.3.0 alpha
 
 - Nowe wydania dla Minecrafta **1.21.4** i **1.21.1** (na bazie Streamline Master 1.0.8 / 1.0.7): oprawa, rdzeń wydajności i TEMPERED w wersji dostosowanej do danych 1.21.x. Bez Fancy Journal i własnego loadera (te mody są pisane pod API 26.x); pominięto miedziany sprzęt i włócznie (nie istnieją w 1.21.x) oraz quest z Creakingiem w 1.21.1.
 - Własny loader Fancy Vanilla (Fancy Journal 1.1.0): ciemny ekran z logo i paskiem postępu zamiast logo Mojang przy starcie gry i przeładowaniu zasobów oraz przy komunikatach typu „Zapisywanie świata”. Vanilla nadal steruje ładowaniem i wygaszaniem; nakładka tylko rysuje na wierzchu.
@@ -12,17 +18,17 @@
 - Poprawiono zamykanie klienta z aktywnymi animowanymi teksturami: Fancy Journal kończy pulę roboczą Animatica przy wyjściu z gry.
 - Kolejność paczek zasobów zachowuje Clearer Slot Highlight nad DARK, a lista wyjątków zgodności wynika z rzeczywistych metadanych pobranych ZIP-ów. Wariant 26.3 korzysta z przypiętej, zweryfikowanej czcionki 4.0.
 
-- Fancy Journal 1.1.0: dopasowanie do okna, przewijanie zakładek/zadań, poprawna widoczność ukrytych osiągnięć, stabilny wybór zakładki i odświeżanie po zmianach postępu. Zwykły singleplayer zatrzymuje się jak przy ekranie vanilli.
-- TEMPERED 2.19.0: wyłączenie ograniczeń przez gate_off przetrwa restart; gate_on ponownie je włącza. Reset obejmuje też nieobecnych graczy, set_age sprawdza zakres 1–7, a natywny sprzęt miedziany i włócznie mają przypisane poziomy. Ery pozostają globalne, z zachowanymi 89 zadaniami i stałymi progami. Dodano po trzy osobiste questy opcjonalne do każdej ery, z niewielkimi nagrodami XP; nie zwiększają wymaganego postępu ery.
+- Fancy Journal 1.2.0: dopasowanie do okna, przewijanie zakładek/zadań, poprawna widoczność ukrytych osiągnięć, stabilny wybór zakładki i odświeżanie po zmianach postępu. Zwykły singleplayer zatrzymuje się jak przy ekranie vanilli.
+- TEMPERED 2.20.0: wyłączenie ograniczeń przez gate_off przetrwa restart; gate_on ponownie je włącza. Reset obejmuje też nieobecnych graczy, set_age sprawdza zakres 1–7, a natywny sprzęt miedziany i włócznie mają przypisane poziomy. Ery pozostają globalne, z zachowanymi 89 zadaniami i stałymi progami. Dodano po trzy osobiste questy opcjonalne do każdej ery, z niewielkimi nagrodami XP; nie zwiększają wymaganego postępu ery.
 - Dziennik otrzymał konfigurowalny skrót J oraz przycisk w menu pauzy. Zadania opcjonalne są oddzielone od licznika zadań potrzebnych do przejścia ery.
 - ModernFix: przywrócono wyłączone czyszczenie ClassInfo i leniwe tworzenie rendererów. Poprzednie logi zawierały wyjątek klientowej klasy na serwerze oraz tworzenie renderera na CullThread klienta.
 - 26.2: Particle Core korzysta z BOUNDING_BOX; jego optymalizacje i efekty wizualne zostają. Zoomify jest wybranym zoomem, ustawienie Chloride wyłączone i jego klawisz zwolniony.
 - Paczki zasobów: poprawiona kolejność i usunięte powtórzenia. Clearer Slot Highlight znajduje się powyżej DARK; konfiguracje uwzględniają rzeczywisty zestaw modów danego wariantu.
 - Zachowano identyfikację Fancy Vanilla: własne grafiki, menu, roślinność, animacje, efekty, dźwięk i opcjonalne shadery.
 - Liczby składu obejmują całe locki i dwa dołączone mody: 26.2 — 102 pliki modów, 27 paczek zasobów, 2 shadery; 26.3 — 97, 27, 2.
-- Instrukcje serwera opisują nowy katalog oraz ograniczony zakres `--no-download`. Lokalna strona odsyła do projektu Modrinth; nie zakłada istnienia opublikowanego adresu `/version/2.3.0`.
+- Instrukcje serwera opisują nowy katalog oraz ograniczony zakres `--no-download`. Lokalna strona odsyła do projektu Modrinth; nie zakłada istnienia opublikowanego adresu `/version/2.4.0`.
 
-**Weryfikacja:** Potwierdzone testy uruchomieniowe 2.3.0: klient 26.2, klient 26.3, serwer 26.2, serwer 26.3. Zakres i logi: docs/CLAUDE_REVIEW_2.1.0.md oraz docs/CODEX_REVIEW.md. Test uruchomienia nie stanowi benchmarku FPS ani testu pojemności serwera. Wyniki z pięciu próbek wcześniejszej wersji usunięto z deklaracji wydajności.
+**Weryfikacja:** Potwierdzone testy uruchomieniowe 2.4.0: klient 26.2, klient 26.3, serwer 26.2, serwer 26.3. Zakres i logi: docs/CLAUDE_REVIEW_2.1.0.md oraz docs/CODEX_REVIEW.md. Test uruchomienia nie stanowi benchmarku FPS ani testu pojemności serwera. Wyniki z pięciu próbek wcześniejszej wersji usunięto z deklaracji wydajności.
 
 ### Różnice wariantu 26.3
 

@@ -10,6 +10,8 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.Screens;
 import net.fabricmc.loader.api.FabricLoader;
@@ -39,6 +41,8 @@ public final class FancyJournalClient implements ClientModInitializer {
             }
         });
         ScreenEvents.AFTER_INIT.register(FancyJournalClient::addPauseEntry);
+        HudElementRegistry.attachElementAfter(VanillaHudElements.SUBTITLES,
+                net.minecraft.resources.Identifier.fromNamespaceAndPath("fancy_journal", "tracker"), new TrackerHud());
         if (!FabricLoader.getInstance().isModLoaded("animatica")) return;
         try {
             Class<?> texture = Class.forName(ANIMATED_TEXTURE, false, getClass().getClassLoader());

@@ -12,11 +12,11 @@ STREAMLINE = ROOT / "inputs" / "Streamline Master 1.5.1.mrpack"
 # Older Minecraft versions: own bases, no Fancy Journal (client mod is written for the 26.x API)
 LEGACY = {"1.21.1": ("Streamline Master 1.0.7 for 1.21.1.mrpack", 34, (34, 0)), "1.21.4": ("Streamline Master 1.0.8 for 1.21.4.mrpack", 46, (46, 0))}
 MC_VERSIONS = ("26.2", "26.3", "1.21.1", "1.21.4")
-VERSION = "2.3.0"
+VERSION = "2.4.0"
 NAME = "Fancy Vanilla"
 PACK = "FancyVanilla.zip"
-TEMPERED_JAR = "TEMPERED2.19.0mc26.2.jar"
-JOURNAL_VERSION = "1.1.0"
+TEMPERED_JAR = "TEMPERED2.20.0mc26.2.jar"
+JOURNAL_VERSION = "1.2.0"
 DATE = (2026, 1, 1, 0, 0, 0)
 
 

@@ -3,7 +3,7 @@
   "id": "fancy_journal",
   "version": "${version}",
   "name": "Fancy Journal",
-  "description": "Nowoczesny, stonowany dziennik w miejsce wbudowanego ekranu osiągnięć. Część Fancy Vanilla. Przytrzymaj Shift przy otwieraniu, aby zobaczyć klasyczny widok.",
+  "description": "A modern advancements journal on the J key, with quest tracking. Part of Fancy Vanilla.",
   "authors": ["Oliwier Koda"],
   "license": "MIT",
   "icon": "assets/fancy_journal/icon.png",

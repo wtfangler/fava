@@ -476,5 +476,7 @@
   "tempered.msg.reset.done": "  [TEMPERED] progresja zresetowana.",
   "tempered.msg.set_age.usage": "[TEMPERED] Podaj erę od 1 do 7.",
   "tempered.msg.set_age.done": "  [TEMPERED] era ustawiona na %s",
-  "tempered.msg.status.end": "  KONIEC :: wszystko odblokowane\n"
+  "tempered.msg.status.end": "  KONIEC :: wszystko odblokowane\n",
+  "modmenu.summaryTranslation.tempered": "Siedem er progresji z zadaniami, blokadami receptur i karami za sprzęt.",
+  "modmenu.descriptionTranslation.tempered": "Autorska progresja w siedmiu erach dla zwykłego Minecrafta: 89 zadań głównych, 63 osobiste zadania opcjonalne i Epilog z kolejnymi 55 celami po Smoku Endu. Receptury i sprzęt z późniejszych er są zablokowane: trzymanie lub noszenie ich osłabia, dopóki era się nie odblokuje, ale znalezione przedmioty nigdy nie są zabierane. Działa jako datapack w formie moda, więc jest aktywna w każdym świecie; administrator może wyłączyć blokady. Komendy, zadania i komunikaty zależą od języka gry (Opcje > Język)."
 }

@@ -40,7 +40,7 @@ public class JournalScreen extends Screen {
     private static final int DONE = 0xFF7BD88F, GOLD = 0xFFF2C14E, PURPLE = 0xFFC78BFF, TRACK = 0xFF2B313C;
 
     private static final int MARGIN = 12, MAX_W = 980, HEADER_H = 34, SIDEBAR_W = 150, TAB_H = 32, TOOLBAR_H = 24;
-    private static final int CARD_MIN_W = 190, CARD_H = 48, GAP = 6, PAD = 8;
+    private static final int CARD_MIN_W = 190, CARD_H = 48, GAP = 6, PAD = 8, PIN = 14;
 
     // remembered between openings
     private static int rememberedTab;
@@ -58,6 +58,10 @@ public class JournalScreen extends Screen {
         boolean optional() { return holder.id().toString().startsWith("tempered:bonus/"); }
     }
 
+    private record PinHit(int x, int y, int size, Entry entry) {
+        boolean contains(double mx, double my) { return mx >= x && mx < x + size && my >= y && my < y + size; }
+    }
+
     private record Tab(AdvancementNode root, DisplayInfo display, ItemStack icon, List<Entry> entries, int done, int required, int requiredDone) {
         int optional() { return entries.size() - required(); }
         int optionalDone() { return done - requiredDone(); }
@@ -73,6 +77,8 @@ public class JournalScreen extends Screen {
     private final Map<AdvancementHolder, ItemStack> icons = new HashMap<>();
     private final List<Control> tabControls = new ArrayList<>();
     private final List<Control> filterControls = new ArrayList<>();
+    /** Pin buttons drawn in the last frame (screen coordinates), used for clicks. */
+    private final List<PinHit> pinHits = new ArrayList<>();
     private Control classicControl;
     private int selected;
     private String selectedId = rememberedRoot;
@@ -421,6 +427,14 @@ public class JournalScreen extends Screen {
 
     @Override
     public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
+        if (event.button() == 0 && event.y() >= vy && event.y() < vy + vh) {
+            for (PinHit pin : pinHits) {
+                if (pin.contains(event.x(), event.y())) {
+                    Tracker.toggle(pin.entry().holder().id().toString());
+                    return true;
+                }
+            }
+        }
         return super.mouseClicked(event, doubleClick);
     }
 
@@ -607,6 +621,7 @@ public class JournalScreen extends Screen {
 
     /** Draws the grid and returns tooltip lines for the hovered card, or null. */
     private List<Component> drawCards(GuiGraphicsExtractor g, int mouseX, int mouseY) {
+        pinHits.clear();
         if (tabs.isEmpty()) {
             g.centeredText(font, Component.translatable("fancy_journal.empty"), cx + cw / 2, cy + ph / 2 - 20, MUTED);
             return null;
@@ -628,8 +643,16 @@ public class JournalScreen extends Screen {
                 continue;
             }
             boolean hover = mouseX >= x && mouseX < x + cardW && mouseY >= Math.max(y, vy) && mouseY < Math.min(y + CARD_H, vy + vh);
-            drawCard(g, e, x, y, cardW, hover);
-            if (hover) {
+            boolean pinHover = false;
+            if (!e.done()) {
+                PinHit pin = new PinHit(x + cardW - PIN - 7, y + CARD_H - PIN - 7, PIN, e);
+                pinHits.add(pin);
+                pinHover = pin.contains(mouseX, mouseY) && mouseY >= vy && mouseY < vy + vh;
+            }
+            drawCard(g, e, x, y, cardW, hover, pinHover);
+            if (pinHover) {
+                tooltip = List.of(Component.translatable(Tracker.isTracked(e.holder().id().toString()) ? "fancy_journal.untrack" : "fancy_journal.track"));
+            } else if (hover) {
                 tooltip = tooltipFor(e);
             }
         }
@@ -645,9 +668,16 @@ public class JournalScreen extends Screen {
         return tooltip;
     }
 
-    private void drawCard(GuiGraphicsExtractor g, Entry e, int x, int y, int w, boolean hover) {
+    private void drawCard(GuiGraphicsExtractor g, Entry e, int x, int y, int w, boolean hover, boolean pinHover) {
         boolean done = e.done();
+        boolean tracked = Tracker.isTracked(e.holder().id().toString());
         rounded(g, x, y, w, CARD_H, hover ? CARD_HOVER : CARD);
+        if (tracked) {  // thin accent frame around the tracked card
+            g.fill(x + 1, y, x + w - 1, y + 1, ACCENT);
+            g.fill(x + 1, y + CARD_H - 1, x + w - 1, y + CARD_H, ACCENT);
+            g.fill(x, y + 1, x + 1, y + CARD_H - 1, ACCENT);
+            g.fill(x + w - 1, y + 1, x + w, y + CARD_H - 1, ACCENT);
+        }
         int stripe = done ? DONE : frameColor(e.display());
         g.fill(x, y + 2, x + 2, y + CARD_H - 2, done ? DONE : (stripe & 0x00FFFFFF) | 0x66000000);
         g.item(e.icon(), x + 10, y + 8);
@@ -689,6 +719,23 @@ public class JournalScreen extends Screen {
         if (!done && e.progress() != null && e.progress().hasProgress()) {
             bar(g, textX, y + CARD_H - 6, textW, e.progress().getPercent(), ACCENT);
         }
+        if (!done) {
+            int px = x + w - PIN - 7, py = y + CARD_H - PIN - 7;
+            if (pinHover || tracked) {
+                rounded(g, px, py, PIN, PIN, pinHover ? 0xFF2E3644 : 0xFF222A38);
+            }
+            drawPin(g, px + 2, py + 1, tracked ? ACCENT : pinHover ? TEXT : (hover ? MUTED : 0xFF5D6676));
+        }
+    }
+
+    /** A small push-pin made of rectangles (no texture needed), 10 x 12 pixels. */
+    private static void drawPin(GuiGraphicsExtractor g, int x, int y, int color) {
+        g.fill(x + 2, y, x + 8, y + 1, color);
+        g.fill(x + 1, y + 1, x + 9, y + 5, color);
+        g.fill(x + 2, y + 5, x + 8, y + 6, color);
+        g.fill(x + 3, y + 6, x + 7, y + 7, color);
+        g.fill(x + 4, y + 7, x + 6, y + 8, color);
+        g.fill(x + 4, y + 8, x + 6, y + 12, color);
     }
 
     private List<Component> tooltipFor(Entry e) {

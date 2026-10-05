@@ -20,7 +20,7 @@ import tempered_legacy  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "src" / "tempered"
-VERSION="2.19.0"
+VERSION="2.20.0"
 ERA_BONUSES = 9  # 3 by Codex + 6 more per era (tools/gen_more_quests.py)
 EPILOG_ROOT = "tempered:bonus/epilog/root"
 DATE = (2026, 1, 1, 0, 0, 0)

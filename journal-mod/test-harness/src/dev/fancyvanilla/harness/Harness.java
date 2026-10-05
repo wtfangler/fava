@@ -117,6 +117,10 @@ public final class Harness {
         throw new AssertionError("Missing tab "+id);
     }
     public static void tick(Minecraft mc) {
+        if ("track".equals(System.getProperty("fj.scenario"))) {
+            trackTick(mc);
+            return;
+        }
         if ("loader".equals(System.getProperty("fj.scenario"))) {
             loaderTick(mc);
             return;
@@ -126,6 +130,62 @@ public final class Harness {
             return;
         }
         journalTick(mc);
+    }
+
+    private static String trackedId;
+
+    private static Object trackerCall(String method, Object... args) throws Exception {
+        Class<?> type = Class.forName("dev.fancyvanilla.journal.Tracker");
+        for (var m : type.getMethods()) {
+            if (m.getName().equals(method) && m.getParameterCount() == args.length) return m.invoke(null, args);
+        }
+        throw new AssertionError("Tracker." + method + " missing");
+    }
+
+    /** Track scenario: click a pin in the real journal screen, check config + HUD, untrack. */
+    private static void trackTick(Minecraft mc) {
+        if (++total > 6000) { log("ERROR timeout"); mc.stop(); return; }
+        try {
+            if (mc.gui.overlay() != null || mc.level == null || mc.player == null) return;
+            waited++;
+            switch (stage) {
+                case 0 -> { if (waited > 60) { check(trackerCall("tracked") == null, "nothing tracked at start"); open(mc); next(); } }
+                case 1 -> {
+                    if (waited > 40) {
+                        Object screen = mc.gui.screen();
+                        @SuppressWarnings("unchecked")
+                        java.util.List<Object> pins = (java.util.List<Object>) field(screen, "pinHits");
+                        check(!pins.isEmpty(), "journal draws pin buttons (" + pins.size() + ")");
+                        Object pin = pins.get(0);
+                        int x = (int) field(pin, "x"), y = (int) field(pin, "y"), size = (int) field(pin, "size");
+                        Object entry = field(pin, "entry");
+                        Object holder = field(entry, "holder");
+                        trackedId = String.valueOf(holder.getClass().getMethod("id").invoke(holder));
+                        var click = new net.minecraft.client.input.MouseButtonEvent(x + size / 2.0, y + size / 2.0, new net.minecraft.client.input.MouseButtonInfo(0, 0));
+                        check(screen.getClass().getMethod("mouseClicked", net.minecraft.client.input.MouseButtonEvent.class, boolean.class).invoke(screen, click, false).equals(true), "click on the pin is handled");
+                        check(trackedId.equals(trackerCall("tracked")), "quest is tracked after the click: " + trackedId);
+                        var file = net.fabricmc.loader.api.FabricLoader.getInstance().getConfigDir().resolve("fancy_journal.json");
+                        check(java.nio.file.Files.readString(file).contains(trackedId), "tracked quest saved to config/fancy_journal.json");
+                        next();
+                    }
+                }
+                case 2 -> { if (waited > 15) { shot(mc, "fj_t1_pin"); next(); } }
+                case 3 -> { if (waited > 15) { mc.setScreenAndShow(null); next(); } }
+                case 4 -> { if (waited > 30) { shot(mc, "fj_t2_hud"); next(); } }
+                case 5 -> {
+                    if (waited > 20) {
+                        trackerCall("toggle", trackedId);
+                        check(trackerCall("tracked") == null, "second toggle stops tracking");
+                        trackerCall("toggle", trackedId);
+                        check(trackedId.equals(trackerCall("tracked")), "tracked again");
+                        log("finished (track)");
+                        mc.stop();
+                        stage = 99;
+                    }
+                }
+                default -> { }
+            }
+        } catch (Throwable t) { log("ERROR " + t); t.printStackTrace(System.out); mc.stop(); stage = 99; }
     }
 
     private static int loaderShots;

@@ -366,7 +366,13 @@ Kontrola zależności jest domyślnie offline; `--download` jawnie pozwala pobra
 """
     changelog = f"""# Changelog
 
-## {version} alpha — Minecraft 26.2 / 26.3 — {DATE}
+## {version} alpha — Minecraft 26.2 / 26.3 / 1.21.4 / 1.21.1 — {DATE}
+
+- Śledzenie zadań (Fancy Journal 1.2.0): pinezka przy każdym zadaniu w dzienniku; śledzone zadanie i jego postęp pokazują się w małym panelu w lewym górnym rogu ekranu, a po ukończeniu panel znika sam. Wybór zapisuje się w `config/fancy_journal.json`. Tylko 26.2 i 26.3.
+- Nowa ikona moda TEMPERED (TEMPERED 2.20.0).
+- Opisy modów w Mod Menu zależą od języka gry (po angielsku i po polsku), tak jak zadania, komendy i dziennik. Język wybiera się w grze: Opcje > Język; moda nie mają osobnego przełącznika.
+
+## 2.3.0 alpha
 
 - Nowe wydania dla Minecrafta **1.21.4** i **1.21.1** (na bazie Streamline Master 1.0.8 / 1.0.7): oprawa, rdzeń wydajności i TEMPERED w wersji dostosowanej do danych 1.21.x. Bez Fancy Journal i własnego loadera (te mody są pisane pod API 26.x); pominięto miedziany sprzęt i włócznie (nie istnieją w 1.21.x) oraz quest z Creakingiem w 1.21.1.
 - Własny loader Fancy Vanilla (Fancy Journal 1.1.0): ciemny ekran z logo i paskiem postępu zamiast logo Mojang przy starcie gry i przeładowaniu zasobów oraz przy komunikatach typu „Zapisywanie świata”. Vanilla nadal steruje ładowaniem i wygaszaniem; nakładka tylko rysuje na wierzchu.

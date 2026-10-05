@@ -15,5 +15,11 @@
   "fancy_journal.empty": "No advancements to show",
   "fancy_journal.none": "Nothing matches this filter",
   "fancy_journal.tooltip.done": "Completed",
-  "fancy_journal.tooltip.progress": "Progress: %s"
+  "fancy_journal.tooltip.progress": "Progress: %s",
+  "fancy_journal.track": "Track this quest",
+  "fancy_journal.untrack": "Stop tracking",
+  "fancy_journal.hud.title": "Tracked quest",
+  "fancy_journal.hud.done": "Completed",
+  "modmenu.summaryTranslation.fancy_journal": "A modern advancements journal on the J key.",
+  "modmenu.descriptionTranslation.fancy_journal": "A modern, calm journal in place of the built-in advancements screen. Tabs per age with progress bars, search and filters, an Epilogue tab after the Ender Dragon, and a pin on every quest to track it: the tracked quest and its progress show in a small panel in the corner of the screen. Part of Fancy Vanilla. Hold Shift while opening it for the classic view. Language follows the game language (Options > Language)."
 }

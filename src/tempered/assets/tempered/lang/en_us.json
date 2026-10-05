@@ -476,5 +476,7 @@
   "tempered.msg.reset.done": "  [TEMPERED] progress reset.",
   "tempered.msg.set_age.usage": "[TEMPERED] Give an age from 1 to 7.",
   "tempered.msg.set_age.done": "  [TEMPERED] age set to %s",
-  "tempered.msg.status.end": "  END :: everything unlocked\n"
+  "tempered.msg.status.end": "  END :: everything unlocked\n",
+  "modmenu.summaryTranslation.tempered": "Seven ages of progression with quests, recipe locks and gear penalties.",
+  "modmenu.descriptionTranslation.tempered": "Original seven-age progression for vanilla Minecraft: 89 main quests, 63 optional personal quests and an Epilogue with 55 more goals after the Ender Dragon. Recipes and gear from later ages are locked: holding or wearing them weakens you until their age unlocks, but items you find are never taken away. Works as a data pack inside a mod, so it is active in every world; admins can switch the locks off. Commands, quests and messages follow your game language (Options > Language)."
 }

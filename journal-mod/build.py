@@ -14,7 +14,7 @@ import tempfile
 import zipfile
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-VERSION = "1.1.0"
+VERSION = "1.2.0"
 mc = sys.argv[1]
 if mc not in {"26.2", "26.3"}:
     sys.exit("Supported Minecraft versions: 26.2, 26.3")
@@ -35,7 +35,7 @@ if fabric_api:
     with zipfile.ZipFile(fabric_api) as api:
         for name in sorted(api.namelist()):
             basename = name.rsplit("/", 1)[-1]
-            if name.startswith("META-INF/jars/") and basename.startswith(("fabric-api-base-", "fabric-lifecycle-events-v1-", "fabric-key-mapping-api-v1-", "fabric-screen-api-v1-")) and basename.endswith(".jar"):
+            if name.startswith("META-INF/jars/") and basename.startswith(("fabric-api-base-", "fabric-lifecycle-events-v1-", "fabric-key-mapping-api-v1-", "fabric-screen-api-v1-", "fabric-rendering-v1-")) and basename.endswith(".jar"):
                 target = os.path.join(api_dir, basename)
                 with open(target, "wb") as dependency:
                     dependency.write(api.read(name))

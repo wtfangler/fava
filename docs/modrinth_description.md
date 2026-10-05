@@ -1,6 +1,6 @@
 # Fancy Vanilla
 
-**Minecraft 26.2 i 26.3 · Fabric · singleplayer i mały serwer ze znajomymi · 2.3.0 alpha**
+**Minecraft 26.2 i 26.3 · Fabric · singleplayer i mały serwer ze znajomymi · 2.4.0 alpha**
 
 Znany Minecraft z bogatszą oprawą: animacje mobów, roślinność, cząsteczki, dźwięk, tekstury i opcjonalne shadery. Rdzeń **Streamline Master** odpowiada za optymalizację, a autorski **TEMPERED** porządkuje przygodę w 7 er: 89 oryginalnych zadań oraz 63 nowych zadań opcjonalnych w erach i gałąź **Epilog** z 55 celami po zabiciu smoka. Paczka nie dodaje bloków, mobów ani biomów.
 
@@ -22,7 +22,7 @@ Ery są **wspólne dla świata**: w singleplayer odblokowujesz je sam, a na serw
 
 **Shadery:** Complementary Shaders - Reimagined, Miniature Shader. Są domyślnie wyłączone. W ustawieniach Sterowania sprawdzisz skróty Iris do wyboru i przełączania shaderów. **Zoomify** obsługuje przybliżenie pod C. Fancy Vanilla zachowuje własne logo, menu oraz paczkę zasobów.
 
-### Fancy Journal 1.1.0
+### Fancy Journal 1.2.0
 
 Naciśnij **J** lub wybierz **Dziennik** w menu pauzy. Własny skrót zmienisz w ustawieniach sterowania. Klawisz osiągnięć **L** również otwiera dziennik z zakładkami, postępem, wyszukiwaniem i filtrami: Wszystkie, Pozostałe, Ukończone. Układ dopasowuje się do rozmiaru okna; listy i zadania można przewijać, a wybór zakładki pozostaje stabilny. Ukryte nieukończone zadania nie są ujawniane. Lista aktualizuje się po zmianach osiągnięć, bez pełnego przebudowywania w każdej klatce. W singleplayer otwarty dziennik zatrzymuje grę jak klasyczny ekran osiągnięć; na serwerze gra trwa dalej. **Shift** przy otwieraniu lub „Klasyczny widok” pozwala wrócić do ekranu vanilli. Zakładki przełączysz także przez **Ctrl+PageUp/PageDown**, a zadania przewiniesz przez **PageUp/PageDown/Home/End**.
 
@@ -47,7 +47,7 @@ Liczby dotyczą plików w paczce. Fabric może raportować więcej modułów, po
 
 **26.3:** wariant nie zawiera: chloride, particle-core, wakes, particle-rain, betterf3, better-mount-hud. Następujące paczki zasobów korzystają z wydań oznaczonych dla 26.2: simple-grass-flowers, better-leaves, fancy-crops, blocky-armor-stands, even-better-enchants, als-creepers-revamped, als-enderman-revamped-x-fresh-animations, als-scorpions-crabs-x-fresh-animations, als-skeletons-revamped-x-fresh-animations, qraftys-capitalized-font. Ich zgodność deklarowana przez autorów jest węższa, dlatego wygląd wymaga sprawdzenia w grze.
 
-**Weryfikacja:** Potwierdzone testy uruchomieniowe 2.3.0: klient 26.2, klient 26.3, serwer 26.2, serwer 26.3. Zakres i logi: docs/CLAUDE_REVIEW_2.1.0.md oraz docs/CODEX_REVIEW.md. Testy uruchomienia nie zastępują dłuższej gry ze znajomymi ani porównania wydajności. Dobór shaderów i efekty nakładających się tekstur wymagają oceny na docelowym sprzęcie.
+**Weryfikacja:** Potwierdzone testy uruchomieniowe 2.4.0: klient 26.2, klient 26.3, serwer 26.2, serwer 26.3. Zakres i logi: docs/CLAUDE_REVIEW_2.1.0.md oraz docs/CODEX_REVIEW.md. Testy uruchomienia nie zastępują dłuższej gry ze znajomymi ani porównania wydajności. Dobór shaderów i efekty nakładających się tekstur wymagają oceny na docelowym sprzęcie.
 
 [Projekt Fancy Vanilla na Modrinth](https://modrinth.com/modpack/fava). Pliki i strona WWW powstają lokalnie; samo przygotowanie wydania nie oznacza publikacji.
 
@@ -55,13 +55,13 @@ Liczby dotyczą plików w paczce. Fabric może raportować więcej modułów, po
 
 # Fancy Vanilla — English
 
-**Minecraft 26.2 and 26.3 · Fabric · singleplayer and a small server with friends · 2.3.0 alpha**
+**Minecraft 26.2 and 26.3 · Fabric · singleplayer and a small server with friends · 2.4.0 alpha**
 
 Familiar Minecraft with richer animation, foliage, particles, audio, textures and optional shaders. **Streamline Master** provides the optimisation base. The author's **TEMPERED** progression adds 7 ages, preserving 89 original quests and adding 63 optional quests plus an **Epilogue** branch of 55 goals after the Ender Dragon, without adding blocks, mobs or biomes.
 
 Higher-age recipes can be locked. Higher-age equipment is restricted through effects and penalties; armour and elytra are not physically prevented from being equipped. Removing the TEMPERED jar removes its functions after reloading the world, but saved limited-crafting rules and recipe unlocks remain. Disable the gates before removing it. Ages are shared across the world: play alone in singleplayer or advance a shared age with friends. Fixed quest thresholds are **6/9, 9/15, 8/13, 8/13, 9/14, 8/13, 8/12**. Individual ages and custom thresholds are not provided. Administrators can disable gates through `/function tempered:admin/gate_off` and restore them through `/function tempered:admin/gate_on`; the setting survives reloads and restarts. Players can check status through `/trigger tempered.menu`.
 
-**Fancy Journal 1.1.0** opens with configurable **J**, the **Journal** button in the pause menu, or **L**, providing a responsive layout, scrolling tabs/tasks, search, filters and progress. Hidden unfinished tasks remain hidden; selected tabs stay stable and the list refreshes when progress changes. It pauses an ordinary singleplayer game like the vanilla advancement screen, while multiplayer keeps running. Hold **Shift** when opening or use *Classic view* for the vanilla screen. **Ctrl+PageUp/PageDown** switches tabs and **PageUp/PageDown/Home/End** scrolls tasks. Each age has 9 extra optional goals for exploration and building, and a hidden **Epilogue** tab unlocks after the Ender Dragon with 55 more; their personal progress and XP rewards do not change the shared age thresholds.
+**Fancy Journal 1.2.0** opens with configurable **J**, the **Journal** button in the pause menu, or **L**, providing a responsive layout, scrolling tabs/tasks, search, filters and progress. Hidden unfinished tasks remain hidden; selected tabs stay stable and the list refreshes when progress changes. It pauses an ordinary singleplayer game like the vanilla advancement screen, while multiplayer keeps running. Hold **Shift** when opening or use *Classic view* for the vanilla screen. **Ctrl+PageUp/PageDown** switches tabs and **PageUp/PageDown/Home/End** scrolls tasks. Each age has 9 extra optional goals for exploration and building, and a hidden **Epilogue** tab unlocks after the Ender Dragon with 55 more; their personal progress and XP rewards do not change the shared age thresholds.
 
 Import the matching `.mrpack` in Modrinth App or Prism Launcher, use **Java 25**, and start with 4–6 GB client RAM. Back up existing worlds before installing: existing equipment may exceed the initial age. Shaders are off by default; rendering settings should be chosen for your hardware.
 
@@ -69,6 +69,6 @@ The 26.2 variant contains **102 top-level mod files**, **27 resource packs** and
 
 The 26.3 variant omits: chloride, particle-core, wakes, particle-rain, betterf3, better-mount-hud. Resource packs using 26.2-labelled releases: simple-grass-flowers, better-leaves, fancy-crops, blocky-armor-stands, even-better-enchants, als-creepers-revamped, als-enderman-revamped-x-fresh-animations, als-scorpions-crabs-x-fresh-animations, als-skeletons-revamped-x-fresh-animations, qraftys-capitalized-font; inspect their appearance in game.
 
-**Validation:** Confirmed 2.3.0 runtime checks: client 26.2, client 26.3, server 26.2, server 26.3. Scope and logs: docs/CLAUDE_REVIEW_2.1.0.md and docs/CODEX_REVIEW.md. Launch checks do not establish a performance benchmark or multiplayer capacity. Visual combinations and shaders need testing on your hardware.
+**Validation:** Confirmed 2.4.0 runtime checks: client 26.2, client 26.3, server 26.2, server 26.3. Scope and logs: docs/CLAUDE_REVIEW_2.1.0.md and docs/CODEX_REVIEW.md. Launch checks do not establish a performance benchmark or multiplayer capacity. Visual combinations and shaders need testing on your hardware.
 
 [Fancy Vanilla on Modrinth](https://modrinth.com/modpack/fava). Preparing local archives does not publish them.

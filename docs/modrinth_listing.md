@@ -37,8 +37,10 @@ Upload in this order, set number 1 as featured. Files are copied to `brand/modri
 | 4 | `brand/modrinth-gallery/04-journal-epilog.png` | Fancy Journal: Epilogue | Journal on the J key with the post-dragon Epilogue tab |
 | 5 | `brand/modrinth-gallery/05-journal-fj_1_wide.png` | Fancy Journal: ages | Tabs per age with progress bars |
 | 6 | `brand/modrinth-gallery/06-journal-fj_5_pause_menu.png` | One progress screen | Pause menu with the single journal entry |
+| 7 | `brand/modrinth-gallery/07-track-fj_t1_pin.png` | Quest tracking | A pin on every quest; the tracked one gets a frame |
+| 8 | `brand/modrinth-gallery/08-track-fj_t2_hud.png` | Tracker panel | Tracked quest and its progress in a small corner panel |
 
-Shots 2 to 6 come from the automated test on the real game, not staged screenshots. Add a few of your own from normal play (menu, a build with shaders) when you have them; they sell the pack better than test shots.
+Shots 2 to 8 come from the automated test on the real game, not staged screenshots. Add a few of your own from normal play (menu, a build with shaders) when you have them; they sell the pack better than test shots.
 
 ## Description (Description)
 
@@ -98,13 +100,14 @@ TEMPERED is my own mod. The world moves through seven ages, and each one unlocks
 One modern progress screen on **J** (rebindable) that replaces the two vanilla ones.
 - Tabs per age with progress bars, search, and filters: all, remaining, completed.
 - Optional quests are kept apart from the required count, and the Epilogue tab unlocks after the dragon.
+- **Quest tracking:** a pin on every quest tracks it. The quest name and its progress show in a small panel in the top-left corner of the screen, even with the journal closed; the panel disappears a few seconds after you finish the quest.
 - Hold Shift while opening it for the classic vanilla view. If the journal ever fails, the game falls back to the classic screen on its own.
 
 ### Own loading screen (26.2 and 26.3)
 A dark screen with the Fancy Vanilla wordmark and a thin progress line replaces the Mojang logo at game start and resource reload, and is also shown while the world is saving on exit. The game still runs and fades loading as usual; the overlay only draws on top, and if it cannot load you simply get the vanilla screen.
 
 ### Languages
-Quests, achievements, the journal and admin commands come in **English** and **Polish** and follow the game language.
+Quests, achievements, the journal, admin commands and the mod descriptions in Mod Menu come in **English** and **Polish**. There is no separate switch: they follow the game language (Options > Language).
 
 ## Installation
 1. Install **Modrinth App** (or Prism Launcher). Java 25 is needed for 26.x, Java 21 for 1.21.x (the launcher can download it).
@@ -123,7 +126,10 @@ The pack is server-compatible. Startup, `/reload` and restart were tested on ded
 - Small groups who want a shared progression without learning a new game
 - Players who finished the game and want goals for the long run
 
-## Changelog highlights (2.3.0)
+## Changelog highlights (2.4.0)
+- Quest tracking with a pin and a small HUD panel (26.2 and 26.3).
+- New TEMPERED icon; mod descriptions in Mod Menu follow the game language.
+- Releases for 1.21.4 and 1.21.1.
 - Own loading screen (start, reload, saving).
 - Commands and messages available in English and Polish.
 - More optional quests, including 55 in the Epilogue.

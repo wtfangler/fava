@@ -15,5 +15,11 @@
   "fancy_journal.empty": "Brak osiągnięć do wyświetlenia",
   "fancy_journal.none": "Nic tu nie pasuje do filtra",
   "fancy_journal.tooltip.done": "Ukończone",
-  "fancy_journal.tooltip.progress": "Postęp: %s"
+  "fancy_journal.tooltip.progress": "Postęp: %s",
+  "fancy_journal.track": "Śledź to zadanie",
+  "fancy_journal.untrack": "Przestań śledzić",
+  "fancy_journal.hud.title": "Śledzone zadanie",
+  "fancy_journal.hud.done": "Ukończone",
+  "modmenu.summaryTranslation.fancy_journal": "Nowoczesny dziennik osiągnięć pod klawiszem J.",
+  "modmenu.descriptionTranslation.fancy_journal": "Nowoczesny, stonowany dziennik w miejsce wbudowanego ekranu osiągnięć. Zakładki z erami i paskami postępu, wyszukiwarka i filtry, zakładka Epilog po Smoku Endu oraz pinezka przy każdym zadaniu do jego śledzenia: śledzone zadanie i jego postęp pokazują się w małym panelu w rogu ekranu. Część Fancy Vanilla. Przytrzymaj Shift przy otwieraniu, aby zobaczyć klasyczny widok. Język zależy od języka gry (Opcje > Język)."
 }
