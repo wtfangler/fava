@@ -1,11 +1,11 @@
-# Fancy Vanilla 1.5.1.1 (26.2) / 1.6.2.1 (26.3)
+# Fancy Vanilla 0.1.0
 
 Minecraft 26.2 / 26.3, Fabric, Java 25. Oprawa Fancy Vanilla, optymalizacja Streamline Master i progresja TEMPERED. Docelowo singleplayer i mały serwer ze znajomymi.
 
 | Plik / katalog | Przeznaczenie |
 |---|---|
-| `releases/26.2/Fancy Vanilla 1.5.1.1 for 26.2.mrpack` | Klient Minecraft 26.2 |
-| `releases/26.3/Fancy Vanilla 1.6.2.1 for 26.3.mrpack` | Klient Minecraft 26.3 |
+| `releases/26.2/Fancy Vanilla 0.1.0 for 26.2.mrpack` | Klient Minecraft 26.2 |
+| `releases/26.3/Fancy Vanilla 0.1.0 for 26.3.mrpack` | Klient Minecraft 26.3 |
 | `docs/modrinth_description.md` | Opis PL/EN |
 | `docs/CHANGELOG.md` | Zmiany wydania |
 | `docs/CODEX_REVIEW.md` | Zakres weryfikacji i uwagi |
@@ -46,8 +46,8 @@ Dodatkowe questy (9 w każdej erze oraz 55 w Epilogu po zabiciu smoka) są osobi
 Gracze instalują ten sam wariant paczki. Buduj w **nowym katalogu**; nie nadpisuj istniejącej instalacji z innym zestawem modów.
 
 ```powershell
-python server/build_server.py "releases/26.2/Fancy Vanilla 1.5.1.1 for 26.2.mrpack" moj_serwer_26_2 --ram 4G
-python server/build_server.py "releases/26.3/Fancy Vanilla 1.6.2.1 for 26.3.mrpack" moj_serwer_26_3 --ram 4G
+python server/build_server.py "releases/26.2/Fancy Vanilla 0.1.0 for 26.2.mrpack" moj_serwer_26_2 --ram 4G
+python server/build_server.py "releases/26.3/Fancy Vanilla 0.1.0 for 26.3.mrpack" moj_serwer_26_3 --ram 4G
 ```
 
 W paczce serwerowej pobranej jako osobny ZIP skrypt jest w katalogu głównym: użyj `python build_server.py ...` i zachowaj katalog `template` obok niego. Przeczytaj EULA, zaakceptuj ją samodzielnie w `eula.txt`, a następnie uruchom `start.bat` lub `start.sh` na Java 25. Builder sprawdza hashe modów, wybiera stronę serwerową i zachowuje istniejące ustawienia/start scripts; nie zarządza światem.
@@ -63,8 +63,8 @@ Domyślne `view-distance=8`, `simulation-distance=6`, limit 15 graczy i 4 GB mak
 ```powershell
 python tools/build.py --mc 26.2
 python tools/build.py --mc 26.3
-python tools/check_deps.py KATALOG_JAROW_26_2 --side both --index "releases/26.2/Fancy Vanilla 1.5.1.1 for 26.2.mrpack" --fabric-loader-jar FABRIC_LOADER_0_19_5_JAR
-python tools/check_deps.py KATALOG_JAROW_26_3 --side both --index "releases/26.3/Fancy Vanilla 1.6.2.1 for 26.3.mrpack" --fabric-loader-jar FABRIC_LOADER_0_19_5_JAR
+python tools/check_deps.py KATALOG_JAROW_26_2 --side both --index "releases/26.2/Fancy Vanilla 0.1.0 for 26.2.mrpack" --fabric-loader-jar FABRIC_LOADER_0_19_5_JAR
+python tools/check_deps.py KATALOG_JAROW_26_3 --side both --index "releases/26.3/Fancy Vanilla 0.1.0 for 26.3.mrpack" --fabric-loader-jar FABRIC_LOADER_0_19_5_JAR
 python tools/gen_docs.py
 ```
 
@@ -78,4 +78,4 @@ Kontrola zależności jest domyślnie offline; `--download` jawnie pozwala pobra
 
 **Mody w wersjach beta i alpha:** 26.2: Concurrent Chunk Management Engine (Fabric) (beta), EclipseUI (beta), OptiGUI (beta), Particle Rain (beta), Smooth Swapping (beta), Sound Physics Remastered (beta), Sounds (beta), Very Many Players (Fabric) (alpha), Visuality (beta), Wakes (beta); 26.3: Better Clouds (beta), Better Statistics Screen (beta), EclipseUI (beta), OptiGUI (beta), Smooth Swapping (beta), Sound Physics Remastered (beta), TCDCommons API (beta), Visuality (beta). Przed dłuższą grą na serwerze sprawdź FastBack i odtworzenie świata.
 
-Potwierdzone testy uruchomieniowe 1.5.1.1 (26.2) / 1.6.2.1 (26.3): klient 26.2, klient 26.3, serwer 26.2, serwer 26.3. Zakres i logi: docs/CLAUDE_REVIEW_2.1.0.md oraz docs/CODEX_REVIEW.md. Nie podajemy wyniku FPS z pięciu próbek jako benchmarku. Do dalszych testów należą dłuższa gra, istniejący świat, shader i obciążenie małego serwera. [Projekt Modrinth](https://modrinth.com/modpack/fava).
+Potwierdzone testy uruchomieniowe 0.1.0: klient 26.2, klient 26.3, serwer 26.2, serwer 26.3. Zakres i logi: docs/CLAUDE_REVIEW_2.1.0.md oraz docs/CODEX_REVIEW.md. Nie podajemy wyniku FPS z pięciu próbek jako benchmarku. Do dalszych testów należą dłuższa gra, istniejący świat, shader i obciążenie małego serwera. [Projekt Modrinth](https://modrinth.com/modpack/fava).

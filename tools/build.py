@@ -12,17 +12,13 @@ ROOT = Path(__file__).resolve().parents[1]
 STREAMLINE = {"26.2": ROOT / "inputs" / "Streamline Master 1.5.1.mrpack",
               "26.3": ROOT / "inputs" / "Streamline Master 1.6.2-beta-mc26.3.mrpack"}
 MC_VERSIONS = ("26.2", "26.3")
-# Pack version = version of the Streamline Master base + Fancy Vanilla's revision on it (docs/VERSIONING.md).
-# Bump the revision whenever the pack changes while its base stays the same; a new base resets it to 1.
-REVISION = {"26.2": 1, "26.3": 1}
+# Fancy Vanilla release number, the same for every game version; the Modrinth version number is "<VERSION>+<game version>"
+# and the channel (alpha/beta/release) tells how stable it is (docs/VERSIONING.md).
+VERSION = "0.1.0"
 
 
-def base_version(mc):
-    return re.search(r"Streamline Master (\d+(?:\.\d+)*)", STREAMLINE[mc].name).group(1)
-
-
-VERSIONS = {mc: f"{base_version(mc)}.{REVISION[mc]}" for mc in STREAMLINE}
-VERSION = VERSIONS["26.2"]  # one value for scripts that need it; the packs use VERSIONS[mc]
+def version_id(mc):
+    return f"{VERSION}+{mc}"
 NAME = "Fancy Vanilla"
 PACK = "FancyVanilla.zip"
 TEMPERED_JAR = "TEMPERED2.20.0mc26.2.jar"
@@ -107,7 +103,6 @@ def options(raw, new_packs):
 
 
 def build(MC="26.2"):
-    VERSION = VERSIONS[MC]
     if MC not in MC_VERSIONS:
         raise ValueError(f"Unsupported Minecraft version: {MC}")
     lock = json.loads((ROOT / "tools" / ("lock.json" if MC == "26.2" else f"lock-{MC}.json")).read_text(encoding="utf8"))
@@ -183,7 +178,7 @@ def build(MC="26.2"):
     values["incompatibleResourcePacks"] = json.dumps([name for name in incompatible if name in selected], ensure_ascii=False, separators=(",", ":"))
     payload["overrides/options.txt"] = ("".join(f"{k}:{v}\n" for k, v in values.items())).encode("utf8")
     payload["modrinth.index.json"] = encode({
-        "formatVersion": 1, "game": "minecraft", "versionId": VERSION, "name": NAME,
+        "formatVersion": 1, "game": "minecraft", "versionId": version_id(MC), "name": NAME,
         "summary": "Vanilla z oprawą: szybka, piękna, z progresją Tempered. Nic nowego w świecie, tylko lepiej.",
         "files": files, "dependencies": {"minecraft": MC, "fabric-loader": "0.19.5"}})
     out = ROOT / "releases" / MC / f"{NAME} {VERSION} for {MC}.mrpack"

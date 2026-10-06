@@ -75,7 +75,7 @@ def build_constants():
     spec = importlib.util.spec_from_file_location("fv_build", ROOT / "tools" / "build.py")
     build = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(build)
-    return {"VERSION": build.VERSION, "VERSIONS": build.VERSIONS, "TEMPERED_JAR": build.TEMPERED_JAR, "JOURNAL_VERSION": build.JOURNAL_VERSION}
+    return {"VERSION": build.VERSION, "TEMPERED_JAR": build.TEMPERED_JAR, "JOURNAL_VERSION": build.JOURNAL_VERSION}
 
 
 def pack_info(mc, version):
@@ -88,7 +88,7 @@ def pack_info(mc, version):
         index = json.loads(archive.read("modrinth.index.json"))
         if index["dependencies"]["minecraft"] != mc:
             raise ValueError(f"Wrong Minecraft version in {filename}")
-        if index["versionId"] != version:
+        if index["versionId"] != f"{version}+{mc}":
             raise ValueError(f"Stale release file {filename}")
         bundled_mods = [n for n in archive.namelist() if n.startswith("overrides/mods/") and n.endswith(".jar")]
         bundled_packs = [n for n in archive.namelist() if n.startswith("overrides/resourcepacks/") and n.endswith(".zip")]
@@ -228,8 +228,7 @@ def render_docs(constants, info, checks):
     if not COMMANDS:
         raise ValueError("TEMPERED public commands need verification before generating docs")
     journal = constants["JOURNAL_VERSION"]
-    v262, v263 = constants["VERSIONS"]["26.2"], constants["VERSIONS"]["26.3"]
-    version = f"{v262} (26.2) / {v263} (26.3)"
+    version = constants["VERSION"]
     tempered = re.fullmatch(r"TEMPERED(.+)mc26\.2\.jar", constants["TEMPERED_JAR"]).group(1)
     for mc, package in info.items():
         if package["mod_versions"] != {"tempered": tempered, "fancy_journal": f"{journal}+mc{mc}"}:
@@ -390,19 +389,16 @@ Kontrola zależności jest domyślnie offline; `--download` jawnie pozwala pobra
 """
     changelog = f"""# Changelog
 
-## {v263} alpha — Minecraft 26.3 — 06.10.2026
+## {version} alpha — Minecraft 26.2 / 26.3 — 06.10.2026
 
-- Nowa baza optymalizacyjna: **Streamline Master 1.6.2-beta** (własna wersja autora dla 26.3). Mody bazy są w dokładnie tych wersjach, które wskazuje jej paczka, razem z jej ustawieniami i konfiguracjami; tylko plik ModernFix i ustawienia graficzne Fancy Vanilla nadal mają pierwszeństwo tam, gdzie baza ich nie zmienia. Dodatki Fancy Vanilla (oprawa, TEMPERED, Fancy Journal, loader) zostają.
-- Zawiera wszystko z {v262}.
-
-## {v262} alpha — Minecraft 26.2 — 05.10.2026
-
+- Pierwsze wydanie w numeracji `MAJOR.MINOR.PATCH+wersja gry` (zasady w `docs/VERSIONING.md`); dotychczasowe numery robocze 2.x nie były publikowane.
+- **26.3** stoi na nowej bazie optymalizacyjnej **Streamline Master 1.6.2-beta** (własna wersja autora dla 26.3): mody bazy są w dokładnie tych wersjach, które wskazuje jej paczka, razem z jej ustawieniami i konfiguracjami. Dodatki Fancy Vanilla (oprawa, TEMPERED, Fancy Journal, loader) zostają. **26.2** stoi na Streamline Master 1.5.1.
 - Śledzenie zadań (Fancy Journal 1.2.0): pinezka przy każdym zadaniu w dzienniku. Panel w prawym dolnym rogu ekranu pokazuje nazwę zadania, opis, listę wymagań z haczykami i liczniki (np. „Zdobądź: Dowolne deski 20/32”): przedmioty liczone są z ekwipunku, reszta ze statystyk gracza, a przy zadaniach wieloetapowych każdy krok ma osobny haczyk. Po ukończeniu panel znika sam. Wybór i róg panelu (`corner`) zapisują się w `config/fancy_journal.json`. Tylko 26.2 i 26.3. Uwaga: liczniki ze statystyk to statystyki całego życia gracza w świecie, więc w świecie założonym przed TEMPERED mogą wyprzedzać wewnętrzny licznik zadania; panel nie pokaże wtedy ukończenia przed serwerem.
 - Nowa ikona moda TEMPERED (TEMPERED 2.20.0).
 - Usunięto mod Remove Reloading Screen (RRLS): Controlify blokuje go przy każdym uruchomieniu, a własny loader rysuje się niezależnie od niego. Zalecana pamięć klienta to teraz 6 GB (paczka ma ponad 100 modów).
 - Opisy modów w Mod Menu zależą od języka gry (po angielsku i po polsku), tak jak zadania, komendy i dziennik. Język wybiera się w grze: Opcje > Język; moda nie mają osobnego przełącznika.
 
-## Robocze 2.3.0 (numeracja 2.x, nieopublikowane)
+## Robocze 2.3.0 (poprzednia numeracja, nieopublikowane)
 
 - Własny loader Fancy Vanilla (Fancy Journal 1.1.0): ciemny ekran z logo i paskiem postępu zamiast logo Mojang przy starcie gry i przeładowaniu zasobów oraz przy komunikatach typu „Zapisywanie świata”. Vanilla nadal steruje ładowaniem i wygaszaniem; nakładka tylko rysuje na wierzchu.
 - Dwa języki (PL/EN): komunikaty komend administracyjnych (`help`, `diag`, `gate_on/off`, `set_age`, `reset`, status) korzystają teraz z kluczy tłumaczeń (TEMPERED 2.19.0), tak jak zadania i osiągnięcia. Wersja angielska działa po przełączeniu języka gry.
@@ -443,11 +439,11 @@ def main(argv=None):
     parser.add_argument("--runtime-check", action="append", choices=("server-26.2", "server-26.3", "client-26.2", "client-26.3"), default=[], help="name a check only after its successful completion; scope stays in CODEX_REVIEW.md")
     args = parser.parse_args(argv)
     constants = build_constants()
-    info = {mc: pack_info(mc, constants["VERSIONS"][mc]) for mc in ("26.2", "26.3")}
+    info = {mc: pack_info(mc, constants["VERSION"]) for mc in ("26.2", "26.3")}
     documents = render_docs(constants, info, set(args.runtime_check))
     for filename, content in documents.items():
         atomic_write(ROOT / filename, content)
-    print(f"Generated docs for {constants['VERSIONS']}; no publication performed.")
+    print(f"Generated docs for {constants['VERSION']}; no publication performed.")
 
 
 if __name__ == "__main__":

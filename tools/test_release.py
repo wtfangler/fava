@@ -12,7 +12,7 @@ import importlib.util
 _spec = importlib.util.spec_from_file_location("fv_build", ROOT / "tools" / "build.py")
 BUILD = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(BUILD)
-PACK_VERSIONS = BUILD.VERSIONS
+PACK_VERSION = BUILD.VERSION
 JOURNAL_VERSION = BUILD.JOURNAL_VERSION
 TEMPERED_VERSION = re.search(r"TEMPERED(.+)mc26\.2\.jar", BUILD.TEMPERED_JAR).group(1)
 
@@ -34,7 +34,7 @@ class ReleaseChecks(unittest.TestCase):
     def test_finished_artifacts(self):
         for mc in ("26.2", "26.3"):
             with self.subTest(mc=mc):
-                name = f"Fancy Vanilla {PACK_VERSIONS[mc]} for {mc}.mrpack"
+                name = f"Fancy Vanilla {PACK_VERSION} for {mc}.mrpack"
                 path = ROOT / "releases" / mc / name
                 self.assertEqual(hashlib.sha512(path.read_bytes()).hexdigest(), path.with_suffix(".mrpack.sha512").read_text().split()[0])
                 with zipfile.ZipFile(path) as pack:
