@@ -10,7 +10,7 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-UA = {"User-Agent": "FancyVanilla-Dev/2.0 (github.com/wtfangler/fancy-vanilla)"}
+UA = {"User-Agent": "FancyVanilla-Dev/2.0 (github.com/wtfangler/fava)"}
 LOCKS = {"26.2": "lock.json", "26.3": "lock-26.3.json"}
 
 

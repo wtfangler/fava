@@ -5,7 +5,7 @@ resource packs and shaders. Pinned by default: entries already in lock.json keep
 Use --update to re-pick the newest 26.2 build of everything."""
 import json, os, sys, time, urllib.error, urllib.parse, urllib.request, zipfile
 
-UA = {"User-Agent": "FancyVanilla-Dev/2.0 (github.com/wtfangler/fancy-vanilla)"}
+UA = {"User-Agent": "FancyVanilla-Dev/2.0 (github.com/wtfangler/fava)"}
 ROOT = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.abspath(os.path.join(ROOT, ".."))  # project root (ROOT here is tools/)
 GV = sys.argv[sys.argv.index("--mc") + 1] if "--mc" in sys.argv else "26.2"

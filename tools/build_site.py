@@ -85,7 +85,7 @@ def current_by_mc(releases):
     return found
 
 
-GITHUB = "https://github.com/wtfangler/fancy-vanilla"
+GITHUB = "https://github.com/wtfangler/fava"
 
 
 def journal_jars(cur):

@@ -1,6 +1,6 @@
 """Maps every file of the old Fancy Vanilla packs (+ Tempered 26.2) to Modrinth projects and checks 26.2 availability."""
 import json, os, urllib.request, urllib.parse, zipfile
-UA = {"User-Agent": "FancyVanilla-Dev/2.0 (github.com/wtfangler/fancy-vanilla)"}
+UA = {"User-Agent": "FancyVanilla-Dev/2.0 (github.com/wtfangler/fava)"}
 HERE = os.path.dirname(os.path.abspath(__file__)); PROJECT = os.path.abspath(os.path.join(HERE, ".."))
 PACKS = {"fv1204": os.path.join(PROJECT, "releases", "1.20.4", "Fancy Vanilla 1.0.1.Es for 1.20.4.mrpack"),
          "fv1218": os.path.join(PROJECT, "releases", "1.21.8", "Fancy Vanilla 1.0.2 for 1.21.8.mrpack"),

@@ -188,9 +188,9 @@ Everything to paste into the project settings. Nothing here has been sent anywhe
 
 ## Links (Links)
 
-- **Source code:** https://github.com/wtfangler/fancy-vanilla once the repository is public (it is private now); until then clear the field. Your website is not source code.
+- **Source code:** https://github.com/wtfangler/fava (the repository is public). Your website is not source code.
 - **Wiki page:** your website (https://fava.netlify.app/).
-- Issue tracker: https://github.com/wtfangler/fancy-vanilla/issues once the repository is public.
+- Issue tracker: https://github.com/wtfangler/fava/issues
 
 ## Disclosures (Disclosures)
 
