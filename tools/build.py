@@ -9,12 +9,12 @@ from pathlib import Path, PurePosixPath
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-STREAMLINE = {"26.2": ROOT / "inputs" / "Streamline Master 1.5.1.mrpack",
+STREAMLINE = {"26.2": ROOT / "inputs" / "Streamline Master 1.5.2.mrpack",
               "26.3": ROOT / "inputs" / "Streamline Master 1.6.2-beta-mc26.3.mrpack"}
 MC_VERSIONS = ("26.2", "26.3")
 # Fancy Vanilla release number, the same for every game version; the Modrinth version number is "<VERSION>+<game version>"
 # and the channel (alpha/beta/release) tells how stable it is (docs/VERSIONING.md).
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 
 
 def version_id(mc):
@@ -133,7 +133,7 @@ def build(MC="26.2"):
     for folder in ("config", f"config-{MC}"):
         for name, data in tree(ROOT / "src" / folder).items():
             safe_path(name)
-            if folder == "config" and MC != "26.2" and "overrides/config/" + name in payload:
+            if folder == "config" and "overrides/config/" + name in payload:
                 continue  # the base's own tuned config wins over our shared overlay
             payload["overrides/config/" + name] = data
     tempered_name = TEMPERED_JAR.replace("mc26.2", f"mc{MC}")

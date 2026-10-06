@@ -1,9 +1,14 @@
 # Changelog
 
+## 0.2.0 alpha — Minecraft 26.2 / 26.3 — 06.10.2026
+
+- **26.2** stoi teraz na nowej bazie **Streamline Master 1.5.2** (dużo lepsza wydajność): baza nie ma już trio wątkowego C2ME, VMP i ScalableLux, a ma własne, dopracowane konfiguracje (Dynamic FPS, Entity Culling, More Culling, Lithium, ModernFix, ImmediatelyFast i inne). Te ustawienia mają pierwszeństwo, tak samo jak na 26.3. Zostają tylko dwie poprawki Fancy Vanilla: wyłączony zoom Chloride (zoom robi Zoomify) i ustawienia cząsteczek.
+- **26.3** bez zmian w zawartości (nadal Streamline Master 1.6.2-beta). Zmienia się tylko numer wydania.
+
 ## 0.1.0 alpha — Minecraft 26.2 / 26.3 — 06.10.2026
 
 - Pierwsze wydanie w numeracji `MAJOR.MINOR.PATCH+wersja gry` (zasady w `docs/VERSIONING.md`); dotychczasowe numery robocze 2.x nie były publikowane.
-- **26.3** stoi na nowej bazie optymalizacyjnej **Streamline Master 1.6.2-beta** (własna wersja autora dla 26.3): mody bazy są w dokładnie tych wersjach, które wskazuje jej paczka, razem z jej ustawieniami i konfiguracjami. Dodatki Fancy Vanilla (oprawa, TEMPERED, Fancy Journal, loader) zostają. **26.2** stoi na Streamline Master 1.5.1.
+- **26.3** stoi na nowej bazie optymalizacyjnej **Streamline Master 1.6.2-beta** (własna wersja autora dla 26.3): mody bazy są w dokładnie tych wersjach, które wskazuje jej paczka, razem z jej ustawieniami i konfiguracjami. Dodatki Fancy Vanilla (oprawa, TEMPERED, Fancy Journal, loader) zostają. **26.2** stała jeszcze na Streamline Master 1.5.1.
 - Śledzenie zadań (Fancy Journal 1.2.0): pinezka przy każdym zadaniu w dzienniku. Panel w prawym dolnym rogu ekranu pokazuje nazwę zadania, opis, listę wymagań z haczykami i liczniki (np. „Zdobądź: Dowolne deski 20/32”): przedmioty liczone są z ekwipunku, reszta ze statystyk gracza, a przy zadaniach wieloetapowych każdy krok ma osobny haczyk. Po ukończeniu panel znika sam. Wybór i róg panelu (`corner`) zapisują się w `config/fancy_journal.json`. Tylko 26.2 i 26.3. Uwaga: liczniki ze statystyk to statystyki całego życia gracza w świecie, więc w świecie założonym przed TEMPERED mogą wyprzedzać wewnętrzny licznik zadania; panel nie pokaże wtedy ukończenia przed serwerem.
 - Nowa ikona moda TEMPERED (TEMPERED 2.20.0).
 - Usunięto mod Remove Reloading Screen (RRLS): Controlify blokuje go przy każdym uruchomieniu, a własny loader rysuje się niezależnie od niego. Zalecana pamięć klienta to teraz 6 GB (paczka ma ponad 100 modów).
@@ -27,10 +32,10 @@
 - 26.2: Particle Core korzysta z BOUNDING_BOX; jego optymalizacje i efekty wizualne zostają. Zoomify jest wybranym zoomem, ustawienie Chloride wyłączone i jego klawisz zwolniony.
 - Paczki zasobów: poprawiona kolejność i usunięte powtórzenia. Clearer Slot Highlight znajduje się powyżej DARK; konfiguracje uwzględniają rzeczywisty zestaw modów danego wariantu.
 - Zachowano identyfikację Fancy Vanilla: własne grafiki, menu, roślinność, animacje, efekty, dźwięk i opcjonalne shadery.
-- Liczby składu obejmują całe locki i dwa dołączone mody: 26.2 — 101 pliki modów, 27 paczek zasobów, 2 shadery; 26.3 — 104, 27, 2.
-- Instrukcje serwera opisują nowy katalog oraz ograniczony zakres `--no-download`. Lokalna strona odsyła do projektu Modrinth; nie zakłada istnienia opublikowanego adresu `/version/0.1.0`.
+- Liczby składu obejmują całe locki i dwa dołączone mody: 26.2 — 98 pliki modów, 27 paczek zasobów, 2 shadery; 26.3 — 104, 27, 2.
+- Instrukcje serwera opisują nowy katalog oraz ograniczony zakres `--no-download`. Lokalna strona odsyła do projektu Modrinth; nie zakłada istnienia opublikowanego adresu `/version/0.2.0`.
 
-**Weryfikacja:** Potwierdzone testy uruchomieniowe 0.1.0: klient 26.2, klient 26.3, serwer 26.2, serwer 26.3. Zakres i logi: docs/CLAUDE_REVIEW_2.1.0.md oraz docs/CODEX_REVIEW.md. Test uruchomienia nie stanowi benchmarku FPS ani testu pojemności serwera. Wyniki z pięciu próbek wcześniejszej wersji usunięto z deklaracji wydajności.
+**Weryfikacja:** Testy uruchomieniowe wersji 0.2.0 są w toku. Logi starszych wydań pokazują wcześniejsze uruchomienia i problemy, które poprawiono; nie potwierdzają wyniku 0.2.0. Test uruchomienia nie stanowi benchmarku FPS ani testu pojemności serwera. Wyniki z pięciu próbek wcześniejszej wersji usunięto z deklaracji wydajności.
 
 ### Różnice wariantu 26.3
 

@@ -1,6 +1,6 @@
 """Resolves the Fancy Vanilla 2.0 file list (Fabric 26.2) against Modrinth and writes lock.json.
 
-Base = Streamline Master 1.5.1 (the author's optimisation core), then vanilla-friendly visuals / QoL,
+Base = Streamline Master 1.5.2 (the author's optimisation core), then vanilla-friendly visuals / QoL,
 resource packs and shaders. Pinned by default: entries already in lock.json keep their exact file.
 Use --update to re-pick the newest 26.2 build of everything."""
 import json, os, sys, time, urllib.error, urllib.parse, urllib.request, zipfile
@@ -65,8 +65,8 @@ def api(path, data=None, **p):
 
 # mods dropped on purpose: Controlify prevents "Remove Reloading Screen" from working in every client log
 DROP_SLUGS = {"rrls"}
-# Streamline Master release each Minecraft version starts from (26.3: the author's own 26.3 build, kept exactly)
-BASES = {"26.2": "Streamline Master 1.5.1.mrpack", "26.3": "Streamline Master 1.6.2-beta-mc26.3.mrpack"}
+# Streamline Master release each Minecraft version starts from (26.2: 1.5.2, 26.3: 1.6.2-beta; the author's own builds)
+BASES = {"26.2": "Streamline Master 1.5.2.mrpack", "26.3": "Streamline Master 1.6.2-beta-mc26.3.mrpack"}
 BASE_PIN = {}  # project id -> the exact version of the base file (26.3)
 PINNED = {}
 

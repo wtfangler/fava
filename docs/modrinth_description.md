@@ -1,6 +1,6 @@
 # Fancy Vanilla
 
-**Minecraft 26.2 i 26.3 · Fabric · singleplayer i mały serwer ze znajomymi · 0.1.0 alpha**
+**Minecraft 26.2 i 26.3 · Fabric · singleplayer i mały serwer ze znajomymi · 0.2.0 alpha**
 
 Znany Minecraft z bogatszą oprawą: animacje mobów, roślinność, cząsteczki, dźwięk, tekstury i opcjonalne shadery. Rdzeń **Streamline Master** odpowiada za optymalizację, a autorski **TEMPERED** porządkuje przygodę w 7 er: 89 oryginalnych zadań oraz 63 nowych zadań opcjonalnych w erach i gałąź **Epilog** z 55 celami po zabiciu smoka. Paczka nie dodaje bloków, mobów ani biomów.
 
@@ -40,7 +40,7 @@ Paczka nadaje się do singleplayer i małego serwera znajomych. Instrukcja budow
 
 | Minecraft | Pliki modów | Paczki zasobów | Shadery |
 |---|---:|---:|---:|
-| 26.2 | 101 (99 + 2 własne) | 27 (26 + 1 własna) | 2 |
+| 26.2 | 98 (96 + 2 własne) | 27 (26 + 1 własna) | 2 |
 | 26.3 | 104 (102 + 2 własne) | 27 (26 + 1 własna) | 2 |
 
 Liczby dotyczą plików w paczce. Fabric może raportować więcej modułów, ponieważ biblioteki zawierają zagnieżdżone jary.
@@ -51,7 +51,7 @@ Liczby dotyczą plików w paczce. Fabric może raportować więcej modułów, po
 
 **Mody w wersjach beta i alpha:** 26.2: Concurrent Chunk Management Engine (Fabric) (beta), EclipseUI (beta), OptiGUI (beta), Particle Rain (beta), Smooth Swapping (beta), Sound Physics Remastered (beta), Sounds (beta), Very Many Players (Fabric) (alpha), Visuality (beta), Wakes (beta); 26.3: Better Clouds (beta), Better Statistics Screen (beta), EclipseUI (beta), OptiGUI (beta), Smooth Swapping (beta), Sound Physics Remastered (beta), TCDCommons API (beta), Visuality (beta). Przed dłuższą grą na serwerze sprawdź FastBack i odtworzenie świata.
 
-**Weryfikacja:** Potwierdzone testy uruchomieniowe 0.1.0: klient 26.2, klient 26.3, serwer 26.2, serwer 26.3. Zakres i logi: docs/CLAUDE_REVIEW_2.1.0.md oraz docs/CODEX_REVIEW.md. Testy uruchomienia nie zastępują dłuższej gry ze znajomymi ani porównania wydajności. Dobór shaderów i efekty nakładających się tekstur wymagają oceny na docelowym sprzęcie.
+**Weryfikacja:** Testy uruchomieniowe wersji 0.2.0 są w toku. Logi starszych wydań pokazują wcześniejsze uruchomienia i problemy, które poprawiono; nie potwierdzają wyniku 0.2.0. Testy uruchomienia nie zastępują dłuższej gry ze znajomymi ani porównania wydajności. Dobór shaderów i efekty nakładających się tekstur wymagają oceny na docelowym sprzęcie.
 
 [Projekt Fancy Vanilla na Modrinth](https://modrinth.com/modpack/fava). Pliki i strona WWW powstają lokalnie; samo przygotowanie wydania nie oznacza publikacji.
 
@@ -59,7 +59,7 @@ Liczby dotyczą plików w paczce. Fabric może raportować więcej modułów, po
 
 # Fancy Vanilla — English
 
-**Minecraft 26.2 and 26.3 · Fabric · singleplayer and a small server with friends · 0.1.0 alpha**
+**Minecraft 26.2 and 26.3 · Fabric · singleplayer and a small server with friends · 0.2.0 alpha**
 
 Familiar Minecraft with richer animation, foliage, particles, audio, textures and optional shaders. **Streamline Master** provides the optimisation base. The author's **TEMPERED** progression adds 7 ages, preserving 89 original quests and adding 63 optional quests plus an **Epilogue** branch of 55 goals after the Ender Dragon, without adding blocks, mobs or biomes.
 
@@ -69,7 +69,7 @@ Higher-age recipes can be locked. Higher-age equipment is restricted through eff
 
 Import the matching `.mrpack` in Modrinth App or Prism Launcher, use **Java 25**, and start with 6 GB client RAM (the pack has over 100 mods). Back up existing worlds before installing: existing equipment may exceed the initial age. Shaders are off by default; rendering settings should be chosen for your hardware.
 
-The 26.2 variant contains **101 top-level mod files**, **27 resource packs** and **2 shader packs**; 26.3 contains **104**, **27** and **2** respectively. Each includes two custom mods, TEMPERED and Fancy Journal. Nested libraries increase the number reported by Fabric.
+The 26.2 variant contains **98 top-level mod files**, **27 resource packs** and **2 shader packs**; 26.3 contains **104**, **27** and **2** respectively. Each includes two custom mods, TEMPERED and Fancy Journal. Nested libraries increase the number reported by Fabric.
 
 The 26.3 variant omits: wakes, particle-rain, better-mount-hud. Resource packs using 26.2-labelled releases: brak; inspect their appearance in game.
 
@@ -77,6 +77,6 @@ The 26.3 variant omits: wakes, particle-rain, better-mount-hud. Resource packs u
 
 **Beta and alpha mods:** 26.2: Concurrent Chunk Management Engine (Fabric) (beta), EclipseUI (beta), OptiGUI (beta), Particle Rain (beta), Smooth Swapping (beta), Sound Physics Remastered (beta), Sounds (beta), Very Many Players (Fabric) (alpha), Visuality (beta), Wakes (beta); 26.3: Better Clouds (beta), Better Statistics Screen (beta), EclipseUI (beta), OptiGUI (beta), Smooth Swapping (beta), Sound Physics Remastered (beta), TCDCommons API (beta), Visuality (beta). Before long server sessions, check FastBack and world re-creation.
 
-**Validation:** Confirmed 0.1.0 runtime checks: client 26.2, client 26.3, server 26.2, server 26.3. Scope and logs: docs/CLAUDE_REVIEW_2.1.0.md and docs/CODEX_REVIEW.md. Launch checks do not establish a performance benchmark or multiplayer capacity. Visual combinations and shaders need testing on your hardware.
+**Validation:** Runtime tests for 0.2.0 are pending. Logs of older releases document earlier launches and issues addressed here; they do not verify this release. Launch checks do not establish a performance benchmark or multiplayer capacity. Visual combinations and shaders need testing on your hardware.
 
 [Fancy Vanilla on Modrinth](https://modrinth.com/modpack/fava). Preparing local archives does not publish them.

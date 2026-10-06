@@ -1,10 +1,10 @@
 {
   "_comment": "Dates, channels and Modrinth links that cannot be read from the pack files. Keys are release file names. Sizes, hashes and versions are read from the files themselves.",
-  "Fancy Vanilla 0.1.0 for 26.2.mrpack": {
+  "Fancy Vanilla 0.2.0 for 26.2.mrpack": {
     "date": "2026-10-06",
     "channel": "alpha"
   },
-  "Fancy Vanilla 0.1.0 for 26.3.mrpack": {
+  "Fancy Vanilla 0.2.0 for 26.3.mrpack": {
     "date": "2026-10-06",
     "channel": "alpha"
   }

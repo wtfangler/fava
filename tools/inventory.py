@@ -5,7 +5,7 @@ HERE = os.path.dirname(os.path.abspath(__file__)); PROJECT = os.path.abspath(os.
 PACKS = {"fv1204": os.path.join(PROJECT, "releases", "1.20.4", "Fancy Vanilla 1.0.1.Es for 1.20.4.mrpack"),
          "fv1218": os.path.join(PROJECT, "releases", "1.21.8", "Fancy Vanilla 1.0.2 for 1.21.8.mrpack"),
          "tempered": os.path.join(PROJECT, "inputs", "Tempered 1.0.0.mrpack"),
-         "streamline": os.path.join(PROJECT, "inputs", "Streamline Master 1.5.1.mrpack")}
+         "streamline": os.path.join(PROJECT, "inputs", "Streamline Master 1.5.2.mrpack")}
 
 def api(path, data=None, **p):
     u = "https://api.modrinth.com/v2" + path + ("?" + urllib.parse.urlencode(p) if p else "")

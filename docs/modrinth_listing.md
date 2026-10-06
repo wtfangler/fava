@@ -130,7 +130,7 @@ The pack is server-compatible. Startup, `/reload` and restart were tested on ded
 - Small groups who want a shared progression without learning a new game
 - Players who finished the game and want goals for the long run
 
-## Changelog highlights (0.1.0)
+## Changelog highlights (0.2.0)
 - 26.3: new base, Streamline Master 1.6.2-beta (the author's own 26.3 build).
 - Quest tracking with a pin and a small HUD panel that shows what to do and how far you are.
 - New TEMPERED icon; mod descriptions in Mod Menu follow the game language.
@@ -144,7 +144,7 @@ The pack is server-compatible. Startup, `/reload` and restart were tested on ded
 
 All of this is downloaded from Modrinth when you install the pack. Thank you to every author.
 
-**Mods (99)**
+**Mods (96)**
 
 - [AmbientEnvironment-fabric-26.2-26.2.1](https://modrinth.com/project/DyTvM1dv)
 - [AmbientSounds_FABRIC_v6.3.6_mc26.2](https://modrinth.com/project/fM515JnW)
@@ -165,7 +165,6 @@ All of this is downloaded from Modrinth when you install the pack. Thank you to 
 - [NoChatReports-FABRIC-26.2-v2.20.2](https://modrinth.com/project/qQyHxfxd)
 - [PacketFixer-fabric-3.3.6](https://modrinth.com/project/c7m1mi73)
 - [ParticleEffects-1.6.0+26.2+fabric](https://modrinth.com/project/PLAGcSFJ)
-- [ScalableLux-0.2.1+fabric.2b08348-all](https://modrinth.com/project/Ps1zyz6x)
 - [Searchables-fabric-26.2-1.0.1](https://modrinth.com/project/fuuu3xnx)
 - [ShoulderSurfing-Fabric-26.2-5.2.0](https://modrinth.com/project/kepjj2sy)
 - [SubtleEffects-fabric-26.2-1.14.3](https://modrinth.com/project/4q8UOK1d)
@@ -178,7 +177,6 @@ All of this is downloaded from Modrinth when you install the pack. Thank you to 
 - [bettermounthud-1.3.1](https://modrinth.com/project/kqJFAPU9)
 - [betterstats-5.5.6+fn-26.2](https://modrinth.com/project/n6PXGAoM)
 - [bookshelfinspector-fabric-2.4+26.2](https://modrinth.com/project/rOrXjyPb)
-- [c2me-fabric-mc26.2-0.4.1-beta.1.0](https://modrinth.com/project/VSNURh3q)
 - [capes-1.5.11+26.2](https://modrinth.com/project/89Wsn8GD)
 - [chat_heads-1.3.1-fabric-26.1](https://modrinth.com/project/Wb5oqrBJ)
 - [cherishedworlds-fabric-17.0.0+26.2](https://modrinth.com/project/3azQ6p0W)
@@ -239,7 +237,6 @@ All of this is downloaded from Modrinth when you install the pack. Thank you to 
 - [supermartijn642configlib-1.1.8a-fabric-mc26.2](https://modrinth.com/project/LN9BxssP)
 - [tcdcommons-5.5.6+fn-26.2](https://modrinth.com/project/Eldc1g37)
 - [visuality-0.7.15+26.3](https://modrinth.com/project/rI0hvYcd)
-- [vmp-fabric-mc26.2-0.2.0+beta.7.236-all](https://modrinth.com/project/wnEe9KBa)
 - [wakes-0.7.1+26.2](https://modrinth.com/project/dlNu0RQY)
 - [xaerominimap-fabric-26.2-26.5.1](https://modrinth.com/project/1bokaNcj)
 - [xaeroworldmap-fabric-26.2-1.46.1](https://modrinth.com/project/NcUtCpym)
@@ -430,6 +427,6 @@ All of this is downloaded from Modrinth when you install the pack. Thank you to 
 
 ## Before you click "Resubmit"
 
-1. Versions: upload the `.mrpack` from `releases/26.2/` with version number `0.1.0+26.2` and the one from `releases/26.3/` with `0.1.0+26.3`, loader Fabric, channel **alpha**. The file name carries the number (`Fancy Vanilla 0.1.0 for 26.2.mrpack`).
+1. Versions: upload the `.mrpack` from `releases/26.2/` with version number `0.2.0+26.2` and the one from `releases/26.3/` with `0.2.0+26.3`, loader Fabric, channel **alpha**. The file name carries the number (`Fancy Vanilla 0.2.0 for 26.2.mrpack`).
 2. In the moderation thread write that the pack has no third-party files in overrides, that every other file comes from cdn.modrinth.com, and that the description lists every included project with a link.
 3. Use the first section of `docs/CHANGELOG.md` as the version changelog.

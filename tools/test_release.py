@@ -114,14 +114,10 @@ class ReleaseChecks(unittest.TestCase):
                     self.assertLess(next(i for i, p in enumerate(selected) if "Recolourful" in p), clearer)
                     self.assertEqual(options["key_chloride.zoom"], "key.keyboard.unknown")
                     modern = pack.read("overrides/config/modernfix-mixins.properties").decode()
-                    if mc == "26.2":
-                        self.assertEqual(options["key_zoomify.key.zoom"], "key.keyboard.c")
-                        self.assertIn("mixin.perf.clear_mixin_classinfo=false", modern)
-                        self.assertIn("mixin.perf.dynamic_entity_renderers=false", modern)
-                    else:  # 26.3 uses the base's own tuned ModernFix config and its options (Zoomify keeps its default key C)
-                        with zipfile.ZipFile(BUILD.STREAMLINE["26.3"]) as base:
-                            self.assertEqual(modern, base.read("overrides/config/modernfix-mixins.properties").decode())
-                        self.assertNotIn("key_zoomify.key.zoom", options)
+                    self.assertNotIn("key_zoomify.key.zoom", options)  # Zoomify keeps its default key C
+                    # both versions use the base's own tuned ModernFix config
+                    with zipfile.ZipFile(BUILD.STREAMLINE[mc]) as base:
+                        self.assertEqual(modern, base.read("overrides/config/modernfix-mixins.properties").decode())
                     if mc == "26.2":
                         self.assertIn('cullingBehavior = "BOUNDING_BOX"', pack.read("overrides/config/particle_core_config.toml").decode())
                     else:
