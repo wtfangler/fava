@@ -16,12 +16,21 @@ builder = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(builder)
 
 
+def whole(value):
+    """Pack authors sometimes write 97.1 where a whole number belongs (qrafty's font 4.1: [97.1, 3]); the game reads the integer part."""
+    if type(value) is int:
+        return value
+    if type(value) is float:
+        return int(value)
+    raise ValueError(f"Ambiguous resource pack format: {value!r}")
+
+
 def bound(value, upper=False):
     default_minor = 2147483647 if upper else 0
-    if isinstance(value, int):
-        return [value, default_minor]
-    if isinstance(value, list) and 1 <= len(value) <= 2 and all(type(x) is int for x in value):
-        return [value[0], value[1] if len(value) == 2 else default_minor]
+    if type(value) in (int, float):
+        return [whole(value), default_minor]
+    if isinstance(value, list) and 1 <= len(value) <= 2:
+        return [whole(value[0]), whole(value[1]) if len(value) == 2 else default_minor]
     raise ValueError(f"Ambiguous resource pack format: {value!r}")
 
 

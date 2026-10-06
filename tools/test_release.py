@@ -6,12 +6,15 @@ from pathlib import Path
 import unittest
 import zipfile
 
-ROOT = Path(__file__).resolve().parents[1]
 import re
-_BUILD = (ROOT / "tools" / "build.py").read_text(encoding="utf8")
-PACK_VERSION = re.search(r'^VERSION = "([^"]+)"', _BUILD, re.M).group(1)
-JOURNAL_VERSION = re.search(r'^JOURNAL_VERSION = "([^"]+)"', _BUILD, re.M).group(1)
-TEMPERED_VERSION = re.search(r'^TEMPERED_JAR = "TEMPERED([^"]+)mc26\.2\.jar"', _BUILD, re.M).group(1)
+ROOT = Path(__file__).resolve().parents[1]
+import importlib.util
+_spec = importlib.util.spec_from_file_location("fv_build", ROOT / "tools" / "build.py")
+BUILD = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(BUILD)
+PACK_VERSIONS = BUILD.VERSIONS
+JOURNAL_VERSION = BUILD.JOURNAL_VERSION
+TEMPERED_VERSION = re.search(r"TEMPERED(.+)mc26\.2\.jar", BUILD.TEMPERED_JAR).group(1)
 
 
 class ReleaseChecks(unittest.TestCase):
@@ -23,13 +26,15 @@ class ReleaseChecks(unittest.TestCase):
         self.assertEqual(bound(97), [97, 0])
         self.assertEqual(bound(97, True), [97, 2147483647])
         self.assertEqual(bound([97, 0], True), [97, 0])
+        # a pack author's 97.1 where a whole number belongs: the game reads the integer part
+        self.assertEqual(bound([97.1, 3], True), [97, 3])
         with self.assertRaises(ValueError):
-            bound([97.1, 3], True)
+            bound("97")
 
     def test_finished_artifacts(self):
         for mc in ("26.2", "26.3"):
             with self.subTest(mc=mc):
-                name = f"Fancy Vanilla {PACK_VERSION} for {mc}.mrpack"
+                name = f"Fancy Vanilla {PACK_VERSIONS[mc]} for {mc}.mrpack"
                 path = ROOT / "releases" / mc / name
                 self.assertEqual(hashlib.sha512(path.read_bytes()).hexdigest(), path.with_suffix(".mrpack.sha512").read_text().split()[0])
                 with zipfile.ZipFile(path) as pack:
@@ -108,16 +113,21 @@ class ReleaseChecks(unittest.TestCase):
                     clearer = selected.index("file/Clearer Slot Highlight.zip")
                     self.assertLess(next(i for i, p in enumerate(selected) if "Recolourful" in p), clearer)
                     self.assertEqual(options["key_chloride.zoom"], "key.keyboard.unknown")
-                    self.assertEqual(options["key_zoomify.key.zoom"], "key.keyboard.c")
                     modern = pack.read("overrides/config/modernfix-mixins.properties").decode()
-                    self.assertIn("mixin.perf.clear_mixin_classinfo=false", modern)
-                    self.assertIn("mixin.perf.dynamic_entity_renderers=false", modern)
+                    if mc == "26.2":
+                        self.assertEqual(options["key_zoomify.key.zoom"], "key.keyboard.c")
+                        self.assertIn("mixin.perf.clear_mixin_classinfo=false", modern)
+                        self.assertIn("mixin.perf.dynamic_entity_renderers=false", modern)
+                    else:  # 26.3 uses the base's own tuned ModernFix config and its options (Zoomify keeps its default key C)
+                        with zipfile.ZipFile(BUILD.STREAMLINE["26.3"]) as base:
+                            self.assertEqual(modern, base.read("overrides/config/modernfix-mixins.properties").decode())
+                        self.assertNotIn("key_zoomify.key.zoom", options)
                     if mc == "26.2":
                         self.assertIn('cullingBehavior = "BOUNDING_BOX"', pack.read("overrides/config/particle_core_config.toml").decode())
                     else:
                         self.assertNotIn("overrides/config/chloride-client.toml", names)
                         font = next(f for f in files if "qrafty" in f["path"])
-                        self.assertIn("-4.0.zip", font["path"])
+                        self.assertIn("-4.1.zip", font["path"])
 
 
 if __name__ == "__main__":

@@ -2,15 +2,27 @@
 import hashlib
 import io
 import json
+import re
 import sys
 import argparse
 from pathlib import Path, PurePosixPath
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-STREAMLINE = ROOT / "inputs" / "Streamline Master 1.5.1.mrpack"
+STREAMLINE = {"26.2": ROOT / "inputs" / "Streamline Master 1.5.1.mrpack",
+              "26.3": ROOT / "inputs" / "Streamline Master 1.6.2-beta-mc26.3.mrpack"}
 MC_VERSIONS = ("26.2", "26.3")
-VERSION = "2.4.0"
+# Pack version = version of the Streamline Master base + Fancy Vanilla's revision on it (docs/VERSIONING.md).
+# Bump the revision whenever the pack changes while its base stays the same; a new base resets it to 1.
+REVISION = {"26.2": 1, "26.3": 1}
+
+
+def base_version(mc):
+    return re.search(r"Streamline Master (\d+(?:\.\d+)*)", STREAMLINE[mc].name).group(1)
+
+
+VERSIONS = {mc: f"{base_version(mc)}.{REVISION[mc]}" for mc in STREAMLINE}
+VERSION = VERSIONS["26.2"]  # one value for scripts that need it; the packs use VERSIONS[mc]
 NAME = "Fancy Vanilla"
 PACK = "FancyVanilla.zip"
 TEMPERED_JAR = "TEMPERED2.20.0mc26.2.jar"
@@ -95,6 +107,7 @@ def options(raw, new_packs):
 
 
 def build(MC="26.2"):
+    VERSION = VERSIONS[MC]
     if MC not in MC_VERSIONS:
         raise ValueError(f"Unsupported Minecraft version: {MC}")
     lock = json.loads((ROOT / "tools" / ("lock.json" if MC == "26.2" else f"lock-{MC}.json")).read_text(encoding="utf8"))
@@ -113,7 +126,7 @@ def build(MC="26.2"):
     files.sort(key=lambda f: f["path"].lower())
 
     payload = {}
-    with zipfile.ZipFile(STREAMLINE) as src:
+    with zipfile.ZipFile(STREAMLINE[MC]) as src:
         for name in src.namelist():
             if name.endswith("/") or not name.startswith("overrides/"):
                 continue
@@ -125,6 +138,8 @@ def build(MC="26.2"):
     for folder in ("config", f"config-{MC}"):
         for name, data in tree(ROOT / "src" / folder).items():
             safe_path(name)
+            if folder == "config" and MC != "26.2" and "overrides/config/" + name in payload:
+                continue  # the base's own tuned config wins over our shared overlay
             payload["overrides/config/" + name] = data
     tempered_name = TEMPERED_JAR.replace("mc26.2", f"mc{MC}")
     payload["overrides/mods/" + tempered_name] = (ROOT / "build" / "mods" / tempered_name).read_bytes()

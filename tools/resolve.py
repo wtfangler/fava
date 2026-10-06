@@ -26,7 +26,7 @@ MODS = {
     "better-mount-hud": None, "dynamiccrosshair": None, "shoulder-surfing-reloaded": None,
     # comfort
     "mouse-tweaks": None, "inventory-sorting": None, "searchables": None, "morechathistory": None, "chat-heads": None,
-    "now-playing": None, "controlify": None, "controlling": None,
+    "now-playing": None, "controlify": ("required", "unsupported"), "controlling": None,
     "cherished-worlds": None, "capes": None, "no-chat-reports": None, "xaeros-minimap": None, "xaeros-world-map": None,
     "animaticarefabricated": None, "puzzle": None,
     # server-friendly, gameplay-neutral
@@ -65,10 +65,15 @@ def api(path, data=None, **p):
 
 # mods dropped on purpose: Controlify prevents "Remove Reloading Screen" from working in every client log
 DROP_SLUGS = {"rrls"}
+# Streamline Master release each Minecraft version starts from (26.3: the author's own 26.3 build, kept exactly)
+BASES = {"26.2": "Streamline Master 1.5.1.mrpack", "26.3": "Streamline Master 1.6.2-beta-mc26.3.mrpack"}
+BASE_PIN = {}  # project id -> the exact version of the base file (26.3)
 PINNED = {}
 
 
 def pick(pid, loader=True):
+    if pid in BASE_PIN:
+        return BASE_PIN[pid]
     old = PINNED.get(pid)
     if old:
         # A transient API failure must not silently upgrade a pinned dependency.
@@ -107,8 +112,10 @@ def main():
     lock_file = os.path.join(ROOT, "lock.json" if GV == "26.2" else f"lock-{GV}.json")
     if "--update" not in sys.argv and os.path.exists(lock_file):
         PINNED = {a["slug"]: a for a in json.load(open(lock_file, encoding="utf8"))["added"]}
-    base = json.loads(zipfile.ZipFile(os.path.join(ROOT_DIR, "inputs", "Streamline Master 1.5.1.mrpack")).read("modrinth.index.json"))
+    base = json.loads(zipfile.ZipFile(os.path.join(ROOT_DIR, "inputs", BASES[GV])).read("modrinth.index.json"))
     byhash = api("/version_files", {"hashes": [f["hashes"]["sha1"] for f in base["files"]], "algorithm": "sha1"})
+    if GV != "26.2":
+        BASE_PIN.update({v["project_id"]: v for v in byhash.values()})
     have, base_files, base_items = {}, [f for f in base["files"] if "rrls-" not in f["path"].lower()], []
     for f in base["files"]:
         v = byhash.get(f["hashes"]["sha1"])

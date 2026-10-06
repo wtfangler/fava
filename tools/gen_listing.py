@@ -123,7 +123,8 @@ The pack is server-compatible. Startup, `/reload` and restart were tested on ded
 - Small groups who want a shared progression without learning a new game
 - Players who finished the game and want goals for the long run
 
-## Changelog highlights (2.4.0)
+## Changelog highlights (26.2: 1.5.1.1, 26.3: 1.6.2.1)
+- 26.3: new base, Streamline Master 1.6.2-beta (the author's own 26.3 build).
 - Quest tracking with a pin and a small HUD panel that shows what to do and how far you are.
 - New TEMPERED icon; mod descriptions in Mod Menu follow the game language.
 - Own loading screen (start, reload, saving).
@@ -216,7 +217,7 @@ Paste everything between the lines. The banner at the top is your existing image
 
 ## Before you click "Resubmit"
 
-1. Versions: upload `releases/26.2/Fancy Vanilla 2.4.0 for 26.2.mrpack` and `releases/26.3/Fancy Vanilla 2.4.0 for 26.3.mrpack`, loader Fabric, channel alpha.
+1. Versions: upload the one `.mrpack` in `releases/26.2/` (version number 1.5.1.1) and the one in `releases/26.3/` (version number 1.6.2.1), loader Fabric, channel alpha. The number is written in the file name.
 2. In the moderation thread write that the pack has no third-party files in overrides, that every other file comes from cdn.modrinth.com, and that the description lists every included project with a link.
 3. Use the first section of `docs/CHANGELOG.md` as the version changelog.
 """

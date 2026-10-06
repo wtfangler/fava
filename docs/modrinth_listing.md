@@ -122,15 +122,16 @@ The pack is server-compatible. Startup, `/reload` and restart were tested on ded
 ## Good to know
 - Only three files are bundled in the pack and they are all my own: TEMPERED, Fancy Journal and the Fancy Vanilla resource pack. Everything else is downloaded from Modrinth when you install.
 - This is an **alpha** release. Quests were validated against the game registries and only a handful were completed in-game so far; long play sessions are still to be tested. Please report problems.
-- **Mods built for another game version** (their authors tag them as compatible): 26.2: Chat Heads (26.1), Falling Leaves (26.1), Fast IP Ping (26.1.2), Visuality (26.3); 26.3: Almanac (26.2), Explosive Enhancement (26.2), FastQuit (26.2), Glowing Torchflower (26.2), Main Menu Credits (26.2), Make Bubbles Pop (26.2).
-- **Beta and alpha mods:** 26.2: Concurrent Chunk Management Engine (Fabric) (beta), EclipseUI (beta), OptiGUI (beta), Particle Rain (beta), Smooth Swapping (beta), Sound Physics Remastered (beta), Sounds (beta), Very Many Players (Fabric) (alpha), Visuality (beta), Wakes (beta); 26.3: Better Clouds (beta), Better Statistics Screen (beta), Concurrent Chunk Management Engine (Fabric) (alpha), EclipseUI (beta), OptiGUI (beta), ScalableLux (alpha), Smooth Swapping (beta), Sound Physics Remastered (beta), TCDCommons API (beta), Very Many Players (Fabric) (alpha), Visuality (beta). Before long server sessions, check FastBack and world re-creation.
+- **Mods built for another game version** (their authors tag them as compatible): 26.2: Chat Heads (26.1), Falling Leaves (26.1), Fast IP Ping (26.1.2), Visuality (26.3); 26.3: Async Logger (26.1.2), Entity View Distance (26.2), Explosive Enhancement (26.2), FastQuit (26.2), Glowing Torchflower (26.2), Main Menu Credits (26.2), Make Bubbles Pop (26.2).
+- **Beta and alpha mods:** 26.2: Concurrent Chunk Management Engine (Fabric) (beta), EclipseUI (beta), OptiGUI (beta), Particle Rain (beta), Smooth Swapping (beta), Sound Physics Remastered (beta), Sounds (beta), Very Many Players (Fabric) (alpha), Visuality (beta), Wakes (beta); 26.3: Better Clouds (beta), Better Statistics Screen (beta), EclipseUI (beta), OptiGUI (beta), Smooth Swapping (beta), Sound Physics Remastered (beta), TCDCommons API (beta), Visuality (beta). Before long server sessions, check FastBack and world re-creation.
 
 ## Perfect for
 - Players who want vanilla survival with better visuals, sound and performance
 - Small groups who want a shared progression without learning a new game
 - Players who finished the game and want goals for the long run
 
-## Changelog highlights (2.4.0)
+## Changelog highlights (26.2: 1.5.1.1, 26.3: 1.6.2.1)
+- 26.3: new base, Streamline Master 1.6.2-beta (the author's own 26.3 build).
 - Quest tracking with a pin and a small HUD panel that shows what to do and how far you are.
 - New TEMPERED icon; mod descriptions in Mod Menu follow the game language.
 - Own loading screen (start, reload, saving).
@@ -284,11 +285,12 @@ All of this is downloaded from Modrinth when you install the pack. Thank you to 
 <details>
 <summary>Included content and credits (Minecraft 26.3)</summary>
 
-**Mods (94)**
+**Mods (102)**
 
 - [AmbientEnvironment-fabric-26.3-26.3.2](https://modrinth.com/project/DyTvM1dv)
 - [AmbientSounds_FABRIC_v6.3.6_mc26.3](https://modrinth.com/project/fM515JnW)
 - [BadOptimizations-2.4.1-26.3-fabric](https://modrinth.com/project/g96Z4WVZ)
+- [BetterF3-20.0.0-Fabric-26.3](https://modrinth.com/project/8shC1gFX)
 - [BetterGrassify-1.8.8+fabric.26.3](https://modrinth.com/project/m5T5xmUy)
 - [Chunky-Fabric-1.5.3](https://modrinth.com/project/fALzjamp)
 - [Clumps-fabric-26.3-26.3.2](https://modrinth.com/project/Wnxd13zP)
@@ -300,23 +302,25 @@ All of this is downloaded from Modrinth when you install the pack. Thank you to 
 - [ImmediatelyFast-Fabric-1.17.1+26.3](https://modrinth.com/project/5ZwdcRci)
 - [Ixeris-4.6.8+26.3-fabric](https://modrinth.com/project/p8RJPJIC)
 - [Jade-mc26.3-Fabric-26.3.5](https://modrinth.com/project/nvQzSEkH)
+- [Ksyxis-1.4.5](https://modrinth.com/project/2ecVyZ49)
 - [MouseTweaks-fabric-mc26.3-2.31](https://modrinth.com/project/aC3cM3Vq)
 - [NoChatReports-FABRIC-26.3-v2.21.0](https://modrinth.com/project/qQyHxfxd)
 - [PacketFixer-fabric-3.3.6](https://modrinth.com/project/c7m1mi73)
 - [ParticleEffects-1.6.0+26.3+fabric](https://modrinth.com/project/PLAGcSFJ)
-- [ScalableLux-fabric-mc26.3-0.3.0-alpha.0.6-all](https://modrinth.com/project/Ps1zyz6x)
 - [Searchables-fabric-26.3-1.0.2](https://modrinth.com/project/fuuu3xnx)
 - [ShoulderSurfing-Fabric-26.3-5.2.0](https://modrinth.com/project/kepjj2sy)
 - [SubtleEffects-fabric-26.3-1.14.3](https://modrinth.com/project/4q8UOK1d)
-- [almanac-fabric-26.2-1.26.9.1](https://modrinth.com/project/Gi02250Z)
+- [almanac-fabric-26.3-1.26.10.1](https://modrinth.com/project/Gi02250Z)
+- [alternate-current-mc26.3-1.9.0](https://modrinth.com/project/r0v8vy1s)
 - [animatica-0.6.2+26.3](https://modrinth.com/project/xEyZuswh)
 - [appleskin-fabric-mc26.3-3.0.10](https://modrinth.com/project/EsAfCjCV)
+- [asynclogger-2.2.2+26.1.2-fabric](https://modrinth.com/project/zvNzKfGF)
+- [audiothrottle-1.0.1-26.3](https://modrinth.com/project/KEwZNpc5)
 - [baguettelib-26.3-Fabric-2.0.7](https://modrinth.com/project/OfKzpbRU)
 - [bbe-fabric-1.3.9+mc26.3-mod](https://modrinth.com/project/ONZm0H7Y)
 - [better-clouds-1.15.0-beta.4+26.3-fabric](https://modrinth.com/project/5srFLIaK)
 - [betterstats-5.6.0-beta.2+fn-26.3](https://modrinth.com/project/n6PXGAoM)
 - [bookshelfinspector-fabric-2.4+26.3](https://modrinth.com/project/rOrXjyPb)
-- [c2me-fabric-mc26.3-0.4.2-alpha.0.89](https://modrinth.com/project/VSNURh3q)
 - [capes-1.5.10+26.3](https://modrinth.com/project/89Wsn8GD)
 - [chat_heads-1.3.2-fabric-26.3](https://modrinth.com/project/Wb5oqrBJ)
 - [cherishedworlds-fabric-18.0.0+26.3](https://modrinth.com/project/3azQ6p0W)
@@ -327,6 +331,7 @@ All of this is downloaded from Modrinth when you install the pack. Thank you to 
 - [durabilitytooltip-1.2.0a-fabric-mc26.3](https://modrinth.com/project/smUP7V3r)
 - [dynamic-fps-3.11.10+minecraft-26.3.0-fabric](https://modrinth.com/project/LQ3K71Q1)
 - [dynamiccrosshair-9.15+26.3-fabric](https://modrinth.com/project/ZcR9weSm)
+- [entity-view-distance-1.9.0+26.2](https://modrinth.com/project/ihnBJ6on)
 - [entity_model_features-3.3.10-26.3-fabric](https://modrinth.com/project/4I1XuqiY)
 - [entity_texture_features-7.2.5-26.3-fabric](https://modrinth.com/project/BVzZfTc1)
 - [entityculling-fabric-1.11.2-mc26.3](https://modrinth.com/project/NNAgCjsB)
@@ -338,6 +343,7 @@ All of this is downloaded from Modrinth when you install the pack. Thank you to 
 - [fastback-fabric-0.35.0+26.3.0](https://modrinth.com/project/ZHKrK8Rp)
 - [fastquit-3.1.5+mc26.2](https://modrinth.com/project/x1hIzbuY)
 - [ferritecore-9.0.0-fabric](https://modrinth.com/project/uXXizFIs)
+- [forcecloseloadingscreen-2.3.7](https://modrinth.com/project/blWBX5n1)
 - [fzzy_config-0.7.7+fix3+26.3](https://modrinth.com/project/hYykXjDp)
 - [glowing-torchflower-fabric-mc26.2-1.4.1](https://modrinth.com/project/1S4LxcvL)
 - [inventorysorter-fabric-3.0.1+mc26.3](https://modrinth.com/project/5ibSyLAz)
@@ -360,9 +366,11 @@ All of this is downloaded from Modrinth when you install the pack. Thank you to 
 - [particular-26.3-Fabric-1.5.7](https://modrinth.com/project/pYFUU6cq)
 - [placeholder-api-3.2.0+26.3](https://modrinth.com/project/eXts2L7r)
 - [puzzle-fabric-2.3.1+26.3](https://modrinth.com/project/3IuO68q1)
+- [quick-pack-fabric-1.5.1+26.3](https://modrinth.com/project/pSISfJ4O)
 - [reeses-sodium-options-fabric-2.2.5+mc26.3](https://modrinth.com/project/Bh37bMuy)
+- [rsls-1.4.0](https://modrinth.com/project/SKW62Pht)
 - [skinlayers3d-fabric-1.11.3-mc26.3](https://modrinth.com/project/zV5r3pPn)
-- [smoothgui-fabric-2.0.6+mc26.3](https://modrinth.com/project/j6yrZogB)
+- [smoothgui-fabric-2.0.7+mc26.3](https://modrinth.com/project/j6yrZogB)
 - [smoothscroll-3.0.0](https://modrinth.com/project/CllP7wW0)
 - [smoothswapping-0.9.11-26.3-fabric](https://modrinth.com/project/ydZic5r4)
 - [sodium-extra-fabric-0.9.4+mc26.3](https://modrinth.com/project/PtjYWJkn)
@@ -375,10 +383,11 @@ All of this is downloaded from Modrinth when you install the pack. Thank you to 
 - [supermartijn642configlib-1.1.8a-fabric-mc26.3](https://modrinth.com/project/LN9BxssP)
 - [tcdcommons-5.6.0-beta.2+fn-26.3](https://modrinth.com/project/Eldc1g37)
 - [visuality-0.7.15+26.3](https://modrinth.com/project/rI0hvYcd)
-- [vmp-fabric-mc26.3-0.2.0+beta.7.238-all](https://modrinth.com/project/wnEe9KBa)
 - [xaerominimap-fabric-26.3-26.5.3](https://modrinth.com/project/1bokaNcj)
 - [xaeroworldmap-fabric-26.3-1.46.4](https://modrinth.com/project/NcUtCpym)
 - [yet_another_config_lib_v3-3.9.7+26.3-fabric](https://modrinth.com/project/1eAoo2KR)
+- [zconfig-1.0.0+26.x](https://modrinth.com/project/4qmvXRB9)
+- [zfastnoise-1.1.1+26.3](https://modrinth.com/project/OnlVIpq5)
 - [zoomify-2.16.3+26.3](https://modrinth.com/project/w7ThoJFB)
 
 **Resource packs (26)**
@@ -405,7 +414,7 @@ All of this is downloaded from Modrinth when you install the pack. Thank you to 
 - [Simple Grass Flowers v2.0.0](https://modrinth.com/project/ti9KkMHm)
 - [Theone's Eating Animation Pack v1.0](https://modrinth.com/project/OhzX8kDf)
 - [better_flame_particles-v3.1-mc1.21.9+-resourcepack](https://modrinth.com/project/ivUZsvzp)
-- [qrafty's-capitalized-font-4.0](https://modrinth.com/project/FA4ebMMU)
+- [qrafty's-capitalized-font-4.1](https://modrinth.com/project/FA4ebMMU)
 - [visual_armor_trims_4.3](https://modrinth.com/project/tPtjib62)
 - [§3Fresh §bFlower Pots](https://modrinth.com/project/CmEN0T1m)
 - [§6Bushier Bushes§r](https://modrinth.com/project/ukVOzUX4)
@@ -421,6 +430,6 @@ All of this is downloaded from Modrinth when you install the pack. Thank you to 
 
 ## Before you click "Resubmit"
 
-1. Versions: upload `releases/26.2/Fancy Vanilla 2.4.0 for 26.2.mrpack` and `releases/26.3/Fancy Vanilla 2.4.0 for 26.3.mrpack`, loader Fabric, channel alpha.
+1. Versions: upload the one `.mrpack` in `releases/26.2/` (version number 1.5.1.1) and the one in `releases/26.3/` (version number 1.6.2.1), loader Fabric, channel alpha. The number is written in the file name.
 2. In the moderation thread write that the pack has no third-party files in overrides, that every other file comes from cdn.modrinth.com, and that the description lists every included project with a link.
 3. Use the first section of `docs/CHANGELOG.md` as the version changelog.
